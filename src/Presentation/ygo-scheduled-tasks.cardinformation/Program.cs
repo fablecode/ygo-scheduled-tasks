@@ -19,7 +19,14 @@ namespace ygo_scheduled_tasks.cardinformation
             {
                 var container = new Container(cfg =>
                 {
-
+                    cgf.Scan(
+                            scan =>
+                            {
+                                scan.TheCallingAssembly();
+                                scan.WithDefaultConventions();
+                                scan.AssembliesFromApplicationBaseDirectory();
+                                scan.LookForRegistries();
+                            });
                 });
 
                 x.UseStructureMap(container);
