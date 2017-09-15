@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MediatR;
 using Quartz;
-using StructureMap;
 using Topshelf;
 using Topshelf.Quartz.StructureMap;
 using Topshelf.StructureMap;
@@ -17,17 +14,7 @@ namespace ygo_scheduled_tasks.cardinformation
         {
             HostFactory.Run(x =>
             {
-                var container = new Container(cfg =>
-                {
-                    cgf.Scan(
-                            scan =>
-                            {
-                                scan.TheCallingAssembly();
-                                scan.WithDefaultConventions();
-                                scan.AssembliesFromApplicationBaseDirectory();
-                                scan.LookForRegistries();
-                            });
-                });
+                var container = Ioc.Initialize();
 
                 x.UseStructureMap(container);
 
@@ -46,7 +33,7 @@ namespace ygo_scheduled_tasks.cardinformation
                             JobBuilder.Create<CardInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
                                 .WithSimpleSchedule(ss => ss
-                                    .WithIntervalInHours(168)
+                                    .WithIntervalInHours(168 /*Every week*/)
                                     .RepeatForever())
                                 .Build()));
                 });
@@ -56,9 +43,9 @@ namespace ygo_scheduled_tasks.cardinformation
                     .StartAutomatically()
                     .EnableServiceRecovery(rc => rc.RestartService(1));
 
-                x.SetServiceName("Ygo Card Information");
-                x.SetDisplayName("Ygo Card Information");
-                x.SetDescription("Assemble basic card data for all Yugioh cards.");
+                x.SetServiceName("Yugioh Card Information");
+                x.SetDisplayName("Yugioh Card Information");
+                x.SetDescription("Amalgamate basic card profile data for all Yugioh cards.");
             });
         }
     }
@@ -83,7 +70,24 @@ namespace ygo_scheduled_tasks.cardinformation
 
         public void OnShutdown()
         {
-            throw new NotImplementedException();
         }
+    }
+
+    public class CardInformationScheduleTask : IRequest<ScheduleTaskResult>
+    {
+    }
+
+    public class ScheduleTaskResult
+    {
+        public bool IsSuccessful { get; set; }
+
+        public List<string> Errors { get; set; }
+
+        public ScheduleTaskStatus ScheduleTaskStatus { get; set; }
+    }
+
+    public class ScheduleTaskStatus
+    {
+        public string Name { get; set; }
     }
 }
