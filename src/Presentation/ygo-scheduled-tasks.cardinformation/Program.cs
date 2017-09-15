@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using MediatR;
 using Quartz;
 using Topshelf;
 using Topshelf.Quartz.StructureMap;
 using Topshelf.StructureMap;
+using ygo_scheduled_tasks.application.ScheduledTasks;
+using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.cardinformation
 {
@@ -24,7 +25,6 @@ namespace ygo_scheduled_tasks.cardinformation
 
                     s.WhenStarted(service => service.OnStart());
                     s.WhenStopped(service => service.OnStop());
-                    s.WhenShutdown(service => service.OnShutdown());
 
                     s.UseQuartzStructureMap();
 
@@ -32,9 +32,10 @@ namespace ygo_scheduled_tasks.cardinformation
                         q.WithJob(() => 
                             JobBuilder.Create<CardInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                .WithSimpleSchedule(ss => ss
-                                    .WithIntervalInHours(168 /*Every week*/)
-                                    .RepeatForever())
+                                .WithCalendarIntervalSchedule(ss =>
+                                    ss.WithIntervalInWeeks(1)
+                                    .Build())
+                                .StartNow()
                                 .Build()));
                 });
 
@@ -45,16 +46,23 @@ namespace ygo_scheduled_tasks.cardinformation
 
                 x.SetServiceName("Yugioh Card Information");
                 x.SetDisplayName("Yugioh Card Information");
-                x.SetDescription("Amalgamate basic card profile data for all Yugioh cards.");
+                x.SetDescription("Amalgamate card insight data, for all Yugioh cards.");
             });
         }
     }
 
     public class CardInformationJob : IJob
     {
+        private readonly IMediator _mediator;
+
+        public CardInformationJob(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         public void Execute(IJobExecutionContext context)
         {
-            throw new NotImplementedException();
+            _mediator.Send(new CardInformationTask()).Wait();
         }
     }
 
@@ -67,27 +75,24 @@ namespace ygo_scheduled_tasks.cardinformation
         public void OnStop()
         {
         }
+    }
 
-        public void OnShutdown()
+    public class MyService
+    {
+        public void OnStart()
+        {
+        }
+
+        public void OnStop()
         {
         }
     }
 
-    public class CardInformationScheduleTask : IRequest<ScheduleTaskResult>
+    public class MyJob : IJob
     {
-    }
-
-    public class ScheduleTaskResult
-    {
-        public bool IsSuccessful { get; set; }
-
-        public List<string> Errors { get; set; }
-
-        public ScheduleTaskStatus ScheduleTaskStatus { get; set; }
-    }
-
-    public class ScheduleTaskStatus
-    {
-        public string Name { get; set; }
+        public void Execute(IJobExecutionContext context)
+        {
+            Console.WriteLine($"[{DateTime.UtcNow}] Welcome from MyJob!");
+        }
     }
 }

@@ -10,7 +10,8 @@ namespace ygo_scheduled_tasks.cardinformation
         {
             var container = new Container(cfg =>
             {
-                cfg.Scan(
+                cfg.Scan
+                (
 
                     scan =>
                     {
@@ -25,7 +26,12 @@ namespace ygo_scheduled_tasks.cardinformation
                         scan.WithDefaultConventions();
                         scan.AssembliesFromApplicationBaseDirectory();
                         scan.LookForRegistries();
-                    });
+                    }
+                );
+
+                cfg.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => ctx.GetInstance);
+                cfg.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => ctx.GetAllInstances);
+                cfg.For<IMediator>().Use<Mediator>();
             });
 
             return container;

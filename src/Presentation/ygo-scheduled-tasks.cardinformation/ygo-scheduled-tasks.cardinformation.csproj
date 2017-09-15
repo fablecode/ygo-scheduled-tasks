@@ -80,5 +80,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\ygo-scheduled-tasks.application\ygo-scheduled-tasks.application.csproj">
+      <Project>{141A894B-B936-45CE-A687-1470AECAC86B}</Project>
+      <Name>ygo-scheduled-tasks.application</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
