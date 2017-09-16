@@ -4,4 +4,4 @@
 A set of scheduled tasks for aggregate Yu-Gi-Oh related data from various sources
 
 ## Why?
-To provide access to the latest [Yu-Gi-Oh](http://www.yugioh-card.com/uk/)  banlist & card errata in a simple JSON format. Using [ygo-api](https://github.com/fablecode/ygo-api)
+To provide access to the latest [Yu-Gi-Oh](http://www.yugioh-card.com/uk/)  banlist & card errata in a simple JSON format, via [ygo-api](https://github.com/fablecode/ygo-api).
