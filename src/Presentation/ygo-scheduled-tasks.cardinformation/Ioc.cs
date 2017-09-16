@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using NLog;
 using StructureMap;
 using StructureMap.Graph;
 
@@ -32,6 +33,7 @@ namespace ygo_scheduled_tasks.cardinformation
                 cfg.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => ctx.GetInstance);
                 cfg.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => ctx.GetAllInstances);
                 cfg.For<IMediator>().Use<Mediator>();
+                cfg.For<ILogger>().Use(context => LogManager.GetCurrentClassLogger());
             });
 
             return container;
