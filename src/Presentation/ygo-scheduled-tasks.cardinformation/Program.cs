@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using MediatR;
 using Quartz;
 using Topshelf;
 using Topshelf.Quartz.StructureMap;
 using Topshelf.StructureMap;
+using ygo_scheduled_tasks.application;
 using ygo_scheduled_tasks.application.ScheduledTasks;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
@@ -62,7 +64,9 @@ namespace ygo_scheduled_tasks.cardinformation
 
         public void Execute(IJobExecutionContext context)
         {
-            _mediator.Send(new CardInformationTask()).Wait();
+            var categories = new List<string> { ArticleCategory.TcgCards, ArticleCategory.OcgCards, ArticleCategory.MonsterCardTypes};
+
+            _mediator.Send(new CardInformationTask { Categories = categories }).Wait();
         }
     }
 
