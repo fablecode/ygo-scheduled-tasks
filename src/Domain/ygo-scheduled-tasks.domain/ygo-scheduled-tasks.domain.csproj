@@ -30,9 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Model\YugiohCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPage\ICardHtmlDocument.cs" />
     <Compile Include="WebPage\ICardHtmlTable.cs" />
+    <Compile Include="WebPage\ICardWebPage.cs" />
     <Compile Include="WebPage\IHtmlWebPage.cs" />
   </ItemGroup>
   <ItemGroup />

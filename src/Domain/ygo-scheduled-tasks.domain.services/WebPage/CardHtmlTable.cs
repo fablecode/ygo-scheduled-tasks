@@ -13,8 +13,12 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
         public const string CardType = "Card type";
         public const string Property = "Property";
         public const string Attribute = "Attribute";
+        public const string Level = "Level";
         public const string Rank = "Rank";
         public const string LinkArrows = "Link Arrows";
+        public const string Materials = "Materials";
+        public const string CardEffectTypes = "Card effect types";
+        public const string PendulumScale = "Pendulum Scale";
         public static readonly string[] AtkAndDef = { "ATK / DEF", "ATK/DEF" };
         public static readonly string[] AtkAndLink = { "ATK / LINK", "ATK/LINK" };
         public static readonly string[] Types = { "Type", "Types"} ;

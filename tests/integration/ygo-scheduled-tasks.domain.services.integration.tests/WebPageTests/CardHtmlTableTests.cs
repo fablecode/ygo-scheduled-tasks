@@ -116,14 +116,13 @@ namespace ygo_scheduled_tasks.domain.services.integration.tests.WebPageTests
         public void Given_A_Valid_Monster_Card_Profile_Url_Should_Extract_Card_Level(string cardProfileUrl, int expected)
         {
             // Arrange
-            var key = "Level";
             var htmlDocument = new CardHtmlDocument(new HtmlWebPage());
             htmlDocument.Load(cardProfileUrl);
 
             _sut.Load(htmlDocument.ProfileElement());
 
             // Act
-            var result = _sut.GetIntValue(key);
+            var result = _sut.GetIntValue(CardHtmlTable.Level);
 
             // Assert
             result.Should().Be(expected);
