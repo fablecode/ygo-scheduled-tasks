@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using ygo_scheduled_tasks.domain.WebPage;
 
@@ -40,6 +41,21 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
                 imageUrl = imageUrl.Substring(0, imageUrl.IndexOf("/revision", StringComparison.Ordinal));
 
             return imageUrl;
+        }
+
+        public string ProfileCardDescription()
+        {
+            var pattern = @"(?!</?br>)<.*?>";
+            var descNode = _cardPage.DocumentNode.SelectSingleNode("//b[text()[contains(., 'Card descriptions')]]/../table[1]/tr[1]/td/table/tr[3]/td")?.InnerHtml;
+
+            if (descNode != null)
+            {
+                descNode = Regex.Replace(descNode, pattern, string.Empty, RegexOptions.Multiline);
+
+                return descNode.Trim();
+            }
+
+            return string.Empty;
         }
     }
 }

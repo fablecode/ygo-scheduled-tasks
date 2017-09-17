@@ -9,5 +9,6 @@ namespace ygo_scheduled_tasks.domain.WebPage
         void Load(Uri url);
         HtmlNode ProfileElement();
         string ProfileImageUrl();
+        string ProfileCardDescription();
     }
 }

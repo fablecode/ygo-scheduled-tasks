@@ -60,5 +60,19 @@ namespace ygo_scheduled_tasks.domain.services.integration.tests.WebPageTests
             result.Should().NotBeNullOrEmpty();
         }
 
+        [TestCase("http://yugioh.wikia.com/wiki/Borreload_Dragon")]
+        [TestCase("http://yugioh.wikia.com/wiki/Twin_Triangle_Dragon")]
+        [TestCase("http://yugioh.wikia.com/wiki/Blue-Eyes_Ultimate_Dragon")]
+        public void Given_A_Valid_Card_Profile_Url_Should_Return_Profile_Card_Description(string cardProfileUrl)
+        {
+            // Arrange
+            _sut.Load(cardProfileUrl);
+
+            // Act
+            var result = _sut.ProfileCardDescription();
+
+            // Assert
+            result.Should().NotBeNullOrEmpty();
+        }
     }
 }
