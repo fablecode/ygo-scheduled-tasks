@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using HtmlAgilityPack;
 
 namespace ygo_scheduled_tasks.domain.WebPage
@@ -8,6 +9,7 @@ namespace ygo_scheduled_tasks.domain.WebPage
         void Load(string url);
         void Load(Uri url);
         HtmlNode ProfileElement();
+        IDictionary<string, string> ProfileData(HtmlNode htmlTable);
         string ProfileImageUrl();
         string ProfileCardDescription();
     }

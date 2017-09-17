@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using ygo_scheduled_tasks.domain.WebPage;
@@ -31,6 +33,31 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
         public HtmlNode ProfileElement()
         {
             return _cardPage.DocumentNode.SelectSingleNode("//div[@id='WikiaArticle']//table[contains(@class, 'cardtable')]");
+        }
+
+        public IDictionary<string, string> ProfileData(HtmlNode htmlTable)
+        {
+            var response = new Dictionary<string, string>();
+
+            var htmlTableRows = htmlTable.SelectNodes("./tr");
+
+            if (htmlTableRows != null && htmlTableRows.Any())
+            {
+                foreach (var row in htmlTableRows)
+                {
+                    var key = row.SelectSingleNode("./th[contains(@class, 'cardtablerowheader')]");
+                    var value = row.SelectSingleNode("./td[contains(@class, 'cardtablerowdata')]");
+
+                    if (key != null && value != null && !response.ContainsKey(key.InnerText))
+                    {
+                        var cardEffectTypes = key.InnerText == "Card effect types" ? string.Join(",", value.SelectNodes("./ul/li").Select(t => t.InnerText.Trim())) : value.InnerText;
+
+                        response.Add(key.InnerText.Trim(), cardEffectTypes);
+                    }
+                }
+            }
+
+            return response;
         }
 
         public string ProfileImageUrl()

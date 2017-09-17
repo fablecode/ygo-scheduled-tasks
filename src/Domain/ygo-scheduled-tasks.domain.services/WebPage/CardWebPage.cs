@@ -2,5 +2,4 @@
 
 namespace ygo_scheduled_tasks.domain.services.WebPage
 {
-    
 }

@@ -13,18 +13,20 @@ namespace ygo_scheduled_tasks.domain.services.integration.tests.WebPageTests
         [SetUp]
         public void Setup()
         {
-            var sut = new CardWebPage(new HtmlWebPage());
+            var sut = new CardWebPage(new CardHtmlDocument(new HtmlWebPage()), new CardHtmlTable());
         }
     }
 
     public class CardWebPage
     {
-        private readonly IHtmlWebPage _htmlWebPage;
+        private readonly ICardHtmlDocument _cardHtmlDocument;
+        private readonly ICardHtmlTable _cardHtmlTable;
         private HtmlDocument _cardPage;
 
-        public CardWebPage(IHtmlWebPage htmlWebPage)
+        public CardWebPage(ICardHtmlDocument cardHtmlDocument, ICardHtmlTable cardHtmlTable)
         {
-            _htmlWebPage = htmlWebPage;
+            _cardHtmlDocument = cardHtmlDocument;
+            _cardHtmlTable = cardHtmlTable;
         }
 
         public void Load(string url)
@@ -34,23 +36,9 @@ namespace ygo_scheduled_tasks.domain.services.integration.tests.WebPageTests
 
         public void Load(Uri url)
         {
-            _cardPage = _htmlWebPage.Load(url.AbsoluteUri);
+            _cardHtmlDocument.Load(url);
+            _cardHtmlTable.Load(_cardHtmlDocument.ProfileElement());
         }
-    }
-
-    [TestFixture]
-    public class CardWebPageHelperTests
-    {
-        [SetUp]
-        public void Setup()
-        {
-            
-        }
-    }
-
-    public static class CardWebPageHelper
-    {
-        
     }
 
     public sealed class YugiohCard
