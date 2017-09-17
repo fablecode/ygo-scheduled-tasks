@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebPage\CardHtmlDocument.cs" />
     <Compile Include="WebPage\CardWebPage.cs" />
     <Compile Include="WebPage\HtmlWebPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

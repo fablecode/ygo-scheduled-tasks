@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebPageTests\CardHtmlDocumentTests.cs" />
     <Compile Include="WebPageTests\CardWebPageTests.cs" />
   </ItemGroup>
   <ItemGroup>
