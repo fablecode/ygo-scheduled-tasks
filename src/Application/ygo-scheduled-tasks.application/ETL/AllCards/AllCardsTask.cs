@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
-namespace ygo_scheduled_tasks.application.ScheduledTasks.AllCards
+namespace ygo_scheduled_tasks.application.ETL.AllCards
 {
     public class AllCardsTask : IRequest<CategoryTaskResult>
     {

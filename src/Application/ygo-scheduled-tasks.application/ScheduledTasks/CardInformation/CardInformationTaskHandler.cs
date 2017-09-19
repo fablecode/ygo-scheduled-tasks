@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using NLog;
-using ygo_scheduled_tasks.application.ScheduledTasks.AllCards;
+using ygo_scheduled_tasks.application.ETL.AllCards;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
 {

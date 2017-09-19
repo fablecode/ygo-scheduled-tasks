@@ -5,8 +5,8 @@ namespace ygo_scheduled_tasks.domain.WebPage
 {
     public interface ICardWebPage
     {
-        void Load(string url);
-        void Load(Uri url);
-        YugiohCard GetYugiohCard();
+        YugiohCard GetYugiohCard(string url);
+
+        YugiohCard GetYugiohCard(Uri url);
     }
 }

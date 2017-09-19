@@ -15,18 +15,28 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
             _cardHtmlTable = cardHtmlTable;
         }
 
-        public void Load(string url)
+
+        public YugiohCard GetYugiohCard(string url)
         {
-            Load(new Uri(url));
+            return GetYugiohCard(new Uri(url));
         }
 
-        public void Load(Uri url)
+        public YugiohCard GetYugiohCard(Uri url)
+        {
+            Load(url);
+            return GetYugiohCard();
+        }
+
+
+        #region private helpers
+
+        private void Load(Uri url)
         {
             _cardHtmlDocument.Load(url);
             _cardHtmlTable.Load(_cardHtmlDocument.ProfileElement());
         }
 
-        public YugiohCard GetYugiohCard()
+        private YugiohCard GetYugiohCard()
         {
             var response = new YugiohCard();
 
@@ -36,7 +46,7 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
             response.CardNumber = _cardHtmlTable.GetValue(CardHtmlTable.Number);
             response.CardType = _cardHtmlTable.GetValue(CardHtmlTable.CardType);
             response.Property = _cardHtmlTable.GetValue(CardHtmlTable.Property);
-            response.Attribute = _cardHtmlTable.GetValue(CardHtmlTable.Attribute);
+            response.Attribute = _cardHtmlTable.GetCardAttribute();
             response.Level = _cardHtmlTable.GetIntValue(CardHtmlTable.Level);
             response.Rank = _cardHtmlTable.GetIntValue(CardHtmlTable.Rank);
             response.AtkDef = _cardHtmlTable.GetValue(CardHtmlTable.AtkAndDef);
@@ -47,6 +57,8 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
             response.PendulumScale = _cardHtmlTable.GetIntValue(CardHtmlTable.PendulumScale);
 
             return response;
-        }
+        } 
+
+        #endregion
     }
 }

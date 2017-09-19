@@ -31,10 +31,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ArticleCategory.cs" />
+    <Compile Include="ETL\BatchHandler\BatchHandler.cs" />
+    <Compile Include="ETL\BatchHandler\IBatchHandler.cs" />
+    <Compile Include="ETL\BatchItemProcessor\CardProcessor\CardItemProcessor.cs" />
+    <Compile Include="ETL\BatchItemProcessor\IBatchItemProcessor.cs" />
+    <Compile Include="ETL\CardBatch\CardBatchTask.cs" />
+    <Compile Include="ETL\CardBatch\CardBatchTaskHandler.cs" />
+    <Compile Include="ETL\CardBatchItem\CardBatchItemTaskHandler.cs" />
+    <Compile Include="ETL\CardBatchItem\CardBatchItemTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStringConstants.cs" />
-    <Compile Include="ScheduledTasks\AllCards\AllCardsHandler.cs" />
-    <Compile Include="ScheduledTasks\AllCards\AllCardsTask.cs" />
+    <Compile Include="ETL\AllCards\AllCardsTaskHandler.cs" />
+    <Compile Include="ETL\AllCards\AllCardsTask.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTask.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskHandler.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskValidator.cs" />
@@ -70,6 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\ygo-scheduled-tasks.domain\ygo-scheduled-tasks.domain.csproj">
+      <Project>{E812E143-5508-4715-A545-F4FBB2A88359}</Project>
+      <Name>ygo-scheduled-tasks.domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
