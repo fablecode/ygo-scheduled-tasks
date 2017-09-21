@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using MediatR;
+using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.application.ETL.CardBatchItem;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
-using ygo_scheduled_tasks.domain.Model;
 
 namespace ygo_scheduled_tasks.application.ETL.CardBatch
 {

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Configuration;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
@@ -21,6 +21,8 @@ namespace ygo_scheduled_tasks.application.ETL.BatchItemProcessor.CardProcessor
             var domainUrl = ConfigurationManager.AppSettings["domainUrl"];
 
             var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(domainUrl), item.Url));
+
+            return Task.FromResult(new Card());
         }
 
         public bool Handles(string category)

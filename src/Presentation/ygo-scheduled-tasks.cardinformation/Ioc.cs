@@ -1,7 +1,6 @@
-﻿using MediatR;
-using NLog;
+﻿using Common.Logging;
+using MediatR;
 using StructureMap;
-using StructureMap.Graph;
 
 namespace ygo_scheduled_tasks.cardinformation
 {
@@ -13,27 +12,15 @@ namespace ygo_scheduled_tasks.cardinformation
             {
                 cfg.Scan
                 (
-
                     scan =>
                     {
-                        scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>)); // Handlers with no response
-                        scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>)); // Handlers with a response
-                        scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<>)); // Async handlers with no response
-                        scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>)); // Async Handlers with a response
-                        scan.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
-                        scan.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
-
                         scan.TheCallingAssembly();
                         scan.WithDefaultConventions();
                         scan.AssembliesFromApplicationBaseDirectory();
                         scan.LookForRegistries();
+
                     }
                 );
-
-                cfg.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => ctx.GetInstance);
-                cfg.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => ctx.GetAllInstances);
-                cfg.For<IMediator>().Use<Mediator>();
-                cfg.For<ILogger>().Use(context => LogManager.GetCurrentClassLogger());
             });
 
             return container;

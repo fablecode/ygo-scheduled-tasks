@@ -16,8 +16,6 @@ namespace ygo_scheduled_tasks.cardinformation
         {
             HostFactory.Run(x =>
             {
-                x.UseNLog();
-
                 var container = Ioc.Initialize();
                 x.UseStructureMap(container);
 
@@ -81,25 +79,6 @@ namespace ygo_scheduled_tasks.cardinformation
 
         public void OnStop()
         {
-        }
-    }
-
-    public class MyService
-    {
-        public void OnStart()
-        {
-        }
-
-        public void OnStop()
-        {
-        }
-    }
-
-    public class MyJob : IJob
-    {
-        public void Execute(IJobExecutionContext context)
-        {
-            Console.WriteLine($"[{DateTime.UtcNow}] Welcome from MyJob!");
         }
     }
 }
