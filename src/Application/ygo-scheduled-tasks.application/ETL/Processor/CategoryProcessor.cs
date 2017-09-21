@@ -1,46 +1,42 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using MediatR;
 using wikia.Api;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.application.ETL.CardBatch;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
-namespace ygo_scheduled_tasks.application.ETL.AllCards
+namespace ygo_scheduled_tasks.application.ETL.Processor
 {
-    public class AllCardsTaskHandler : IAsyncRequestHandler<AllCardsTask, CategoryTaskResult>
+    public class CategoryProcessor : ICategoryProcessor
     {
-        private readonly IMediator _mediator;
         private readonly IWikiArticle _wikiArticle;
+        private readonly IArticleBatchProcessor _articleBatchProcessor;
 
-        public AllCardsTaskHandler(IMediator mediator, IWikiArticle wikiArticle)
+        public CategoryProcessor(IWikiArticle wikiArticle, IArticleBatchProcessor articleBatchProcessor)
         {
-            _mediator = mediator;
             _wikiArticle = wikiArticle;
+            _articleBatchProcessor = articleBatchProcessor;
         }
 
-        public Task<CategoryTaskResult> Handle(AllCardsTask message)
+        public Task<ArticleBatchTaskResult> Process(string category, int pageSize)
         {
-            var response = new CategoryTaskResult {Category = message.Category};
+            var response = new ArticleBatchTaskResult { Category = category };
+            var processorCount = Environment.ProcessorCount;
 
-            int processorCount = Environment.ProcessorCount;
-            int messageCount = processorCount;
-
-            // dataflow tpl blocks
+            // Pipeline members
             var articleBatchBufferBlock = new BufferBlock<UnexpandedArticle[]>();
-            var articleTransformBlock = new TransformBlock<UnexpandedArticle[], CategoryTaskResult>(t => _mediator.Send(new CardBatchTask { Category = message.Category, Items = t }));
-            var articleActionBlock = new ActionBlock<CategoryTaskResult>(delegate(CategoryTaskResult result)
-            {
-                response.Processed += result.Processed;
-                response.Failed = result.Failed;
-            },
+            var articleTransformBlock = new TransformBlock<UnexpandedArticle[], ArticleBatchTaskResult>(t => _articleBatchProcessor.Process(category, t));
+            var articleActionBlock = new ActionBlock<ArticleBatchTaskResult>(delegate (ArticleBatchTaskResult result)
+                {
+                    response.Processed += result.Processed;
+                    response.Failed = result.Failed;
+                },
                 // Specify a maximum degree of parallelism.
-            new ExecutionDataflowBlockOptions
-            {
-                MaxDegreeOfParallelism = processorCount
-            });
+                new ExecutionDataflowBlockOptions
+                {
+                    MaxDegreeOfParallelism = processorCount
+                });
 
             // Form the pipeline
             articleBatchBufferBlock.LinkTo(articleTransformBlock);
@@ -65,8 +61,8 @@ namespace ygo_scheduled_tasks.application.ETL.AllCards
                         articleActionBlock.Complete();
                 });
 
-            // Process the "Category"
-            var producer = Producer(message, articleBatchBufferBlock);
+            // Process the "Category" and generate article batch
+            var producer = Producer(category, pageSize, articleBatchBufferBlock);
 
             // Mark the head of the pipeline as complete. The continuation tasks  
             // propagate completion through the pipeline as each part of the  
@@ -74,24 +70,18 @@ namespace ygo_scheduled_tasks.application.ETL.AllCards
             articleActionBlock.Completion.Wait();
 
             return Task.FromResult(response);
-
         }
 
-        private async Task Producer(AllCardsTask message, BufferBlock<UnexpandedArticle[]> articleBufferBlock)
+        #region private helpers
+
+        private async Task Producer(string category, int pageSize, BufferBlock<UnexpandedArticle[]> articleBufferBlock)
         {
-            var nextBatch =
-                await _wikiArticle.AlphabeticalList(
-                    new ArticleListRequestParameters {Category = message.Category, Limit = message.PageSize});
+            var nextBatch = await _wikiArticle.AlphabeticalList(new ArticleListRequestParameters { Category = category, Limit = pageSize });
 
             bool isNextBatchAvailable;
 
             do
             {
-                //var result = await _mediator.Send(new CardBatchTask { Category = message.Category, Items = nextBatch.Items});
-
-                //response.Processed += result.Processed;
-                //response.Failed = result.Failed;
-
                 articleBufferBlock.Post(nextBatch.Items);
 
                 isNextBatchAvailable = !string.IsNullOrEmpty(nextBatch.Offset);
@@ -100,12 +90,14 @@ namespace ygo_scheduled_tasks.application.ETL.AllCards
                 {
                     nextBatch = await _wikiArticle.AlphabeticalList(new ArticleListRequestParameters
                     {
-                        Category = message.Category,
-                        Limit = message.PageSize,
+                        Category = category,
+                        Limit = pageSize,
                         Offset = nextBatch.Offset
                     });
                 }
             } while (isNextBatchAvailable);
         }
+
+        #endregion
     }
 }

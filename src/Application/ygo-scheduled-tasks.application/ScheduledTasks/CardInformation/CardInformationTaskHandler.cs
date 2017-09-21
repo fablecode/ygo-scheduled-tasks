@@ -4,18 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using ygo_scheduled_tasks.application.ETL.AllCards;
+using wikia.Models.Article.AlphabeticalList;
+using ygo_scheduled_tasks.application.ETL.Processor;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
 {
     public class CardInformationTaskHandler : IAsyncRequestHandler<CardInformationTask, CardInformationTaskResult>
     {
-        private readonly IMediator _mediator;
+        private readonly ICategoryProcessor _categoryProcessor;
         private readonly IValidator<CardInformationTask> _validator;
 
-        public CardInformationTaskHandler(IMediator mediator, IValidator<CardInformationTask> validator)
+        public CardInformationTaskHandler(ICategoryProcessor categoryProcessor, IValidator<CardInformationTask> validator)
         {
-            _mediator = mediator;
+            _categoryProcessor = categoryProcessor;
             _validator = validator;
         }
 
@@ -29,9 +30,9 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
             {
                 foreach (var category in message.Categories)
                 {
-                    var categoryResult = await _mediator.Send(new AllCardsTask {Category = category, PageSize = message.PageSize});
+                    var categoryResult = await _categoryProcessor.Process(category, message.PageSize);
 
-                    response.CategoryTaskResults.Add(categoryResult);
+                    response.ArticleTaskResults.Add(categoryResult);
                 }
             }
             else
@@ -45,23 +46,33 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
 
     public class CardInformationTaskResult
     {
-        public List<CategoryTaskResult> CategoryTaskResults { get; set; } = new List<CategoryTaskResult>();
+        public List<ArticleBatchTaskResult> ArticleTaskResults { get; set; } = new List<ArticleBatchTaskResult>();
 
         public List<string> Errors { get; set; }
     }
 
-    public class CategoryTaskResult
+    public class ArticleBatchTaskResult
     {
         public string Category { get; set; }
 
         public int Processed { get; set; }
 
-        public List<CardException> Failed { get; set; }
+        public List<ArticleException> Failed { get; set; } = new List<ArticleException>();
     }
 
-    public class CardException
+    public class ArticleTaskResult
     {
-        public string Name { get; set; }
+        public string Category { get; set; }
+
+        public bool Processed { get; set; }
+
+        public ArticleException Failed { get; set; }
+    }
+
+
+    public class ArticleException
+    {
+        public UnexpandedArticle Article { get; set; }
 
         public Exception Exception { get; set; }
     }

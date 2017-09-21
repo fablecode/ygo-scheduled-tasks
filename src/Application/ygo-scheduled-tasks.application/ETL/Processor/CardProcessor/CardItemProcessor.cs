@@ -1,11 +1,11 @@
-﻿    using System;
+﻿using System;
 using System.Configuration;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.domain.Model;
+using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 using ygo_scheduled_tasks.domain.WebPage;
 
-namespace ygo_scheduled_tasks.application.ETL.BatchItemProcessor.CardProcessor
+namespace ygo_scheduled_tasks.application.ETL.Processor.CardProcessor
 {
     public class CardItemProcessor : IBatchItemProcessor
     {
@@ -16,13 +16,13 @@ namespace ygo_scheduled_tasks.application.ETL.BatchItemProcessor.CardProcessor
             _cardWebPage = cardWebPage;
         }
 
-        public Task<Card> ProcessItem(UnexpandedArticle item)
+        public Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
             var domainUrl = ConfigurationManager.AppSettings["domainUrl"];
 
             var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(domainUrl), item.Url));
 
-            return Task.FromResult(new Card());
+            return Task.FromResult(new ArticleTaskResult());
         }
 
         public bool Handles(string category)

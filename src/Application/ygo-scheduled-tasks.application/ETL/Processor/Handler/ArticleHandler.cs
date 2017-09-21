@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using ygo_scheduled_tasks.application.ETL.BatchItemProcessor;
 
-namespace ygo_scheduled_tasks.application.ETL.BatchHandler
+namespace ygo_scheduled_tasks.application.ETL.Processor.Handler
 {
-    public class BatchHandler : IBatchHandler
+    public class ArticleHandler : IArticleHandler
     {
         private readonly IEnumerable<IBatchItemProcessor> _batchItemProcessors;
 
-        public BatchHandler(IEnumerable<IBatchItemProcessor> batchItemProcessors)
+        public ArticleHandler(IEnumerable<IBatchItemProcessor> batchItemProcessors)
         {
             _batchItemProcessors = batchItemProcessors;
         }

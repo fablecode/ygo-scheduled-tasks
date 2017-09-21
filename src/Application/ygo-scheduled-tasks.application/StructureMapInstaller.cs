@@ -3,8 +3,8 @@ using FluentValidation;
 using MediatR;
 using StructureMap;
 using wikia.Api;
-using ygo_scheduled_tasks.application.ETL.BatchHandler;
-using ygo_scheduled_tasks.application.ETL.BatchItemProcessor;
+using ygo_scheduled_tasks.application.ETL.Processor;
+using ygo_scheduled_tasks.application.ETL.Processor.Handler;
 using ygo_scheduled_tasks.domain.services.WebPage;
 using ygo_scheduled_tasks.domain.WebPage;
 
@@ -42,7 +42,7 @@ namespace ygo_scheduled_tasks.application
 
 
             For<IWikiArticle>().Use(context => new WikiArticle(domainUrl));
-            For<IBatchHandler>().Use<BatchHandler>();
+            For<IArticleHandler>().Use<ArticleHandler>();
             For<ICardWebPage>().Use<CardWebPage>();
             For<ICardHtmlDocument>().Use<CardHtmlDocument>();
             For<IHtmlWebPage>().Use<HtmlWebPage>();

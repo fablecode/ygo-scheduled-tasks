@@ -65,9 +65,10 @@ namespace ygo_scheduled_tasks.cardinformation
 
         public void Execute(IJobExecutionContext context)
         {
+            const int pageSize = 200;
             var categories = new List<string> { ArticleCategory.TcgCards, ArticleCategory.OcgCards, ArticleCategory.MonsterCardTypes};
 
-            _mediator.Send(new CardInformationTask { Categories = categories }).Wait();
+            _mediator.Send(new CardInformationTask { Categories = categories, PageSize = pageSize }).Wait();
         }
     }
 

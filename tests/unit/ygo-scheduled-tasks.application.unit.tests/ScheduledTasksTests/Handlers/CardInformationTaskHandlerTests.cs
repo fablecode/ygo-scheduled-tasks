@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
-using MediatR;
 using NSubstitute;
 using NUnit.Framework;
+using ygo_scheduled_tasks.application.ETL.Processor;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handlers
@@ -11,14 +11,14 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
     public class CardInformationTaskHandlerTests
     {
         private CardInformationTaskHandler _sut;
-        private IMediator _mediator;
+        private ICategoryProcessor _categoryProcessor;
 
         [SetUp]
         public void Setup()
         {
-            _mediator = Substitute.For<IMediator>();
+            _categoryProcessor = Substitute.For<ICategoryProcessor>();
 
-            _sut = new CardInformationTaskHandler(_mediator, new CardInformationTaskValidator());
+            _sut = new CardInformationTaskHandler(_categoryProcessor, new CardInformationTaskValidator());
         }
 
         [Test]
@@ -39,13 +39,13 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
         {
             // Arrange
             var task = new CardInformationTask();
-            _mediator.Send(task).Returns(new CardInformationTaskResult());
+            _categoryProcessor.Process(Arg.Any<string>(), Arg.Any<int>()).Returns(new ArticleBatchTaskResult());
 
             // Act
             await _sut.Handle(task);
 
             // Assert
-            await _mediator.DidNotReceive().Send(task);
+            await _categoryProcessor.DidNotReceive().Process(Arg.Any<string>(), Arg.Any<int>());
         }
 
     }
