@@ -26,7 +26,7 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
 
             // Pipeline members
             var articleBatchBufferBlock = new BufferBlock<UnexpandedArticle[]>();
-            var articleTransformBlock = new TransformBlock<UnexpandedArticle[], ArticleBatchTaskResult>(t => _articleBatchProcessor.Process(category, t));
+            var articleTransformBlock = new TransformBlock<UnexpandedArticle[], ArticleBatchTaskResult>(articles => _articleBatchProcessor.Process(category, articles));
             var articleActionBlock = new ActionBlock<ArticleBatchTaskResult>(delegate (ArticleBatchTaskResult result)
                 {
                     response.Processed += result.Processed;
@@ -61,7 +61,7 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
                         articleActionBlock.Complete();
                 });
 
-            // Process the "Category" and generate article batch
+            // Process "Category" and generate article batch
             var producer = Producer(category, pageSize, articleBatchBufferBlock);
 
             // Mark the head of the pipeline as complete. The continuation tasks  
