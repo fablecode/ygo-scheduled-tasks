@@ -38,7 +38,7 @@ Modify the **apiUrl** in the app.config.You can get the web api url by running t
  
 ![TPL Dataflow pipeline for Article Batches](/assets/images/tpl%20dataflow.png?raw=true "TPL Dataflow pipeline for Article Batches")
  
- The solution will have a single point of input. 2 **Article Batch Processor** to processor the batches and the result placed in a article queue. Depending on the article category, one of the 4 **Processors** will process the article. Lastly, article data is then persisted to storage (SQL Server).
+ The solution will have a single point of input. **Article Batch Processor** to processor the batches and place article in queue. Depending on the article category, one of the **Processors** will process the article. Lastly, article data is then persisted to storage (SQL Server).
  
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
