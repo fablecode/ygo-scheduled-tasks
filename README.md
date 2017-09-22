@@ -22,9 +22,12 @@ Modify the **apiUrl** in the app.config.You can get the web api url by running t
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/)
 * [.NET 4.6.2](https://www.microsoft.com/en-gb/download/details.aspx?id=53345)
 * [Onion Architecture](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/) and [CQRS](https://martinfowler.com/bliki/CQRS.html)
-* [Structuremap](https://github.com/structuremap/structuremap)
 * [Topshelf](https://github.com/Topshelf/Topshelf)
+* [Structuremap](https://github.com/structuremap/structuremap)
 * [Topshelf.StructureMap](https://github.com/swimtver/Topshelf.StructureMap)
+* [Quartz](https://www.nuget.org/packages/Quartz/)
+* [Topshelf.Quartz](https://www.nuget.org/packages/Topshelf.Quartz/)
+* [Topshelf.Quartz.StructureMap](https://www.nuget.org/packages/Topshelf.Quartz.StructureMap/)
 * [TPL Dataflow Library](https://www.nuget.org/packages/Microsoft.Tpl.Dataflow/) for message passing **dataflow** and **pipelining**.
 * [Mediatr](https://www.nuget.org/packages/MediatR/) for CQRS and the Mediator Design Pattern. Mediator design pattern defines how a set of objects interact with each other. You can think of a Mediator object as a kind of traffic-coordinator, it directs traffic to appropriate parties.
 * [Wikia](https://github.com/fablecode/wikia)
