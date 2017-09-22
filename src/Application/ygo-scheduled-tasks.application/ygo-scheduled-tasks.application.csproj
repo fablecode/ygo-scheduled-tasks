@@ -31,6 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ArticleCategory.cs" />
+    <Compile Include="ETL\DataSource\ArticleCategoryDataSource.cs" />
+    <Compile Include="ETL\DataSource\ICategoryDataSource.cs" />
     <Compile Include="ETL\Processor\Handler\ArticleHandler.cs" />
     <Compile Include="ETL\Processor\Handler\IArticleHandler.cs" />
     <Compile Include="ETL\Processor\CardProcessor\CardItemProcessor.cs" />

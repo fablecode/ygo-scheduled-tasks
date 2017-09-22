@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using wikia.Api;
-using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
+using ygo_scheduled_tasks.application.ETL.DataSource;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.application.ETL.Processor
 {
-    public class CategoryProcessor : ICategoryProcessor
+    public class ArticleCategoryProcessor : ICategoryProcessor
     {
-        private readonly IWikiArticle _wikiArticle;
+        private readonly ICategoryDataSource _categoryDataSource;
         private readonly IArticleBatchProcessor _articleBatchProcessor;
 
-        public CategoryProcessor(IWikiArticle wikiArticle, IArticleBatchProcessor articleBatchProcessor)
+        public ArticleCategoryProcessor(ICategoryDataSource categoryDataSource, IArticleBatchProcessor articleBatchProcessor)
         {
-            _wikiArticle = wikiArticle;
+            _categoryDataSource = categoryDataSource;
             _articleBatchProcessor = articleBatchProcessor;
         }
 
         public Task<ArticleBatchTaskResult> Process(string category, int pageSize)
         {
             var response = new ArticleBatchTaskResult { Category = category };
+
             var processorCount = Environment.ProcessorCount;
 
             // Pipeline members
@@ -61,8 +61,8 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
                         articleActionBlock.Complete();
                 });
 
-            // Process "Category" and generate article batch
-            var producer = Producer(category, pageSize, articleBatchBufferBlock);
+            // Process "Category" and generate article batch data
+            _categoryDataSource.Producer(category, pageSize, articleBatchBufferBlock);
 
             // Mark the head of the pipeline as complete. The continuation tasks  
             // propagate completion through the pipeline as each part of the  
@@ -71,33 +71,5 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
 
             return Task.FromResult(response);
         }
-
-        #region private helpers
-
-        private async Task Producer(string category, int pageSize, BufferBlock<UnexpandedArticle[]> articleBufferBlock)
-        {
-            var nextBatch = await _wikiArticle.AlphabeticalList(new ArticleListRequestParameters { Category = category, Limit = pageSize });
-
-            bool isNextBatchAvailable;
-
-            do
-            {
-                articleBufferBlock.Post(nextBatch.Items);
-
-                isNextBatchAvailable = !string.IsNullOrEmpty(nextBatch.Offset);
-
-                if (isNextBatchAvailable)
-                {
-                    nextBatch = await _wikiArticle.AlphabeticalList(new ArticleListRequestParameters
-                    {
-                        Category = category,
-                        Limit = pageSize,
-                        Offset = nextBatch.Offset
-                    });
-                }
-            } while (isNextBatchAvailable);
-        }
-
-        #endregion
     }
 }

@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using StructureMap;
 using wikia.Api;
+using ygo_scheduled_tasks.application.ETL.DataSource;
 using ygo_scheduled_tasks.application.ETL.Processor;
 using ygo_scheduled_tasks.application.ETL.Processor.Handler;
 using ygo_scheduled_tasks.domain.services.WebPage;
@@ -47,6 +48,9 @@ namespace ygo_scheduled_tasks.application
             For<ICardHtmlDocument>().Use<CardHtmlDocument>();
             For<IHtmlWebPage>().Use<HtmlWebPage>();
             For<ICardHtmlTable>().Use<CardHtmlTable>();
+            For<ICategoryProcessor>().Use<ArticleCategoryProcessor>();
+            For<ICategoryDataSource>().Use<ArticleCategoryDataSource>();
+            For<IArticleBatchProcessor>().Use<ArticleBatchProcessor>();
         }
     }
 }
