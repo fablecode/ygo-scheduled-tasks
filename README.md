@@ -33,5 +33,12 @@ Modify the **apiUrl** in the app.config.You can get the web api url by running t
 * [NUnit](https://github.com/nunit/nunit)
 * [Visual Studio Team Services](https://www.visualstudio.com/team-services/release-management/) for CI and deployment.
 
+## TPL Dataflow flow
+ Below is a TPL dataflow pipeline for processing **Articles Batches** 
+ 
+![TPL Dataflow pipeline for Article Batches](/assets/images/tpl dataflow.png?raw=true "TPL Dataflow pipeline for Article Batches")
+ 
+ The solution will have a single point of input. 2 **Article Batch Processor** to processor the batches and the result placed in a article queue. Depending on the article category, one of the 4 **Processors** will process the article. Lastly, article data is then persisted to storage (SQL Server).
+ 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
