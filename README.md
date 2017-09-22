@@ -9,7 +9,14 @@ To provide access to the latest [Yu-Gi-Oh](http://www.yugioh-card.com/uk/)  banl
 ## Prerequisite
 1. Setup the [Ygo database](https://github.com/fablecode/ygo-database)
 2. For the web api, download and run [Ygo-api](https://github.com/fablecode/ygo-api)
-3. Modify the **apiUrl** in the app.config.You can get the web api url by running the solution in **step 2**.
+
+## Installing
+```
+ $ https://github.com/fablecode/ygo-scheduled-tasks.git
+```
+
+## ApiUrl
+Modify the **apiUrl** in the app.config.You can get the web api url by running the solution in **step 2**.
 
 ## Built With
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/)
