@@ -18,7 +18,7 @@ To provide access to the latest [Yu-Gi-Oh](http://www.yugioh-card.com/uk/)  banl
 * [Structuremap](https://github.com/structuremap/structuremap)
 * [Topshelf](https://github.com/Topshelf/Topshelf)
 * [Topshelf.StructureMap](https://github.com/swimtver/Topshelf.StructureMap)
-* [TPL Dataflow Library](https://www.nuget.org/packages/Microsoft.Tpl.Dataflow/) for message passing dataflow and pipelining.
+* [TPL Dataflow Library](https://www.nuget.org/packages/Microsoft.Tpl.Dataflow/) for message passing **dataflow** and **pipelining**.
 * [Mediatr](https://www.nuget.org/packages/MediatR/) for CQRS and the Mediator Design Pattern. Mediator design pattern defines how a set of objects interact with each other. You can think of a Mediator object as a kind of traffic-coordinator, it directs traffic to appropriate parties.
 * [Wikia](https://github.com/fablecode/wikia)
 * [Fluent Validations](https://www.nuget.org/packages/FluentValidation)
