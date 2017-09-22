@@ -35,7 +35,7 @@
     <Compile Include="ETL\DataSource\ICategoryDataSource.cs" />
     <Compile Include="ETL\Processor\Handler\ArticleHandler.cs" />
     <Compile Include="ETL\Processor\Handler\IArticleHandler.cs" />
-    <Compile Include="ETL\Processor\CardProcessor\CardItemProcessor.cs" />
+    <Compile Include="ETL\Processor\Process\CardItemProcessor.cs" />
     <Compile Include="ETL\Processor\IBatchItemProcessor.cs" />
     <Compile Include="ETL\Processor\ArticleBatchProcessor.cs" />
     <Compile Include="ETL\Processor\ArticleProcessor.cs" />

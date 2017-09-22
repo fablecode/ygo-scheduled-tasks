@@ -15,6 +15,12 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
         }
         public async Task<ArticleBatchTaskResult> Process(string category, UnexpandedArticle[] articles)
         {
+            if(string.IsNullOrWhiteSpace(category))
+                throw new ArgumentException(nameof(category));
+
+            if(articles == null)
+                throw new ArgumentException(nameof(articles));
+
             var response = new ArticleBatchTaskResult();
 
             foreach (var article in articles)
