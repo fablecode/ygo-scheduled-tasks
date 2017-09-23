@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using wikia.Api;
 using wikia.Models.Article;
@@ -17,6 +18,12 @@ namespace ygo_scheduled_tasks.application.ETL.DataSource
 
         public async Task Producer(string category, int pageSize, ITargetBlock<UnexpandedArticle[]> targetBlock)
         {
+            if(string.IsNullOrWhiteSpace(category))
+                throw new ArgumentException(nameof(category));
+
+            if(targetBlock == null)
+                throw new ArgumentException(nameof(targetBlock));
+
             var nextBatch = await _wikiArticle.AlphabeticalList(new ArticleListRequestParameters { Category = category, Limit = pageSize });
 
             bool isNextBatchAvailable;

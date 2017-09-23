@@ -29,28 +29,34 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
         public void Given_An_Invalid_Category_Should_Throw_ArgumentException(string category)
         {
             // Arrange
+            var expected = "category";
 
             // Act
             Func<Task<ArticleBatchTaskResult>> act = () =>_sut.Process(category, Arg.Any<UnexpandedArticle[]>());
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act
+                .ShouldThrow<ArgumentException>()
+                .WithMessage(expected);
         }
 
         [Test]
-        public void Given_A_Null_ArticleList_Should_Throw_ArgumenException()
+        public void Given_A_Null_ArticleList_Collection_Should_Throw_ArgumenException()
         {
             // Arrange
+            var expected = "articles";
 
             // Act
-            Func<Task<ArticleBatchTaskResult>> act = () => _sut.Process("some category", null);
+            Func<Task<ArticleBatchTaskResult>> act = () => _sut.Process("a category", null);
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act
+                .ShouldThrow<ArgumentException>()
+                .WithMessage(expected);
         }
 
         [Test]
-        public async Task Given_UnexpandedArticles_Should_Increment_Processed_Variable()
+        public async Task Given_A_Valid_ArticleList_Collection_Should_Increment_Processed_Variable_If_Article_Is_Processed_Successfully()
         {
             // Arrange
             var expected = 2;
@@ -74,12 +80,12 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
         }
 
         [Test]
-        public async Task Given_UnexpandedArticles_Should_Log_Failed_UnexpandedArticle_In_Failed_Collection()
+        public async Task Given_A_Valid_ArticleList_Collection_Should_Log_Unsuccessfully_Processed_Articles_In_Failed_Collection()
         {
             // Arrange
-            var expected = 1;
+            var expected = 2;
 
-            var fixture = new Fixture { RepeatCount = 3 };
+            var fixture = new Fixture { RepeatCount = 4 };
             var articles = fixture.Create<UnexpandedArticle[]>();
             _articleProcessor
                 .Process("some category", Arg.Any<UnexpandedArticle>())
@@ -87,6 +93,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
                 (
                     x => new ArticleTaskResult { Processed = true },
                     x => new ArticleTaskResult { Processed = true },
+                    x => null,
                     x => null
                 );
 
@@ -95,6 +102,29 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
 
             // Assert
             result.Failed.Count.Should().Be(expected);
+        }
+
+        [Test]
+        public async Task Given_A_Valid_ArticleList_Collection_Should_Execute_Process()
+        {
+            // Arrange
+            var fixture = new Fixture { RepeatCount = 4 };
+            var articles = fixture.Create<UnexpandedArticle[]>();
+            _articleProcessor
+                .Process("some category", Arg.Any<UnexpandedArticle>())
+                .ReturnsForAnyArgs
+                (
+                    x => new ArticleTaskResult { Processed = true },
+                    x => new ArticleTaskResult { Processed = true },
+                    x => null,
+                    x => null
+                );
+
+            // Act
+            await _sut.Process("a category", articles);
+
+            // Assert
+            await _articleProcessor.Received(4).Process(Arg.Any<string>(), Arg.Any<UnexpandedArticle>());
         }
 
     }
