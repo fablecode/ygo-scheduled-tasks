@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ArticleCategory.cs" />
+    <Compile Include="ETL\ArticleCategory.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Dto\AttributeDto.cs" />
     <Compile Include="Dto\CardDto.cs" />
