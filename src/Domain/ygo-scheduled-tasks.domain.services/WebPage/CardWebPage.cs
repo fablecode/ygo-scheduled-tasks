@@ -15,7 +15,6 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
             _cardHtmlTable = cardHtmlTable;
         }
 
-
         public YugiohCard GetYugiohCard(string url)
         {
             return GetYugiohCard(new Uri(url));
@@ -26,7 +25,6 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
             Load(url);
             return GetYugiohCard();
         }
-
 
         #region private helpers
 

@@ -15,7 +15,9 @@ namespace ygo_scheduled_tasks.application
     {
         public StructureMapInstaller()
         {
-            var domainUrl = ConfigurationManager.AppSettings["domainUrl"];
+            For<IConfig>().Use((Config)ConfigurationManager.GetSection("Wikia"));
+
+            var config = new Container(this).GetInstance<IConfig>();
 
             Scan
             (
@@ -42,7 +44,7 @@ namespace ygo_scheduled_tasks.application
             For<IMediator>().Use<Mediator>();
 
 
-            For<IWikiArticle>().Use(context => new WikiArticle(domainUrl));
+            For<IWikiArticle>().Use(context => new WikiArticle(config.DomainUrl));
             For<IArticleHandler>().Use<ArticleHandler>();
             For<ICardWebPage>().Use<CardWebPage>();
             For<ICardHtmlDocument>().Use<CardHtmlDocument>();
@@ -51,6 +53,7 @@ namespace ygo_scheduled_tasks.application
             For<ICategoryProcessor>().Use<ArticleCategoryProcessor>();
             For<ICategoryDataSource>().Use<ArticleCategoryDataSource>();
             For<IArticleBatchProcessor>().Use<ArticleBatchProcessor>();
+
         }
     }
 }

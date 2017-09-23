@@ -31,6 +31,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ArticleCategory.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Dto\AttributeDto.cs" />
+    <Compile Include="Dto\CardDto.cs" />
+    <Compile Include="Dto\CategoryDto.cs" />
+    <Compile Include="Dto\DownloadedFileDto.cs" />
+    <Compile Include="Dto\LinkArrowDto.cs" />
+    <Compile Include="Dto\MonsterCardDto.cs" />
+    <Compile Include="Dto\SpellCardDto.cs" />
+    <Compile Include="Dto\SubCategoryDto.cs" />
+    <Compile Include="Dto\TrapCardDto.cs" />
+    <Compile Include="Dto\TypeDto.cs" />
     <Compile Include="ETL\DataSource\ArticleCategoryDataSource.cs" />
     <Compile Include="ETL\DataSource\ICategoryDataSource.cs" />
     <Compile Include="ETL\Processor\Handler\ArticleHandler.cs" />
@@ -44,6 +55,7 @@
     <Compile Include="ETL\Processor\IArticleProcessor.cs" />
     <Compile Include="ETL\Processor\ICategoryProcessor.cs" />
     <Compile Include="ETL\Processor\Model\CategoryTaskItemResult.cs" />
+    <Compile Include="IConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStringConstants.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTask.cs" />
@@ -51,6 +63,7 @@
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskValidator.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskResult.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskStatus.cs" />
+    <Compile Include="Services\ICardService.cs" />
     <Compile Include="StructureMapInstaller.cs" />
   </ItemGroup>
   <ItemGroup>

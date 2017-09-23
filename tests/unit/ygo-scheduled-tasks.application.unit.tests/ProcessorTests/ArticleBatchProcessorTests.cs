@@ -29,7 +29,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
         public void Given_An_Invalid_Category_Should_Throw_ArgumentException(string category)
         {
             // Arrange
-            var expected = "category";
+            const string expected = "category";
 
             // Act
             Func<Task<ArticleBatchTaskResult>> act = () =>_sut.Process(category, Arg.Any<UnexpandedArticle[]>());
@@ -44,7 +44,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
         public void Given_A_Null_ArticleList_Collection_Should_Throw_ArgumenException()
         {
             // Arrange
-            var expected = "articles";
+            const string expected = "articles";
 
             // Act
             Func<Task<ArticleBatchTaskResult>> act = () => _sut.Process("a category", null);
@@ -59,7 +59,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
         public async Task Given_A_Valid_ArticleList_Collection_Should_Increment_Processed_Variable_If_Article_Is_Processed_Successfully()
         {
             // Arrange
-            var expected = 2;
+            const int expected = 2;
 
             var fixture = new Fixture { RepeatCount = 3 };
             var articles = fixture.Create<UnexpandedArticle[]>();
@@ -83,7 +83,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ProcessorTests
         public async Task Given_A_Valid_ArticleList_Collection_Should_Log_Unsuccessfully_Processed_Articles_In_Failed_Collection()
         {
             // Arrange
-            var expected = 2;
+            const int expected = 2;
 
             var fixture = new Fixture { RepeatCount = 4 };
             var articles = fixture.Create<UnexpandedArticle[]>();
