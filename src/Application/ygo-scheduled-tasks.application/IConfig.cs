@@ -3,5 +3,7 @@
     public interface IConfig
     {
         string WikiaDomainUrl { get; }
+        string ApiUrl { get; }
+
     }
 }

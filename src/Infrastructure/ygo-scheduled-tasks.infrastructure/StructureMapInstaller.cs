@@ -29,14 +29,6 @@ namespace ygo_scheduled_tasks.infrastructure
             For<ITypeService>().Use<TypeService>();
             For<IAttributeService>().Use<AttributeService>();
             For<ILinkArrowService>().Use<LinkArrowService>();
-
-                //ICategoryService categoryService,
-                //ISubCategoryService subCategoryService, 
-                //ITypeService typeService,
-                //IAttributeService attributeService, 
-                //ILinkArrowService linkArrowService,
-                //ICardService cardService
-
         }
     }
 
