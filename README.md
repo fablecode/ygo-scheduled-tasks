@@ -34,6 +34,7 @@ Modify the **apiUrl** in the app.config.You can get the web api url by running t
 * [Fluent Validations](https://www.nuget.org/packages/FluentValidation)
 * [Fluent Assertions](https://www.nuget.org/packages/FluentAssertions)
 * [NUnit](https://github.com/nunit/nunit)
+* [System.Net.Http.Formatting.Extension](https://www.nuget.org/packages/System.Net.Http.Formatting.Extension/) for extension methods like PostAsJsonAsync etc.
 * [Visual Studio Team Services](https://www.visualstudio.com/team-services/release-management/) for CI and deployment.
 
 ## TPL Dataflow flow
