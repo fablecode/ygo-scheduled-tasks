@@ -24,7 +24,7 @@ namespace ygo_scheduled_tasks.application.ETL.Processor.Process
         {
             var response = new ArticleTaskResult{ Article = item };
 
-            var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(_config.DomainUrl), item.Url));
+            var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(_config.WikiaDomainUrl), item.Url));
 
             var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
 

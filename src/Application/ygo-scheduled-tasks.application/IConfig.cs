@@ -2,6 +2,6 @@
 {
     public interface IConfig
     {
-        string DomainUrl { get; }
+        string WikiaDomainUrl { get; }
     }
 }
