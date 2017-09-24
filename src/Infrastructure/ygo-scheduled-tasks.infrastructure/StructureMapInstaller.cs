@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using StructureMap;
+using ygo_scheduled_tasks.application.Client;
 using ygo_scheduled_tasks.application.Dto;
 using ygo_scheduled_tasks.application.Services;
+using ygo_scheduled_tasks.infrastructure.Client;
 using ygo_scheduled_tasks.infrastructure.Services;
 
 namespace ygo_scheduled_tasks.infrastructure
@@ -15,6 +17,8 @@ namespace ygo_scheduled_tasks.infrastructure
             (
                 scan =>
                 {
+                    scan.AddAllTypesOf(typeof(RestClient<>));
+                    scan.ConnectImplementationsToTypesClosing(typeof(IRestClient<>));
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                 }
