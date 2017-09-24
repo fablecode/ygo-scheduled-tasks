@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Configuration;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.application.Dto;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
-using ygo_scheduled_tasks.domain.Model;
+using ygo_scheduled_tasks.application.Services;
 using ygo_scheduled_tasks.domain.WebPage;
 
 namespace ygo_scheduled_tasks.application.ETL.Processor.Process
@@ -22,23 +20,23 @@ namespace ygo_scheduled_tasks.application.ETL.Processor.Process
             _yugiohCardService = yugiohCardService;
         }
 
-        public Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
+        public async Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
+            var response = new ArticleTaskResult{ Article = item };
+
             var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(_config.DomainUrl), item.Url));
 
-            var card = _yugiohCardService.AddOrUpdate(yugiohCard);
+            var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
 
-            return Task.FromResult(new ArticleTaskResult());
+            if (card != null)
+                response.Processed = true;
+
+            return response;
         }
 
         public bool Handles(string category)
         {
             return category == ArticleCategory.TcgCards || category == ArticleCategory.OcgCards;
         }
-    }
-
-    public interface IYugiohCardService
-    {
-        CardDto AddOrUpdate(YugiohCard yugiohCard);
     }
 }

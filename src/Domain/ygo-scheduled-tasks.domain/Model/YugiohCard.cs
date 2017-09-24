@@ -1,4 +1,7 @@
-﻿namespace ygo_scheduled_tasks.domain.Model
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace ygo_scheduled_tasks.domain.Model
 {
     public sealed class YugiohCard
     {
@@ -18,5 +21,34 @@
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public string LinkArrows { get; set; }
+
+        public List<string> MonsterSubCategoriesAndTypes
+        {
+            get
+            {
+                return Types?.Split('/').Select(t => t.Trim()).ToList();
+            } 
+        }
+
+        public List<string> MonsterLinkArrows
+        {
+            get
+            {
+                return LinkArrows?.Split(',').Select(t => t.Trim()).ToList();
+            }
+        }
+    }
+
+    public static class YugiohCardHelpers
+    {
+        public static Card MapToMonsterCard(this YugiohCard yugiohCard)
+        {
+            var card = new Card();
+
+            card.CardNumber = yugiohCard.CardNumber;
+            card.Name = yugiohCard.Name;
+
+            return card;
+        }
     }
 }

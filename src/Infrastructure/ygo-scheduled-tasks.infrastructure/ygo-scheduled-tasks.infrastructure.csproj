@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap, Version=4.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\StructureMap.4.5.2\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,15 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CardService.cs" />
+    <Compile Include="Services\YugiohCardService.cs" />
+    <Compile Include="StructureMapInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Application\ygo-scheduled-tasks.application\ygo-scheduled-tasks.application.csproj">
       <Project>{141A894B-B936-45CE-A687-1470AECAC86B}</Project>
       <Name>ygo-scheduled-tasks.application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Domain\ygo-scheduled-tasks.domain\ygo-scheduled-tasks.domain.csproj">
+      <Project>{E812E143-5508-4715-A545-F4FBB2A88359}</Project>
+      <Name>ygo-scheduled-tasks.domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

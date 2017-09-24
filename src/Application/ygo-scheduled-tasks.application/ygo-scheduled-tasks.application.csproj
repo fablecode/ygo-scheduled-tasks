@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Command\AddCardCommand.cs" />
+    <Compile Include="Command\CommandMapper.cs" />
+    <Compile Include="Command\ICommandMapper.cs" />
+    <Compile Include="Command\UpdateCardCommand.cs" />
     <Compile Include="ETL\ArticleCategory.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Dto\AttributeDto.cs" />
@@ -62,11 +66,17 @@
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskValidator.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskResult.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskStatus.cs" />
+    <Compile Include="Services\IAttributeService.cs" />
     <Compile Include="Services\ICardService.cs" />
+    <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\ILinkArrowService.cs" />
+    <Compile Include="Services\ISubCategoryService.cs" />
+    <Compile Include="Services\ITypeService.cs" />
+    <Compile Include="Services\IYugiohCardService.cs" />
     <Compile Include="StructureMapInstaller.cs" />
+    <Compile Include="YgoCardType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Command\" />
     <Folder Include="Query\" />
   </ItemGroup>
   <ItemGroup>

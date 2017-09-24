@@ -62,9 +62,9 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
 
     public class ArticleTaskResult
     {
-        public string Category { get; set; }
-
         public bool Processed { get; set; }
+
+        public UnexpandedArticle Article { get; set; }
 
         public ArticleException Failed { get; set; }
     }
