@@ -5,12 +5,13 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.Client;
 using ygo_scheduled_tasks.application.Extensions;
+using ygo_scheduled_tasks.infrastructure.HttpHandlers;
 
 namespace ygo_scheduled_tasks.infrastructure.Client
 {
     public class RestClient<T> : IRestClient<T>
     {
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient client = new HttpClient(new OAuthBearerTokenHandler(new HttpClientHandler()));
 
         static RestClient()
         {

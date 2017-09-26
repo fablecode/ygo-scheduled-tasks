@@ -7,7 +7,6 @@ using ygo_scheduled_tasks.application.Command;
 using ygo_scheduled_tasks.application.ETL.DataSource;
 using ygo_scheduled_tasks.application.ETL.Processor;
 using ygo_scheduled_tasks.application.ETL.Processor.Handler;
-using ygo_scheduled_tasks.application.Services;
 using ygo_scheduled_tasks.domain.services.WebPage;
 using ygo_scheduled_tasks.domain.WebPage;
 

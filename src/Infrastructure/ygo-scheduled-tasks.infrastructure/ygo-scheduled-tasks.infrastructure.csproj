@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Client\CardRestClient.cs" />
     <Compile Include="Client\RestClient.cs" />
+    <Compile Include="HttpHandlers\OAuthBearerTokenHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CardService.cs" />
     <Compile Include="Services\YugiohCardService.cs" />
@@ -97,5 +98,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,6 +35,7 @@
     <Compile Include="Command\CommandMapper.cs" />
     <Compile Include="Command\ICommandMapper.cs" />
     <Compile Include="Command\UpdateCardCommand.cs" />
+    <Compile Include="Dto\OAuthBearerTokenDto.cs" />
     <Compile Include="ETL\ArticleCategory.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Dto\AttributeDto.cs" />
