@@ -72,9 +72,6 @@
     <Compile Include="WebPageTests\CardHtmlDocumentTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\src\Domain\ygo-scheduled-tasks.domain.services\ygo-scheduled-tasks.domain.services.csproj">
       <Project>{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}</Project>
       <Name>ygo-scheduled-tasks.domain.services</Name>
@@ -83,6 +80,9 @@
       <Project>{E812E143-5508-4715-A545-F4FBB2A88359}</Project>
       <Name>ygo-scheduled-tasks.domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.Command;
 using ygo_scheduled_tasks.application.Dto;
 using ygo_scheduled_tasks.application.Services;

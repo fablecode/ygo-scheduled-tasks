@@ -39,7 +39,6 @@
     <Compile Include="WebPage\ICardWebPage.cs" />
     <Compile Include="WebPage\IHtmlWebPage.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.5.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.5.5\lib\Net45\HtmlAgilityPack.dll</HintPath>

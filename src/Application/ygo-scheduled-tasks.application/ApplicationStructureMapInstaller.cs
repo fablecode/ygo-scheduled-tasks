@@ -12,9 +12,9 @@ using ygo_scheduled_tasks.domain.WebPage;
 
 namespace ygo_scheduled_tasks.application
 {
-    public class StructureMapInstaller : Registry
+    public class ApplicationStructureMapInstaller : Registry
     {
-        public StructureMapInstaller()
+        public ApplicationStructureMapInstaller()
         {
             For<IConfig>().Use((Config)ConfigurationManager.GetSection("ygo-settings"));
 

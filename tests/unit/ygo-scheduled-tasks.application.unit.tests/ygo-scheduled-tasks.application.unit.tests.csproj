@@ -87,7 +87,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="wikia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\wikia.2017.7.29.1\lib\net461\wikia.dll</HintPath>
+      <HintPath>..\..\..\packages\wikia.2017.9.6.2\lib\net461\wikia.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

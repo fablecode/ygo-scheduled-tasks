@@ -5,7 +5,6 @@ using Quartz;
 using Topshelf;
 using Topshelf.Quartz.StructureMap;
 using Topshelf.StructureMap;
-using ygo_scheduled_tasks.application;
 using ygo_scheduled_tasks.application.ETL;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
@@ -19,6 +18,7 @@ namespace ygo_scheduled_tasks.cardinformation
             {
                 var container = Ioc.Initialize();
                 x.UseStructureMap(container);
+                x.UseNLog();
 
                 x.Service<CardInformationService>(s =>
                 {

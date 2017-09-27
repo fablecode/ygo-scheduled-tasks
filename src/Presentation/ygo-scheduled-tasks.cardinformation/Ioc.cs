@@ -1,8 +1,6 @@
-﻿using System.Configuration;
-using Common.Logging;
-using MediatR;
-using StructureMap;
-using ygo_scheduled_tasks.application;
+﻿using StructureMap;
+using StructureMap.Graph.Scanning;
+using ygo_scheduled_tasks.infrastructure;
 
 namespace ygo_scheduled_tasks.cardinformation
 {
@@ -17,14 +15,16 @@ namespace ygo_scheduled_tasks.cardinformation
                 (
                     scan =>
                     {
-                        scan.TheCallingAssembly();
-                        scan.WithDefaultConventions();
                         scan.AssembliesFromApplicationBaseDirectory();
+                        scan.WithDefaultConventions();
                         scan.LookForRegistries();
                     }
                 );
             });
 
+            TypeRepository.AssertNoTypeScanningFailures();
+
+            var scanresults = container.WhatDidIScan();
             return container;
         }
     }

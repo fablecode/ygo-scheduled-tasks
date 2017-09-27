@@ -29,9 +29,9 @@ namespace ygo_scheduled_tasks.infrastructure.HttpHandlers
 
                 if (string.IsNullOrWhiteSpace(_authToken))
                 {
-                    using (HttpClient tokenHttpClient = new HttpClient())
+                    using (var tokenHttpClient = new HttpClient())
                     {
-                        var credentials = new Login {Email = _config.OAuthEmail, Password = _config.OAuthPassword};
+                        var credentials = new Login { Email = _config.OAuthEmail, Password = _config.OAuthPassword };
                         tokenHttpClient
                             .PostAsJsonAsync(_config.ApiUrl + "/api/accounts/token", credentials, cancellationToken)
                             .ContinueWith(async (requestTask) =>

@@ -8,24 +8,22 @@ using ygo_scheduled_tasks.infrastructure.Services;
 
 namespace ygo_scheduled_tasks.infrastructure
 {
-    public class StructureMapInstaller : Registry
+    public class InfrastructureStructureMapInstaller : Registry
     {
-        public StructureMapInstaller()
+        public InfrastructureStructureMapInstaller()
         {
-
             Scan
             (
                 scan =>
                 {
-                    scan.AddAllTypesOf(typeof(RestClient<>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IRestClient<>));
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
+                    scan.AssembliesFromApplicationBaseDirectory();
+                    scan.AddAllTypesOf(typeof(RestClient<>));
+                    scan.ConnectImplementationsToTypesClosing(typeof(IRestClient<>));
                 }
 
             );
-
-            For<IYugiohCardService>().Use<YugiohCardService>();
 
             For<ICardService>().Use<CardService>();
             For<ICategoryService>().Use<CategoryService>();
@@ -33,6 +31,9 @@ namespace ygo_scheduled_tasks.infrastructure
             For<ITypeService>().Use<TypeService>();
             For<IAttributeService>().Use<AttributeService>();
             For<ILinkArrowService>().Use<LinkArrowService>();
+            For<IYugiohCardService>().Use<YugiohCardService>();
+
+
         }
     }
 
