@@ -15,7 +15,6 @@ namespace ygo_scheduled_tasks.application.Command
         private readonly ITypeService _typeService;
         private readonly IAttributeService _attributeService;
         private readonly ILinkArrowService _linkArrowService;
-        private readonly ICardService _cardService;
 
         public CommandMapper
         (
@@ -23,8 +22,7 @@ namespace ygo_scheduled_tasks.application.Command
             ISubCategoryService subCategoryService, 
             ITypeService typeService, 
             IAttributeService attributeService, 
-            ILinkArrowService linkArrowService,
-            ICardService cardService
+            ILinkArrowService linkArrowService
         )
         {
             _categoryService = categoryService;
@@ -32,7 +30,6 @@ namespace ygo_scheduled_tasks.application.Command
             _typeService = typeService;
             _attributeService = attributeService;
             _linkArrowService = linkArrowService;
-            _cardService = cardService;
         }
 
 
@@ -49,25 +46,18 @@ namespace ygo_scheduled_tasks.application.Command
             command.Description = yugiohCard.Description;
 
 
-            if (command.CardType.Equals("Spell Card", StringComparison.OrdinalIgnoreCase))
+            if (command.CardType.Equals(YgoCardType.Spell.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                var spellCategory = categories.Single(c => c.Name.Equals(YgoCardType.Spell.ToString(), StringComparison.OrdinalIgnoreCase));
-                var spellSubCategory = subCategories.Single(sc => sc.CategoryId == spellCategory.Id && sc.Name.Equals(yugiohCard.Property));
-
                 command.SubCategoryIds = new List<int>
                 {
-                    (int) spellSubCategory.Id.GetValueOrDefault(0)
+                    SubCategoryId(categories, subCategories, YgoCardType.Spell, yugiohCard.Property)
                 };
             }
-            else if (command.CardType.Equals("Trap Card", StringComparison.OrdinalIgnoreCase))
+            else if (command.CardType.Equals(YgoCardType.Trap.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                var trapCategory = categories.Single(c => c.Name.Equals(YgoCardType.Trap.ToString(), StringComparison.OrdinalIgnoreCase));
-                var trapSubCategory = subCategories.Single(sc => sc.CategoryId == trapCategory.Id && sc.Name.Equals(yugiohCard.Property));
-
-
                 command.SubCategoryIds = new List<int>
                 {
-                    (int) trapSubCategory.Id.GetValueOrDefault(0)
+                    SubCategoryId(categories, subCategories, YgoCardType.Trap, yugiohCard.Property)
                 };
             }
             else
@@ -79,47 +69,37 @@ namespace ygo_scheduled_tasks.application.Command
                 var monsterCategory = categories.Single(c => c.Name.Equals(YgoCardType.Monster.ToString(), StringComparison.OrdinalIgnoreCase));
                 var monsterSubCategories = subCategories.Select(sc => sc).Where(sc => sc.CategoryId == monsterCategory.Id);
 
-                command.AttributeId = (int)attributes.Single(sb => sb.Name.Equals(yugiohCard.Attribute, StringComparison.OrdinalIgnoreCase)).Id;
+                command.AttributeId = MonsterAttributeId(yugiohCard, attributes);
 
-                command.SubCategoryIds = monsterSubCategories
-                    .Where(sb => yugiohCard.MonsterSubCategoriesAndTypes.Any(sc => sc.Equals(sb.Name, StringComparison.OrdinalIgnoreCase)))
-                    .Select(ssc => (int)ssc.Id)
-                    .ToList();
-                command.TypeIds = types
-                    .Where(sb => yugiohCard.MonsterSubCategoriesAndTypes.Any(t => t.Equals(sb.Name, StringComparison.OrdinalIgnoreCase)))
-                    .Select(smt => (int)smt.Id)
-                    .ToList();
+                command.SubCategoryIds = MonsterSubCategoryIds(yugiohCard, monsterSubCategories);
+                command.TypeIds = MonsterTypeIds(yugiohCard, types);
 
-                command.LinkArrowIds = linkArrows
-                    .Where(sb => yugiohCard.MonsterLinkArrows.Any(t => t.Equals(sb.Name, StringComparison.OrdinalIgnoreCase)))
-                    .Select(smt => (int)smt.Id)
-                    .ToList();
+                command.LinkArrowIds = MonsterLinkArrowIds(yugiohCard, linkArrows);
 
                 command.CardLevel = yugiohCard.Level;
                 command.CardRank = yugiohCard.Rank;
                 command.Atk = 0;
                 command.Def = 0;
 
-                if (yugiohCard.Level > 0 || yugiohCard.Rank > 0)
+                if (!string.IsNullOrWhiteSpace(yugiohCard.AtkDef))
                 {
-                    string atk = string.Empty;
-                    string def = string.Empty;
-
-                    try
-                    {
-                        atk = yugiohCard.AtkDef.Split('/')[0];
-                        def = yugiohCard.AtkDef.Split('/')[1];
-                    }
-                    catch
-                    {
-                        //logger.Error(errorMessage, yugiohWikiaCard.Name);
-                    }
+                    var atk = Atk(yugiohCard);
+                    var def = DefOrLink(yugiohCard);
 
                     int.TryParse(atk, out var cardAtk);
                     int.TryParse(def, out var cardDef);
 
                     command.Atk = cardAtk;
                     command.Def = cardDef;
+                }
+
+                if (!string.IsNullOrWhiteSpace(yugiohCard.AtkLink))
+                {
+                    var atk = Atk(yugiohCard);
+
+                    int.TryParse(atk, out var cardAtk);
+
+                    command.Atk = cardAtk;
                 }
             }
 
@@ -140,25 +120,18 @@ namespace ygo_scheduled_tasks.application.Command
             command.Description = yugiohCard.Description;
 
 
-            if (command.CardType.Equals("Spell Card", StringComparison.OrdinalIgnoreCase))
+            if (command.CardType.Equals(YgoCardType.Spell.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                var spellCategory = categories.Single(c => c.Name.Equals(YgoCardType.Spell.ToString(), StringComparison.OrdinalIgnoreCase));
-                var spellSubCategory = subCategories.Single(sc => sc.CategoryId == spellCategory.Id && sc.Name.Equals(yugiohCard.Property));
-
                 command.SubCategoryIds = new List<int>
                 {
-                    (int) spellSubCategory.Id.GetValueOrDefault(0)
+                    SubCategoryId(categories, subCategories, YgoCardType.Spell, yugiohCard.Property)
                 };
             }
-            else if (command.CardType.Equals("Trap Card", StringComparison.OrdinalIgnoreCase))
+            else if (command.CardType.Equals(YgoCardType.Trap.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                var trapCategory = categories.Single(c => c.Name.Equals(YgoCardType.Trap.ToString(), StringComparison.OrdinalIgnoreCase));
-                var trapSubCategory = subCategories.Single(sc => sc.CategoryId == trapCategory.Id && sc.Name.Equals(yugiohCard.Property));
-
-
                 command.SubCategoryIds = new List<int>
                 {
-                    (int) trapSubCategory.Id.GetValueOrDefault(0)
+                    SubCategoryId(categories, subCategories, YgoCardType.Trap, yugiohCard.Property)
                 };
             }
             else
@@ -170,41 +143,23 @@ namespace ygo_scheduled_tasks.application.Command
                 var monsterCategory = categories.Single(c => c.Name.Equals(YgoCardType.Monster.ToString(), StringComparison.OrdinalIgnoreCase));
                 var monsterSubCategories = subCategories.Select(sc => sc).Where(sc => sc.CategoryId == monsterCategory.Id);
 
-                command.AttributeId = (int)attributes.Single(sb => sb.Name.Equals(yugiohCard.Attribute, StringComparison.OrdinalIgnoreCase)).Id;
+                command.AttributeId = MonsterAttributeId(yugiohCard, attributes);
 
-                command.SubCategoryIds = monsterSubCategories
-                    .Where(sb => yugiohCard.MonsterSubCategoriesAndTypes.Any(sc => sc.Equals(sb.Name, StringComparison.OrdinalIgnoreCase)))
-                    .Select(ssc => (int)ssc.Id)
-                    .ToList();
-                command.TypeIds = types
-                    .Where(sb => yugiohCard.MonsterSubCategoriesAndTypes.Any(t => t.Equals(sb.Name, StringComparison.OrdinalIgnoreCase)))
-                    .Select(smt => (int)smt.Id)
-                    .ToList();
+                command.SubCategoryIds = MonsterSubCategoryIds(yugiohCard, monsterSubCategories);
 
-                command.LinkArrowIds = linkArrows
-                    .Where(sb => yugiohCard.MonsterLinkArrows.Any(t => t.Equals(sb.Name, StringComparison.OrdinalIgnoreCase)))
-                    .Select(smt => (int)smt.Id)
-                    .ToList();
+                command.TypeIds = MonsterTypeIds(yugiohCard, types);
+
+                command.LinkArrowIds = MonsterLinkArrowIds(yugiohCard, linkArrows);
 
                 command.CardLevel = yugiohCard.Level;
                 command.CardRank = yugiohCard.Rank;
                 command.Atk = 0;
                 command.Def = 0;
 
-                if (yugiohCard.Level > 0 || yugiohCard.Rank > 0)
+                if (!string.IsNullOrWhiteSpace(yugiohCard.AtkDef))
                 {
-                    string atk = string.Empty;
-                    string def = string.Empty;
-
-                    try
-                    {
-                        atk = yugiohCard.AtkDef.Split('/')[0];
-                        def = yugiohCard.AtkDef.Split('/')[1];
-                    }
-                    catch
-                    {
-                        //logger.Error(errorMessage, yugiohWikiaCard.Name);
-                    }
+                    var atk = Atk(yugiohCard);
+                    var def = DefOrLink(yugiohCard);
 
                     int.TryParse(atk, out var cardAtk);
                     int.TryParse(def, out var cardDef);
@@ -212,9 +167,79 @@ namespace ygo_scheduled_tasks.application.Command
                     command.Atk = cardAtk;
                     command.Def = cardDef;
                 }
+
+                if (!string.IsNullOrWhiteSpace(yugiohCard.AtkLink))
+                {
+                    var atk = Atk(yugiohCard);
+
+                    int.TryParse(atk, out var cardAtk);
+
+                    command.Atk = cardAtk;
+                }
             }
 
             return command;
         }
+
+        #region private helpers
+
+        private int SubCategoryId(IEnumerable<CategoryDto> categories, IEnumerable<SubCategoryDto> subCategories, YgoCardType cardType, string subCategory)
+        {
+            return
+                (
+                    from sc in subCategories
+                    join c in categories on sc.CategoryId equals c.Id
+                    where c.Name.Equals(cardType.ToString(), StringComparison.OrdinalIgnoreCase) && sc.Name.Equals(subCategory, StringComparison.OrdinalIgnoreCase)
+                    select sc.Id
+                )
+                .Single();
+        }
+
+        private static List<int> MonsterLinkArrowIds(YugiohCard yugiohCard, ICollection<LinkArrowDto> linkArrows)
+        {
+            return linkArrows
+                .Where(mla => yugiohCard.MonsterLinkArrows.Any(ymla => ymla.Equals(mla.Name, StringComparison.OrdinalIgnoreCase)))
+                .Select(la => (int)la.Id)
+                .ToList();
+        }
+
+        private static List<int> MonsterTypeIds(YugiohCard yugiohCard, ICollection<TypeDto> types)
+        {
+            return types
+                .Where(mt => yugiohCard.MonsterSubCategoriesAndTypes.Any(yt => yt.Equals(mt.Name, StringComparison.OrdinalIgnoreCase)))
+                .Select(smt => (int)smt.Id)
+                .ToList();
+        }
+
+        private static List<int> MonsterSubCategoryIds(YugiohCard yugiohCard, IEnumerable<SubCategoryDto> monsterSubCategories)
+        {
+            return monsterSubCategories
+                .Where(msb => yugiohCard.MonsterSubCategoriesAndTypes.Any(ysc => ysc.Equals(msb.Name, StringComparison.OrdinalIgnoreCase)))
+                .Select(ssc => (int)ssc.Id)
+                .ToList();
+        }
+
+        private static int MonsterAttributeId(YugiohCard yugiohCard, ICollection<AttributeDto> attributes)
+        {
+            return
+                (
+                    from a in attributes
+                    where a.Name.Equals(yugiohCard.Attribute, StringComparison.OrdinalIgnoreCase)
+                    select a.Id
+                )
+                .Single();
+        }
+
+        private static string Atk(YugiohCard yugiohCard)
+        {
+            return yugiohCard.AtkDef.Split('/').First();
+        }
+
+        private static string DefOrLink(YugiohCard yugiohCard)
+        {
+            return yugiohCard.AtkDef.Split('/').Last();
+        }
+
+        #endregion
     }
 }
