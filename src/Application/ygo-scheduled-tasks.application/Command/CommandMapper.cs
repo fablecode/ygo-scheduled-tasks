@@ -39,7 +39,7 @@ namespace ygo_scheduled_tasks.application.Command
         public async Task<AddCardCommand> MapToAddCommand(YugiohCard yugiohCard)
         {
             ICollection<CategoryDto> categories = await _categoryService.GetAll();
-            ICollection<SubCategoryDto> subCategories = _subCategoryService.GetAll();
+            ICollection<SubCategoryDto> subCategories = await _subCategoryService.GetAll();
 
             var command = new AddCardCommand();
 
@@ -72,9 +72,9 @@ namespace ygo_scheduled_tasks.application.Command
             }
             else
             {
-                ICollection<TypeDto> types = _typeService.GetAll();
-                ICollection<AttributeDto> attributes = _attributeService.GetAll();
-                ICollection<LinkArrowDto> linkArrows = _linkArrowService.GetAll();
+                ICollection<TypeDto> types = await _typeService.GetAll();
+                ICollection<AttributeDto> attributes = await _attributeService.GetAll();
+                ICollection<LinkArrowDto> linkArrows = await _linkArrowService.GetAll();
 
                 var monsterCategory = categories.Single(c => c.Name.Equals(YgoCardType.Monster.ToString(), StringComparison.OrdinalIgnoreCase));
                 var monsterSubCategories = subCategories.Select(sc => sc).Where(sc => sc.CategoryId == monsterCategory.Id);
@@ -129,7 +129,7 @@ namespace ygo_scheduled_tasks.application.Command
         public async Task<UpdateCardCommand> MapToUpdateCommand(YugiohCard yugiohCard, CardDto cardToUpdate)
         {
             ICollection<CategoryDto> categories = await _categoryService.GetAll();
-            ICollection<SubCategoryDto> subCategories = _subCategoryService.GetAll();
+            ICollection<SubCategoryDto> subCategories = await _subCategoryService.GetAll();
 
             var command = new UpdateCardCommand();
 
@@ -163,9 +163,9 @@ namespace ygo_scheduled_tasks.application.Command
             }
             else
             {
-                ICollection<TypeDto> types = _typeService.GetAll();
-                ICollection<AttributeDto> attributes = _attributeService.GetAll();
-                ICollection<LinkArrowDto> linkArrows = _linkArrowService.GetAll();
+                ICollection<TypeDto> types = await _typeService.GetAll();
+                ICollection<AttributeDto> attributes = await _attributeService.GetAll();
+                ICollection<LinkArrowDto> linkArrows = await _linkArrowService.GetAll();
 
                 var monsterCategory = categories.Single(c => c.Name.Equals(YgoCardType.Monster.ToString(), StringComparison.OrdinalIgnoreCase));
                 var monsterSubCategories = subCategories.Select(sc => sc).Where(sc => sc.CategoryId == monsterCategory.Id);
