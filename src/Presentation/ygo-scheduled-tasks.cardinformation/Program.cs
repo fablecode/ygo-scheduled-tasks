@@ -24,8 +24,8 @@ namespace ygo_scheduled_tasks.cardinformation
                 {
                     s.ConstructUsingStructureMap();
 
-                    s.BeforeStartingService(_ => Console.WriteLine("BeforeStart"));
-                    s.BeforeStoppingService(_ => Console.WriteLine("BeforeStop"));
+                    s.BeforeStartingService(_ => Console.WriteLine("Before Start"));
+                    s.BeforeStoppingService(_ => Console.WriteLine("Before Stop"));
 
                     s.WhenStarted(service => service.OnStart());
                     s.WhenStopped(service => service.OnStop());
@@ -77,10 +77,12 @@ namespace ygo_scheduled_tasks.cardinformation
     {
         public void OnStart()
         {
+            Console.WriteLine("On Start");
         }
 
         public void OnStop()
         {
+            Console.WriteLine("On Stop");
         }
     }
 }

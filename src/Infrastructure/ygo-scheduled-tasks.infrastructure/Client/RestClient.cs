@@ -9,7 +9,7 @@ using ygo_scheduled_tasks.infrastructure.HttpHandlers;
 
 namespace ygo_scheduled_tasks.infrastructure.Client
 {
-    public abstract class RestClient<T> : IRestClient<T>
+    public class RestClient<T> : IRestClient<T>
     {
         private static readonly HttpClient client = new HttpClient(new OAuthBearerTokenHandler(new HttpClientHandler()));
 

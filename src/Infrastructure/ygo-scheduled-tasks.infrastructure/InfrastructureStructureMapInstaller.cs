@@ -33,7 +33,7 @@ namespace ygo_scheduled_tasks.infrastructure
             For<ILinkArrowService>().Use<LinkArrowService>();
             For<IYugiohCardService>().Use<YugiohCardService>();
 
-
+            For<IRestClient<CardDto>>().Use<RestClient<CardDto>>();
         }
     }
 
