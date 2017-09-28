@@ -1,6 +1,5 @@
 ﻿using StructureMap;
 using StructureMap.Graph.Scanning;
-using ygo_scheduled_tasks.infrastructure;
 
 namespace ygo_scheduled_tasks.cardinformation
 {

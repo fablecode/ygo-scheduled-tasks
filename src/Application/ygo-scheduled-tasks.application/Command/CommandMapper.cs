@@ -125,10 +125,8 @@ namespace ygo_scheduled_tasks.application.Command
             return command;
         }
 
-        public UpdateCardCommand MapToUpdateCommand(YugiohCard yugiohCard)
+        public UpdateCardCommand MapToUpdateCommand(YugiohCard yugiohCard, CardDto cardToUpdate)
         {
-            var cardToUpdate = _cardService.CardByName(yugiohCard.Name);
-
             ICollection<CategoryDto> categories = _categoryService.GetAll();
             ICollection<SubCategoryDto> subCategories = _subCategoryService.GetAll();
 

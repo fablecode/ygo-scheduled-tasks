@@ -5,6 +5,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
 using wikia.Models.Article.AlphabeticalList;
+using ygo_scheduled_tasks.application.ETL;
 using ygo_scheduled_tasks.application.ETL.Processor;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 

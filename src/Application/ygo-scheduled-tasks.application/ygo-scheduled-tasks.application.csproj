@@ -36,6 +36,7 @@
     <Compile Include="Command\ICommandMapper.cs" />
     <Compile Include="Command\UpdateCardCommand.cs" />
     <Compile Include="Dto\OAuthBearerTokenDto.cs" />
+    <Compile Include="ETL\ArticleBatchTaskResult.cs" />
     <Compile Include="ETL\ArticleCategory.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Dto\AttributeDto.cs" />
@@ -48,8 +49,11 @@
     <Compile Include="Dto\SubCategoryDto.cs" />
     <Compile Include="Dto\TrapCardDto.cs" />
     <Compile Include="Dto\TypeDto.cs" />
+    <Compile Include="ETL\ArticleException.cs" />
+    <Compile Include="ETL\ArticleTaskResult.cs" />
     <Compile Include="ETL\DataSource\ArticleCategoryDataSource.cs" />
     <Compile Include="ETL\DataSource\ICategoryDataSource.cs" />
+    <Compile Include="ETL\Processor\Decorator\ArticleProcessLoggerDecorator.cs" />
     <Compile Include="ETL\Processor\Handler\ArticleHandler.cs" />
     <Compile Include="ETL\Processor\Handler\IArticleHandler.cs" />
     <Compile Include="ETL\Processor\Process\CardItemProcessor.cs" />
@@ -67,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTask.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskHandler.cs" />
+    <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskResult.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskValidator.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskResult.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskStatus.cs" />
@@ -92,6 +97,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\StructureMap.4.5.2\lib\net45\StructureMap.dll</HintPath>

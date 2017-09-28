@@ -19,11 +19,11 @@ namespace ygo_scheduled_tasks.infrastructure.Services
 
         public async Task<CardDto> AddOrUpdate(YugiohCard yugiohCard)
         {
-            var card = _cardService.CardByName(yugiohCard.Name);
+            var card = await _cardService.CardByName(yugiohCard.Name);
 
             return card == null
                 ? await _cardService.Add(_commandMapper.MapToAddCommand(yugiohCard))
-                : await _cardService.Update(_commandMapper.MapToUpdateCommand(yugiohCard));
+                : await _cardService.Update(_commandMapper.MapToUpdateCommand(yugiohCard, card));
         }
     }
 }

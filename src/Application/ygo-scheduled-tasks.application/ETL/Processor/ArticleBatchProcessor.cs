@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
+using NLog;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.application.ETL.Processor
 {
     public class ArticleBatchProcessor : IArticleBatchProcessor
     {
         private readonly IArticleProcessor _articleProcessor;
+        private ILogger _logger;
 
         public ArticleBatchProcessor(IArticleProcessor articleProcessor)
         {
             _articleProcessor = articleProcessor;
+            _logger = LogManager.GetCurrentClassLogger();
         }
         public async Task<ArticleBatchTaskResult> Process(string category, UnexpandedArticle[] articles)
         {
@@ -34,6 +36,7 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
                 }
                 catch (Exception ex)
                 {
+                    _logger.Error(ex);
                     response.Failed.Add(new ArticleException { Article = article, Exception = ex});
                 }
             }

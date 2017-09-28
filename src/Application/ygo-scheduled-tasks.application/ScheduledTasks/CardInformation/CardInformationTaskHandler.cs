@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using wikia.Models.Article.AlphabeticalList;
+using NLog;
 using ygo_scheduled_tasks.application.ETL.Processor;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
@@ -42,38 +40,5 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
 
             return response;
         }
-    }
-
-    public class CardInformationTaskResult
-    {
-        public List<ArticleBatchTaskResult> ArticleTaskResults { get; set; } = new List<ArticleBatchTaskResult>();
-
-        public List<string> Errors { get; set; }
-    }
-
-    public class ArticleBatchTaskResult
-    {
-        public string Category { get; set; }
-
-        public int Processed { get; set; }
-
-        public List<ArticleException> Failed { get; set; } = new List<ArticleException>();
-    }
-
-    public class ArticleTaskResult
-    {
-        public bool Processed { get; set; }
-
-        public UnexpandedArticle Article { get; set; }
-
-        public ArticleException Failed { get; set; }
-    }
-
-
-    public class ArticleException
-    {
-        public UnexpandedArticle Article { get; set; }
-
-        public Exception Exception { get; set; }
     }
 }

@@ -84,6 +84,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardInformationJob.cs" />
+    <Compile Include="CardInformationService.cs" />
     <Compile Include="Ioc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

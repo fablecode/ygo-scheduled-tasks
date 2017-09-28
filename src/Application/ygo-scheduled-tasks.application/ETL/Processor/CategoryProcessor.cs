@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.application.ETL.DataSource;
-using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.application.ETL.Processor
 {
@@ -27,9 +26,7 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
 
             // Pipeline members
             var articleBatchBufferBlock = new BufferBlock<UnexpandedArticle[]>();
-            var articleTransformBlock =
-                new TransformBlock<UnexpandedArticle[], ArticleBatchTaskResult>(articles =>
-                    _articleBatchProcessor.Process(category, articles));
+            var articleTransformBlock = new TransformBlock<UnexpandedArticle[], ArticleBatchTaskResult>(articles => _articleBatchProcessor.Process(category, articles));
             var articleActionBlock = new ActionBlock<ArticleBatchTaskResult>(delegate(ArticleBatchTaskResult result)
                 {
                     response.Processed += result.Processed;

@@ -2,6 +2,7 @@
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
+using ygo_scheduled_tasks.application.ETL;
 using ygo_scheduled_tasks.application.ETL.Processor;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 

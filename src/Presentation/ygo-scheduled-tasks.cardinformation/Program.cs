@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using MediatR;
 using Quartz;
 using Topshelf;
 using Topshelf.Quartz.StructureMap;
 using Topshelf.StructureMap;
-using ygo_scheduled_tasks.application.ETL;
-using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.cardinformation
 {
@@ -52,37 +48,6 @@ namespace ygo_scheduled_tasks.cardinformation
                 x.SetDisplayName("Yugioh Card Information");
                 x.SetDescription("Amalgamate card insight data, for all Yugioh cards.");
             });
-        }
-    }
-
-    public class CardInformationJob : IJob
-    {
-        private readonly IMediator _mediator;
-
-        public CardInformationJob(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        public void Execute(IJobExecutionContext context)
-        {
-            const int pageSize = 500;
-            var categories = new List<string> { ArticleCategory.TcgCards, ArticleCategory.OcgCards, ArticleCategory.MonsterCardTypes};
-
-            _mediator.Send(new CardInformationTask { Categories = categories, PageSize = pageSize }).Wait();
-        }
-    }
-
-    public class CardInformationService
-    {
-        public void OnStart()
-        {
-            Console.WriteLine("On Start");
-        }
-
-        public void OnStop()
-        {
-            Console.WriteLine("On Stop");
         }
     }
 }
