@@ -30,14 +30,14 @@ namespace ygo_scheduled_tasks.infrastructure.Services
 
         public async Task<CardDto> Add(AddCardCommand command)
         {
-            var createdUri = await _restClient.Post($"{_config.ApiUrl}", command);
+            var createdUri = await _restClient.Post($"{_config.ApiUrl}/api/Cards", command);
 
             return await _restClient.Get<CardDto>(createdUri.AbsoluteUri);
         }
 
         public Task<CardDto> Update(UpdateCardCommand command)
         {
-            return _restClient.Put<CardDto>($"{_config.ApiUrl}", command);
+            return _restClient.Put<CardDto>($"{_config.ApiUrl}/api/Cards", command);
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using NLog;
 using ygo_scheduled_tasks.application.ETL.Processor;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation

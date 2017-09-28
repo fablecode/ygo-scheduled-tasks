@@ -27,7 +27,7 @@ namespace ygo_scheduled_tasks.infrastructure.Client
             return await response.Content.ReadAsAsync<T>();
         }
 
-        public async Task<Uri> Post(string apiUrl, object data)
+        public async Task<Uri> Post<T>(string apiUrl, T data)
         {
             var response = await client.PostAsJsonAsync(apiUrl, data);
             await response.EnsureSuccessAsync();
