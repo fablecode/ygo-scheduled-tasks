@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.Dto;
 using ygo_scheduled_tasks.application.Services;
 using ygo_scheduled_tasks.domain.Model;
@@ -35,9 +36,9 @@ namespace ygo_scheduled_tasks.application.Command
         }
 
 
-        public AddCardCommand MapToAddCommand(YugiohCard yugiohCard)
+        public async Task<AddCardCommand> MapToAddCommand(YugiohCard yugiohCard)
         {
-            ICollection<CategoryDto> categories = _categoryService.GetAll();
+            ICollection<CategoryDto> categories = await _categoryService.GetAll();
             ICollection<SubCategoryDto> subCategories = _subCategoryService.GetAll();
 
             var command = new AddCardCommand();
@@ -125,9 +126,9 @@ namespace ygo_scheduled_tasks.application.Command
             return command;
         }
 
-        public UpdateCardCommand MapToUpdateCommand(YugiohCard yugiohCard, CardDto cardToUpdate)
+        public async Task<UpdateCardCommand> MapToUpdateCommand(YugiohCard yugiohCard, CardDto cardToUpdate)
         {
-            ICollection<CategoryDto> categories = _categoryService.GetAll();
+            ICollection<CategoryDto> categories = await _categoryService.GetAll();
             ICollection<SubCategoryDto> subCategories = _subCategoryService.GetAll();
 
             var command = new UpdateCardCommand();

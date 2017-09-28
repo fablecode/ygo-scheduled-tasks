@@ -9,7 +9,7 @@ using ygo_scheduled_tasks.infrastructure.HttpHandlers;
 
 namespace ygo_scheduled_tasks.infrastructure.Client
 {
-    public class RestClient<T> : IRestClient<T>
+    public class RestClient : IRestClient
     {
         private static readonly HttpClient client = new HttpClient(new OAuthBearerTokenHandler(new HttpClientHandler()));
 
@@ -19,10 +19,10 @@ namespace ygo_scheduled_tasks.infrastructure.Client
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<T> Get(string apiUrl)
+        public async Task<T> Get<T>(string apiUrl)
         {
             var response = await client.GetAsync(apiUrl);
-            await response.EnsureSuccessStatusCodeAsync();
+            await response.EnsureSuccessAsync();
 
             return await response.Content.ReadAsAsync<T>();
         }
@@ -30,15 +30,15 @@ namespace ygo_scheduled_tasks.infrastructure.Client
         public async Task<Uri> Post(string apiUrl, object data)
         {
             var response = await client.PostAsJsonAsync(apiUrl, data);
-            await response.EnsureSuccessStatusCodeAsync();
+            await response.EnsureSuccessAsync();
 
             return response.Headers.Location;
         }
 
-        public async Task<T> Put(string apiUrl, object data)
+        public async Task<T> Put<T>(string apiUrl, object data)
         {
             var response = await client.PutAsJsonAsync(apiUrl, data);
-            await response.EnsureSuccessStatusCodeAsync();
+            await response.EnsureSuccessAsync();
 
             return await response.Content.ReadAsAsync<T>();
         }

@@ -22,8 +22,8 @@ namespace ygo_scheduled_tasks.infrastructure.Services
             var card = await _cardService.CardByName(yugiohCard.Name);
 
             return card == null
-                ? await _cardService.Add(_commandMapper.MapToAddCommand(yugiohCard))
-                : await _cardService.Update(_commandMapper.MapToUpdateCommand(yugiohCard, card));
+                ? await _cardService.Add(await _commandMapper.MapToAddCommand(yugiohCard))
+                : await _cardService.Update(await _commandMapper.MapToUpdateCommand(yugiohCard, card));
         }
     }
 }

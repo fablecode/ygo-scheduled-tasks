@@ -1,13 +1,14 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ygo_scheduled_tasks.application.Extensions
 {
     public static class HttpResponseMessageExtensions
     {
-        public static async Task EnsureSuccessStatusCodeAsync(this HttpResponseMessage response)
+        public static async Task EnsureSuccessAsync(this HttpResponseMessage response)
         {
-            if (response.IsSuccessStatusCode)
+            if (response.StatusCode != HttpStatusCode.InternalServerError)
             {
                 return;
             }

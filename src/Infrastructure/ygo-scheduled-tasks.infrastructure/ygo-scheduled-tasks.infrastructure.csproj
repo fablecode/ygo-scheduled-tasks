@@ -67,6 +67,7 @@
     <Compile Include="HttpHandlers\OAuthBearerTokenHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CardService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\YugiohCardService.cs" />
     <Compile Include="InfrastructureStructureMapInstaller.cs" />
   </ItemGroup>

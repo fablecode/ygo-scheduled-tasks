@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.Dto;
 
 namespace ygo_scheduled_tasks.application.Services
 {
     public interface ICategoryService
     {
-        ICollection<CategoryDto> GetAll();
+        Task<ICollection<CategoryDto>> GetAll();
     }
 }

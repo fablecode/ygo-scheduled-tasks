@@ -38,7 +38,7 @@ namespace ygo_scheduled_tasks.infrastructure.HttpHandlers
                             {
                                 var response = await requestTask;
 
-                                await response.EnsureSuccessStatusCodeAsync();
+                                await response.EnsureSuccessAsync();
 
                                 var responseTokenObject = await response.Content.ReadAsAsync<OAuthBearerTokenDto>(cancellationToken);
 

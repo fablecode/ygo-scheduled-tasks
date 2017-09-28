@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace ygo_scheduled_tasks.application.Client
 {
-    public interface IRestClient<T>
+    public interface IRestClient
     {
-        Task<T> Get(string apiUrl);
+        Task<T> Get<T>(string apiUrl);
         Task<Uri> Post(string apiUrl, object data);
-        Task<T> Put(string apiUrl, object data);
+        Task<T> Put<T>(string apiUrl, object data);
         Task<HttpStatusCode> Delete(string apiUrl);
     }
 }

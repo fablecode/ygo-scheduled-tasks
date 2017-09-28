@@ -19,8 +19,6 @@ namespace ygo_scheduled_tasks.infrastructure
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                     scan.AssembliesFromApplicationBaseDirectory();
-                    scan.AddAllTypesOf(typeof(RestClient<>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IRestClient<>));
                 }
 
             );
@@ -33,7 +31,7 @@ namespace ygo_scheduled_tasks.infrastructure
             For<ILinkArrowService>().Use<LinkArrowService>();
             For<IYugiohCardService>().Use<YugiohCardService>();
 
-            For<IRestClient<CardDto>>().Use<RestClient<CardDto>>();
+            For<IRestClient>().Use<RestClient>();
         }
     }
 
@@ -64,14 +62,6 @@ namespace ygo_scheduled_tasks.infrastructure
     public class SubCategoryService : ISubCategoryService
     {
         public ICollection<SubCategoryDto> GetAll()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
-    public class CategoryService : ICategoryService
-    {
-        public ICollection<CategoryDto> GetAll()
         {
             throw new System.NotImplementedException();
         }
