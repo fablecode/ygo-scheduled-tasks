@@ -77,12 +77,17 @@ namespace ygo_scheduled_tasks.application.Command
                 command.SubCategoryIds = MonsterSubCategoryIds(yugiohCard, monsterSubCategories);
                 command.TypeIds = MonsterTypeIds(yugiohCard, types);
 
-                command.LinkArrowIds = MonsterLinkArrowIds(yugiohCard, linkArrows);
+                if (yugiohCard.LinkArrows != null)
+                {
+                    command.LinkArrowIds = MonsterLinkArrowIds(yugiohCard, linkArrows);
+                }
 
-                command.CardLevel = yugiohCard.Level;
-                command.CardRank = yugiohCard.Rank;
-                command.Atk = 0;
-                command.Def = 0;
+
+                if (yugiohCard.Level.HasValue)
+                    command.CardLevel = yugiohCard.Level;
+
+                if (yugiohCard.Rank.HasValue)
+                    command.CardRank = yugiohCard.Rank;
 
                 if (!string.IsNullOrWhiteSpace(yugiohCard.AtkDef))
                 {
@@ -154,12 +159,16 @@ namespace ygo_scheduled_tasks.application.Command
 
                 command.TypeIds = MonsterTypeIds(yugiohCard, types);
 
-                command.LinkArrowIds = MonsterLinkArrowIds(yugiohCard, linkArrows);
+                if (yugiohCard.LinkArrows != null)
+                {
+                    command.LinkArrowIds = MonsterLinkArrowIds(yugiohCard, linkArrows);
+                }
 
-                command.CardLevel = yugiohCard.Level;
-                command.CardRank = yugiohCard.Rank;
-                command.Atk = 0;
-                command.Def = 0;
+                if (yugiohCard.Level.HasValue)
+                    command.CardLevel = yugiohCard.Level;
+
+                if(yugiohCard.Rank.HasValue)
+                    command.CardRank = yugiohCard.Rank;
 
                 if (!string.IsNullOrWhiteSpace(yugiohCard.AtkDef))
                 {

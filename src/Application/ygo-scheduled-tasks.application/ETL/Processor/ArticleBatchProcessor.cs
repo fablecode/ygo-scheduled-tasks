@@ -36,7 +36,7 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(ex);
+                    _logger.Error("{1} | ' {0} '", article.Title, category);
                     response.Failed.Add(new ArticleException { Article = article, Exception = ex});
                 }
             }

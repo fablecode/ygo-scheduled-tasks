@@ -9,8 +9,8 @@ namespace ygo_scheduled_tasks.domain.Model
         public string Types { get; set; }
         public string CardType { get; set; }
         public string Attribute { get; set; }
-        public int Level { get; set; }
-        public int Rank { get; set; }
+        public int? Level { get; set; }
+        public int? Rank { get; set; }
         public long PendulumScale { get; set; }
         public string AtkDef { get; set; }
         public string AtkLink { get; set; }
