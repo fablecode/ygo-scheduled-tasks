@@ -45,6 +45,9 @@ namespace ygo_scheduled_tasks.application.Command
             command.Name = yugiohCard.Name;
             command.Description = yugiohCard.Description;
 
+            if (yugiohCard.ImageUrl != null)
+                command.ImageUrl = new Uri(yugiohCard.ImageUrl);
+
 
             if (command.CardType.Equals(YgoCardType.Spell.ToString(), StringComparison.OrdinalIgnoreCase))
             {
@@ -119,6 +122,8 @@ namespace ygo_scheduled_tasks.application.Command
             command.Name = yugiohCard.Name;
             command.Description = yugiohCard.Description;
 
+            if (yugiohCard.ImageUrl != null)
+                command.ImageUrl = new Uri(yugiohCard.ImageUrl);
 
             if (command.CardType.Equals(YgoCardType.Spell.ToString(), StringComparison.OrdinalIgnoreCase))
             {

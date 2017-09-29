@@ -8,7 +8,7 @@ namespace ygo_scheduled_tasks.application.Client
     {
         Task<T> Get<T>(string apiUrl);
         Task<Uri> Post<T>(string apiUrl, T data);
-        Task<T> Put<T>(string apiUrl, object data);
+        Task<TResponse> Put<TRequest, TResponse>(string apiUrl, TRequest data);
         Task<HttpStatusCode> Delete(string apiUrl);
     }
 }

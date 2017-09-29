@@ -35,12 +35,12 @@ namespace ygo_scheduled_tasks.infrastructure.Client
             return response.Headers.Location;
         }
 
-        public async Task<T> Put<T>(string apiUrl, object data)
+        public async Task<TResponse> Put<TRequest, TResponse>(string apiUrl, TRequest data)
         {
             var response = await client.PutAsJsonAsync(apiUrl, data);
             await response.EnsureSuccessAsync();
 
-            return await response.Content.ReadAsAsync<T>();
+            return await response.Content.ReadAsAsync<TResponse>();
         }
 
         public async Task<HttpStatusCode> Delete(string apiUrl)

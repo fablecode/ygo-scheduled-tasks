@@ -37,7 +37,7 @@ namespace ygo_scheduled_tasks.infrastructure.Services
 
         public Task<CardDto> Update(UpdateCardCommand command)
         {
-            return _restClient.Put<CardDto>($"{_config.ApiUrl}/api/Cards", command);
+            return _restClient.Put<UpdateCardCommand, CardDto>($"{_config.ApiUrl}/api/Cards", command);
         }
     }
 }
