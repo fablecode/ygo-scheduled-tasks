@@ -11,7 +11,7 @@ namespace ygo_scheduled_tasks.domain.Model
         public string Attribute { get; set; }
         public int? Level { get; set; }
         public int? Rank { get; set; }
-        public long PendulumScale { get; set; }
+        public long? PendulumScale { get; set; }
         public string AtkDef { get; set; }
         public string AtkLink { get; set; }
         public string CardNumber { get; set; }
@@ -36,19 +36,6 @@ namespace ygo_scheduled_tasks.domain.Model
             {
                 return LinkArrows?.Split(',').Select(t => t.Trim()).ToList();
             }
-        }
-    }
-
-    public static class YugiohCardHelpers
-    {
-        public static Card MapToMonsterCard(this YugiohCard yugiohCard)
-        {
-            var card = new Card();
-
-            card.CardNumber = yugiohCard.CardNumber;
-            card.Name = yugiohCard.Name;
-
-            return card;
         }
     }
 }

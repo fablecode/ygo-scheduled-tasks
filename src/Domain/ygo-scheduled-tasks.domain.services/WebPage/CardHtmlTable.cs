@@ -51,14 +51,14 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
             }
         }
 
-        public long GetLongValue(string key)
+        public long? GetLongValue(string key)
         {
             return !_cardProfileLookup.TryGetValue(key, out var value) ? 0 : long.Parse(value);
         }
 
-        public int GetIntValue(string key)
+        public int? GetIntValue(string key)
         {
-            return !_cardProfileLookup.TryGetValue(key, out var value) ? 0 : int.Parse(value);
+            return !_cardProfileLookup.TryGetValue(key, out var value) ? null : (int?)int.Parse(value);
         }
 
         public string GetValue(params string[] keys)

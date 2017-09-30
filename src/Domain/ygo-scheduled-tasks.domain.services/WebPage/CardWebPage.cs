@@ -54,12 +54,6 @@ namespace ygo_scheduled_tasks.domain.services.WebPage
             response.CardEffectTypes = _cardHtmlTable.GetValue(CardHtmlTable.CardEffectTypes);
             response.PendulumScale = _cardHtmlTable.GetIntValue(CardHtmlTable.PendulumScale);
 
-            if (response.Level == 0)
-                response.Level = null;
-
-            if (response.Rank == 0)
-                response.Rank = null;
-
             return response;
         } 
 
