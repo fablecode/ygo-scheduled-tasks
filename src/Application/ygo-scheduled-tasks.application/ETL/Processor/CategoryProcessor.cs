@@ -28,15 +28,15 @@ namespace ygo_scheduled_tasks.application.ETL.Processor
             var articleBatchBufferBlock = new BufferBlock<UnexpandedArticle[]>();
             var articleTransformBlock = new TransformBlock<UnexpandedArticle[], ArticleBatchTaskResult>(articles => _articleBatchProcessor.Process(category, articles));
             var articleActionBlock = new ActionBlock<ArticleBatchTaskResult>(delegate(ArticleBatchTaskResult result)
-                {
-                    response.Processed += result.Processed;
-                    response.Failed = result.Failed;
-                },
-                // Specify a maximum degree of parallelism.
-                new ExecutionDataflowBlockOptions
-                {
-                    MaxDegreeOfParallelism = processorCount
-                });
+            {
+                response.Processed += result.Processed;
+                response.Failed = result.Failed;
+            },
+            // Specify a maximum degree of parallelism.
+            new ExecutionDataflowBlockOptions
+            {
+                MaxDegreeOfParallelism = processorCount
+            });
 
             // Form the pipeline
             articleBatchBufferBlock.LinkTo(articleTransformBlock);

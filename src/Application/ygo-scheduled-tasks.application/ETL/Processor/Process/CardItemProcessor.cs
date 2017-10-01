@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 using ygo_scheduled_tasks.application.Services;
 using ygo_scheduled_tasks.domain.WebPage;
 

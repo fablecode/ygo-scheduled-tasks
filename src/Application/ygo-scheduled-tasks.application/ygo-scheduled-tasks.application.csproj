@@ -85,9 +85,7 @@
     <Compile Include="ApplicationStructureMapInstaller.cs" />
     <Compile Include="YgoCardType.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Query\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\FluentValidation.7.1.1\lib\net45\FluentValidation.dll</HintPath>

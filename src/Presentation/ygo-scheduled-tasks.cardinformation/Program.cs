@@ -8,6 +8,8 @@ namespace ygo_scheduled_tasks.cardinformation
 {
     class Program
     {
+        private static int _intervalInPerWeek = 1;
+
         static void Main(string[] args)
         {
             HostFactory.Run(x =>
@@ -28,12 +30,13 @@ namespace ygo_scheduled_tasks.cardinformation
 
                     s.UseQuartzStructureMap();
 
+                    
                     s.ScheduleQuartzJob(q => 
                         q.WithJob(() => 
                             JobBuilder.Create<CardInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
                                 .WithCalendarIntervalSchedule(ss =>
-                                    ss.WithIntervalInWeeks(1)
+                                    ss.WithIntervalInWeeks(_intervalInPerWeek)
                                     .Build())
                                 .StartNow()
                                 .Build()));
@@ -44,8 +47,10 @@ namespace ygo_scheduled_tasks.cardinformation
                     .StartAutomatically()
                     .EnableServiceRecovery(rc => rc.RestartService(1));
 
-                x.SetServiceName("Yugioh Card Information");
-                x.SetDisplayName("Yugioh Card Information");
+                var ygoCardInformation = "YgoCardInformation";
+
+                x.SetServiceName(ygoCardInformation);
+                x.SetDisplayName(ygoCardInformation);
                 x.SetDescription("Amalgamate card insight data, for all Yugioh cards.");
             });
         }
