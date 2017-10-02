@@ -75,13 +75,13 @@
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskValidator.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskResult.cs" />
     <Compile Include="ScheduledTasks\ScheduleTaskStatus.cs" />
-    <Compile Include="Services\IAttributeService.cs" />
-    <Compile Include="Services\ICardService.cs" />
-    <Compile Include="Services\ICategoryService.cs" />
-    <Compile Include="Services\ILinkArrowService.cs" />
-    <Compile Include="Services\ISubCategoryService.cs" />
-    <Compile Include="Services\ITypeService.cs" />
-    <Compile Include="Services\IYugiohCardService.cs" />
+    <Compile Include="Api\IAttributeService.cs" />
+    <Compile Include="Api\ICardService.cs" />
+    <Compile Include="Api\ICategoryService.cs" />
+    <Compile Include="Api\ILinkArrowService.cs" />
+    <Compile Include="Api\ISubCategoryService.cs" />
+    <Compile Include="Api\ITypeService.cs" />
+    <Compile Include="Api\IYugiohCardService.cs" />
     <Compile Include="ApplicationStructureMapInstaller.cs" />
     <Compile Include="YgoCardType.cs" />
   </ItemGroup>

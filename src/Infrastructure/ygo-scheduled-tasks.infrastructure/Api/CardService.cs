@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using ygo_scheduled_tasks.application;
+using ygo_scheduled_tasks.application.Api;
 using ygo_scheduled_tasks.application.Client;
 using ygo_scheduled_tasks.application.Command;
 using ygo_scheduled_tasks.application.Dto;
-using ygo_scheduled_tasks.application.Services;
 
-namespace ygo_scheduled_tasks.infrastructure.Services
+namespace ygo_scheduled_tasks.infrastructure.Api
 {
     public class CardService : ICardService
     {

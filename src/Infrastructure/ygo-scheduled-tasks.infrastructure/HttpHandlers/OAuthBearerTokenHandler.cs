@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using StructureMap;
 using ygo_scheduled_tasks.application;
 using ygo_scheduled_tasks.application.Dto;
 using ygo_scheduled_tasks.application.Extensions;

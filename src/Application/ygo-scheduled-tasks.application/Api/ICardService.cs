@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.Command;
 using ygo_scheduled_tasks.application.Dto;
 
-namespace ygo_scheduled_tasks.application.Services
+namespace ygo_scheduled_tasks.application.Api
 {
     public interface ICardService
     {

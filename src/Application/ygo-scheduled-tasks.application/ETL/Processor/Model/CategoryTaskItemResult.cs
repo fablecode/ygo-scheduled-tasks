@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.application.ETL.Processor.Model
 {
