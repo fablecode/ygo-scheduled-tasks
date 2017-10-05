@@ -38,7 +38,6 @@ namespace ygo_scheduled_tasks.application
                     scan.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
                 }
-
             );
 
             For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => ctx.GetInstance);
