@@ -2,7 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 
-namespace ygo_scheduled_tasks.application.Client
+namespace ygo_scheduled_tasks.domain.Client
 {
     public interface IRestClient
     {

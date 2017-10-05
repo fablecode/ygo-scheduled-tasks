@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using ygo_scheduled_tasks.application.Client;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain;
+using ygo_scheduled_tasks.domain.Client;
 using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.Services;
 

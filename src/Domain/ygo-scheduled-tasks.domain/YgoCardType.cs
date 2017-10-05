@@ -1,4 +1,4 @@
-﻿namespace ygo_scheduled_tasks.application
+﻿namespace ygo_scheduled_tasks.domain
 {
     public enum YgoCardType
     {

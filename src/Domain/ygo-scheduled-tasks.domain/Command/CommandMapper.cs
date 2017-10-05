@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ygo_scheduled_tasks.application;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain.Services;
 using Attribute = ygo_scheduled_tasks.core.Model.Attribute;
