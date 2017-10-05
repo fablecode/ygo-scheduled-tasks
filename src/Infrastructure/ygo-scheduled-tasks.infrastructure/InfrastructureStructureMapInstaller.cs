@@ -1,8 +1,9 @@
 ﻿using StructureMap;
-using ygo_scheduled_tasks.application.Api;
 using ygo_scheduled_tasks.application.Client;
-using ygo_scheduled_tasks.infrastructure.Api;
+using ygo_scheduled_tasks.core.Services;
+using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.infrastructure.Client;
+using ygo_scheduled_tasks.infrastructure.Services;
 
 namespace ygo_scheduled_tasks.infrastructure
 {

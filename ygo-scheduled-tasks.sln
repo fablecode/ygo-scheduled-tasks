@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{AB546BB2-E106-46E2-B159-94F83F315C08}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{AB546BB2-E106-46E2-B159-94F83F315C08}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{C5AA9B72-ED58-40B7-BCDE-B72929CB781C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Application", "3. Application", "{C5AA9B72-ED58-40B7-BCDE-B72929CB781C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infrastructure", "3. Infrastructure", "{8680D5C8-457A-4EE8-9F18-518F4120A2FE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{8680D5C8-457A-4EE8-9F18-518F4120A2FE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Presentation", "4. Presentation", "{5C362B23-8D3A-4A34-A664-F029524880D6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Presentation", "5. Presentation", "{5C362B23-8D3A-4A34-A664-F029524880D6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Tests", "5. Tests", "{CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Tests", "6. Tests", "{CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.domain", "src\Domain\ygo-scheduled-tasks.domain\ygo-scheduled-tasks.domain.csproj", "{E812E143-5508-4715-A545-F4FBB2A88359}"
 EndProject
@@ -21,13 +21,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.cardinf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.application.unit.tests", "tests\unit\ygo-scheduled-tasks.application.unit.tests\ygo-scheduled-tasks.application.unit.tests.csproj", "{BEF50A78-B645-4A17-93BF-1B4836DBB5A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.domain.services", "src\Domain\ygo-scheduled-tasks.domain.services\ygo-scheduled-tasks.domain.services.csproj", "{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.domain.services.integration.tests", "tests\integration\ygo-scheduled-tasks.domain.services.integration.tests\ygo-scheduled-tasks.domain.services.integration.tests.csproj", "{B0DB49D7-7247-4C07-94C5-EE240BAEF952}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.domain.services.unit.tests", "tests\unit\ygo-scheduled-tasks.domain.services.unit.tests\ygo-scheduled-tasks.domain.services.unit.tests.csproj", "{D545CE80-72B1-4F3D-833D-942FAA8F89BD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.infrastructure", "src\Infrastructure\ygo-scheduled-tasks.infrastructure\ygo-scheduled-tasks.infrastructure.csproj", "{9C8FCE93-DD43-4DAA-BA8D-BE4A09A1B737}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.core", "src\Core\ygo-scheduled-tasks.core\ygo-scheduled-tasks.core.csproj", "{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Core", "1. Core", "{CD83C71B-2163-4E92-8F0B-A044082D8E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.domain.integration.tests", "tests\integration\ygo-scheduled-tasks.domain.integration.tests\ygo-scheduled-tasks.domain.integration.tests.csproj", "{36472FFE-597B-44B1-A47C-7B147F4EA12F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.domain.unit.tests", "tests\unit\ygo-scheduled-tasks.domain.unit.tests\ygo-scheduled-tasks.domain.unit.tests.csproj", "{CA49C44C-EFE1-4C7E-AEE8-1DD9421E077A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{20431B56-480D-462E-A720-17916BC26CE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{5E968FB3-8803-494A-8624-888BD03AD9C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,22 +57,22 @@ Global
 		{BEF50A78-B645-4A17-93BF-1B4836DBB5A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF50A78-B645-4A17-93BF-1B4836DBB5A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEF50A78-B645-4A17-93BF-1B4836DBB5A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0DB49D7-7247-4C07-94C5-EE240BAEF952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0DB49D7-7247-4C07-94C5-EE240BAEF952}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0DB49D7-7247-4C07-94C5-EE240BAEF952}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0DB49D7-7247-4C07-94C5-EE240BAEF952}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D545CE80-72B1-4F3D-833D-942FAA8F89BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D545CE80-72B1-4F3D-833D-942FAA8F89BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D545CE80-72B1-4F3D-833D-942FAA8F89BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D545CE80-72B1-4F3D-833D-942FAA8F89BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C8FCE93-DD43-4DAA-BA8D-BE4A09A1B737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C8FCE93-DD43-4DAA-BA8D-BE4A09A1B737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C8FCE93-DD43-4DAA-BA8D-BE4A09A1B737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C8FCE93-DD43-4DAA-BA8D-BE4A09A1B737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36472FFE-597B-44B1-A47C-7B147F4EA12F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36472FFE-597B-44B1-A47C-7B147F4EA12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36472FFE-597B-44B1-A47C-7B147F4EA12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36472FFE-597B-44B1-A47C-7B147F4EA12F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA49C44C-EFE1-4C7E-AEE8-1DD9421E077A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA49C44C-EFE1-4C7E-AEE8-1DD9421E077A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA49C44C-EFE1-4C7E-AEE8-1DD9421E077A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA49C44C-EFE1-4C7E-AEE8-1DD9421E077A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,11 +81,13 @@ Global
 		{E812E143-5508-4715-A545-F4FBB2A88359} = {AB546BB2-E106-46E2-B159-94F83F315C08}
 		{141A894B-B936-45CE-A687-1470AECAC86B} = {C5AA9B72-ED58-40B7-BCDE-B72929CB781C}
 		{2077BD86-8D0B-48DF-A531-C352CC5AE64D} = {5C362B23-8D3A-4A34-A664-F029524880D6}
-		{BEF50A78-B645-4A17-93BF-1B4836DBB5A6} = {CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}
-		{8ACA2A85-C998-4DAA-91F9-0168C56FE57F} = {AB546BB2-E106-46E2-B159-94F83F315C08}
-		{B0DB49D7-7247-4C07-94C5-EE240BAEF952} = {CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}
-		{D545CE80-72B1-4F3D-833D-942FAA8F89BD} = {CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}
+		{BEF50A78-B645-4A17-93BF-1B4836DBB5A6} = {20431B56-480D-462E-A720-17916BC26CE4}
 		{9C8FCE93-DD43-4DAA-BA8D-BE4A09A1B737} = {8680D5C8-457A-4EE8-9F18-518F4120A2FE}
+		{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2} = {CD83C71B-2163-4E92-8F0B-A044082D8E03}
+		{36472FFE-597B-44B1-A47C-7B147F4EA12F} = {5E968FB3-8803-494A-8624-888BD03AD9C3}
+		{CA49C44C-EFE1-4C7E-AEE8-1DD9421E077A} = {20431B56-480D-462E-A720-17916BC26CE4}
+		{20431B56-480D-462E-A720-17916BC26CE4} = {CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}
+		{5E968FB3-8803-494A-8624-888BD03AD9C3} = {CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA0BD5B5-8D45-4E19-9074-25B0B1D762B7}

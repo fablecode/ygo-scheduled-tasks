@@ -102,10 +102,6 @@
       <Project>{141A894B-B936-45CE-A687-1470AECAC86B}</Project>
       <Name>ygo-scheduled-tasks.application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\ygo-scheduled-tasks.infrastructure\ygo-scheduled-tasks.infrastructure.csproj">
-      <Project>{9c8fce93-dd43-4daa-ba8d-be4a09a1b737}</Project>
-      <Name>ygo-scheduled-tasks.infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

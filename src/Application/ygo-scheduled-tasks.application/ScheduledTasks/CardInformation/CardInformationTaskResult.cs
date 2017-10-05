@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ygo_scheduled_tasks.application.ETL;
+using ygo_scheduled_tasks.domain.ETL;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
 {

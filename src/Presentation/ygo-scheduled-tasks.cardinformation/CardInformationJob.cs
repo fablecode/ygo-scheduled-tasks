@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using MediatR;
 using Quartz;
-using ygo_scheduled_tasks.application.ETL;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.cardinformation
@@ -18,7 +17,11 @@ namespace ygo_scheduled_tasks.cardinformation
         public void Execute(IJobExecutionContext context)
         {
             const int pageSize = 500;
-            var categories = new List<string> { ArticleCategory.TcgCards, ArticleCategory.OcgCards, ArticleCategory.MonsterCardTypes};
+            const string tcgCards = "TCG cards";
+            const string ocgCards = "OCG cards";
+            const string monsterCardTypes = "Monster card types";
+
+            var categories = new List<string> { tcgCards, ocgCards, monsterCardTypes};
 
             _mediator.Send(new CardInformationTask { Categories = categories, PageSize = pageSize }).Wait();
         }

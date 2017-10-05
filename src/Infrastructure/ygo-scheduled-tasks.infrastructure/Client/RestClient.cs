@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.Client;
-using ygo_scheduled_tasks.application.Extensions;
+using ygo_scheduled_tasks.domain.Extensions;
 using ygo_scheduled_tasks.infrastructure.HttpHandlers;
 
 namespace ygo_scheduled_tasks.infrastructure.Client

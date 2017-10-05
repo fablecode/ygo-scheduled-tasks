@@ -30,23 +30,72 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Model\Card.cs" />
-    <Compile Include="Model\Login.cs" />
-    <Compile Include="Model\YugiohCard.cs" />
+    <Compile Include="Services\IAttributeService.cs" />
+    <Compile Include="Services\ICardService.cs" />
+    <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\ILinkArrowService.cs" />
+    <Compile Include="Services\ISubCategoryService.cs" />
+    <Compile Include="Services\ITypeService.cs" />
+    <Compile Include="Client\IRestClient.cs" />
+    <Compile Include="Command\AddCardCommand.cs" />
+    <Compile Include="Command\CommandMapper.cs" />
+    <Compile Include="Command\ICommandMapper.cs" />
+    <Compile Include="Command\UpdateCardCommand.cs" />
+    <Compile Include="ETL\ArticleBatchTaskResult.cs" />
+    <Compile Include="ETL\ArticleCategory.cs" />
+    <Compile Include="ETL\ArticleException.cs" />
+    <Compile Include="ETL\ArticleTaskResult.cs" />
+    <Compile Include="ETL\DataSource\ArticleCategoryDataSource.cs" />
+    <Compile Include="ETL\DataSource\ICategoryDataSource.cs" />
+    <Compile Include="ETL\Processor\ArticleBatchProcessor.cs" />
+    <Compile Include="ETL\Processor\ArticleProcessor.cs" />
+    <Compile Include="ETL\Processor\CategoryProcessor.cs" />
+    <Compile Include="ETL\Processor\Decorator\ArticleProcessLoggerDecorator.cs" />
+    <Compile Include="ETL\Processor\Handler\ArticleHandler.cs" />
+    <Compile Include="ETL\Processor\Handler\IArticleHandler.cs" />
+    <Compile Include="ETL\Processor\IArticleBatchProcessor.cs" />
+    <Compile Include="ETL\Processor\IArticleProcessor.cs" />
+    <Compile Include="ETL\Processor\IBatchItemProcessor.cs" />
+    <Compile Include="ETL\Processor\ICategoryProcessor.cs" />
+    <Compile Include="ETL\Processor\Model\CategoryTaskItemResult.cs" />
+    <Compile Include="ETL\Processor\Process\CardItemProcessor.cs" />
+    <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
+    <Compile Include="Extensions\SimpleHttpResponseException.cs" />
+    <Compile Include="IConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebPage\ICardHtmlDocument.cs" />
-    <Compile Include="WebPage\ICardHtmlTable.cs" />
-    <Compile Include="WebPage\ICardWebPage.cs" />
-    <Compile Include="WebPage\IHtmlWebPage.cs" />
+    <Compile Include="WebPage\CardHtmlDocument.cs" />
+    <Compile Include="WebPage\CardHtmlTable.cs" />
+    <Compile Include="WebPage\CardWebPage.cs" />
+    <Compile Include="WebPage\HtmlWebPage.cs" />
+    <Compile Include="YgoCardType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.5.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.5.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="wikia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\wikia.2017.9.6.2\lib\net461\wikia.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ygo-scheduled-tasks.core\ygo-scheduled-tasks.core.csproj">
+      <Project>{9378e7af-1830-4ae1-ac8f-91ac4d06aca2}</Project>
+      <Name>ygo-scheduled-tasks.core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

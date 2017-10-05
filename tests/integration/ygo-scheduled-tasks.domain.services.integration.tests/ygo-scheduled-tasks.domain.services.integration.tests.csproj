@@ -71,10 +71,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Domain\ygo-scheduled-tasks.domain.services\ygo-scheduled-tasks.domain.services.csproj">
-      <Project>{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}</Project>
-      <Name>ygo-scheduled-tasks.domain.services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\src\Domain\ygo-scheduled-tasks.domain\ygo-scheduled-tasks.domain.csproj">
       <Project>{E812E143-5508-4715-A545-F4FBB2A88359}</Project>
       <Name>ygo-scheduled-tasks.domain</Name>

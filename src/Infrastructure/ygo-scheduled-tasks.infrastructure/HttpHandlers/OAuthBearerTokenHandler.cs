@@ -4,9 +4,9 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.application;
-using ygo_scheduled_tasks.application.Dto;
-using ygo_scheduled_tasks.application.Extensions;
-using ygo_scheduled_tasks.domain.Model;
+using ygo_scheduled_tasks.core.Model;
+using ygo_scheduled_tasks.domain;
+using ygo_scheduled_tasks.domain.Extensions;
 
 namespace ygo_scheduled_tasks.infrastructure.HttpHandlers
 {
@@ -34,7 +34,7 @@ namespace ygo_scheduled_tasks.infrastructure.HttpHandlers
 
                         await response.EnsureSuccessAsync();
 
-                        var responseTokenObject = await response.Content.ReadAsAsync<OAuthBearerTokenDto>();
+                        var responseTokenObject = await response.Content.ReadAsAsync<OAuthBearerToken>();
 
                         _authToken = responseTokenObject.Token;
                     }

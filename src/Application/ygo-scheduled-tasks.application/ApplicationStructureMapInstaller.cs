@@ -3,12 +3,13 @@ using FluentValidation;
 using MediatR;
 using StructureMap;
 using wikia.Api;
-using ygo_scheduled_tasks.application.Command;
-using ygo_scheduled_tasks.application.ETL.DataSource;
-using ygo_scheduled_tasks.application.ETL.Processor;
-using ygo_scheduled_tasks.application.ETL.Processor.Decorator;
-using ygo_scheduled_tasks.application.ETL.Processor.Handler;
-using ygo_scheduled_tasks.domain.services.WebPage;
+using ygo_scheduled_tasks.core.WebPage;
+using ygo_scheduled_tasks.domain;
+using ygo_scheduled_tasks.domain.Command;
+using ygo_scheduled_tasks.domain.ETL.DataSource;
+using ygo_scheduled_tasks.domain.ETL.Processor;
+using ygo_scheduled_tasks.domain.ETL.Processor.Decorator;
+using ygo_scheduled_tasks.domain.ETL.Processor.Handler;
 using ygo_scheduled_tasks.domain.WebPage;
 
 namespace ygo_scheduled_tasks.application

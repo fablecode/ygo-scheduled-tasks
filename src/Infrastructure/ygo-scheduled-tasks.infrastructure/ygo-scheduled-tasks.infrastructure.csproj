@@ -67,19 +67,23 @@
     <Compile Include="Client\RestClient.cs" />
     <Compile Include="HttpHandlers\OAuthBearerTokenHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Api\AttributeService.cs" />
-    <Compile Include="Api\CardService.cs" />
-    <Compile Include="Api\CategoryService.cs" />
-    <Compile Include="Api\LinkArrowService.cs" />
-    <Compile Include="Api\SubCategoryService.cs" />
-    <Compile Include="Api\TypeService.cs" />
-    <Compile Include="Api\YugiohCardService.cs" />
+    <Compile Include="Services\AttributeService.cs" />
+    <Compile Include="Services\CardService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\LinkArrowService.cs" />
+    <Compile Include="Services\SubCategoryService.cs" />
+    <Compile Include="Services\TypeService.cs" />
+    <Compile Include="Services\YugiohCardService.cs" />
     <Compile Include="InfrastructureStructureMapInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Application\ygo-scheduled-tasks.application\ygo-scheduled-tasks.application.csproj">
       <Project>{141A894B-B936-45CE-A687-1470AECAC86B}</Project>
       <Name>ygo-scheduled-tasks.application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\ygo-scheduled-tasks.core\ygo-scheduled-tasks.core.csproj">
+      <Project>{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2}</Project>
+      <Name>ygo-scheduled-tasks.core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Domain\ygo-scheduled-tasks.domain\ygo-scheduled-tasks.domain.csproj">
       <Project>{E812E143-5508-4715-A545-F4FBB2A88359}</Project>

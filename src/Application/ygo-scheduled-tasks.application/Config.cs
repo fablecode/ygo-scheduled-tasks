@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using ygo_scheduled_tasks.domain;
 
 namespace ygo_scheduled_tasks.application
 {

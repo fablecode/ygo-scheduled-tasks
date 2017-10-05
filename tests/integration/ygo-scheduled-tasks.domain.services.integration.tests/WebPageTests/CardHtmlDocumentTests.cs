@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
-using ygo_scheduled_tasks.domain.services.WebPage;
+using ygo_scheduled_tasks.domain.WebPage;
 
 namespace ygo_scheduled_tasks.domain.services.integration.tests.WebPageTests
 {

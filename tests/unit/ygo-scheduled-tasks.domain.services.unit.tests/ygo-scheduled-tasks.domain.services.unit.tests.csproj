@@ -69,12 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebPageTests\CardHtmlDocumentTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Domain\ygo-scheduled-tasks.domain.services\ygo-scheduled-tasks.domain.services.csproj">
-      <Project>{8ACA2A85-C998-4DAA-91F9-0168C56FE57F}</Project>
-      <Name>ygo-scheduled-tasks.domain.services</Name>
+    <ProjectReference Include="..\..\..\src\Core\ygo-scheduled-tasks.core\ygo-scheduled-tasks.core.csproj">
+      <Project>{9378E7AF-1830-4AE1-AC8F-91AC4D06ACA2}</Project>
+      <Name>ygo-scheduled-tasks.core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\src\Domain\ygo-scheduled-tasks.domain\ygo-scheduled-tasks.domain.csproj">
       <Project>{E812E143-5508-4715-A545-F4FBB2A88359}</Project>

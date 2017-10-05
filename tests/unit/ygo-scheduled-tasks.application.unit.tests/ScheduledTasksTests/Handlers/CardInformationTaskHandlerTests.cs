@@ -2,9 +2,9 @@
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
-using ygo_scheduled_tasks.application.ETL;
-using ygo_scheduled_tasks.application.ETL.Processor;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
+using ygo_scheduled_tasks.domain.ETL;
+using ygo_scheduled_tasks.domain.ETL.Processor;
 
 namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handlers
 {
