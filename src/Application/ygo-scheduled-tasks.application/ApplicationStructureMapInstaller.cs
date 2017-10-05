@@ -10,6 +10,7 @@ using ygo_scheduled_tasks.domain.ETL.DataSource;
 using ygo_scheduled_tasks.domain.ETL.Processor;
 using ygo_scheduled_tasks.domain.ETL.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.Processor.Handler;
+using ygo_scheduled_tasks.domain.ETL.Processor.Process;
 using ygo_scheduled_tasks.domain.WebPage;
 
 namespace ygo_scheduled_tasks.application
@@ -36,8 +37,6 @@ namespace ygo_scheduled_tasks.application
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>)); // Async Handlers with a response
                     scan.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
-
-                    scan.AddAllTypesOf<IBatchItemProcessor>();
                 }
 
             );
@@ -58,6 +57,7 @@ namespace ygo_scheduled_tasks.application
             For<IArticleBatchProcessor>().Use<ArticleBatchProcessor>();
 
             For<ICommandMapper>().Use<CommandMapper>();
+            For<IBatchItemProcessor>().Use<CardItemProcessor>();
 
             // decorator pattern for logging. 
             For<IArticleProcessor>().DecorateAllWith<ArticleProcessLoggerDecorator>();
