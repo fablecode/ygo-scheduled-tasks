@@ -58,7 +58,7 @@ namespace ygo_scheduled_tasks.application
             For<ICommandMapper>().Use<CommandMapper>();
             For<IBatchItemProcessor>().Use<CardItemProcessor>();
 
-            // decorator pattern for logging. 
+            // decorator pattern for logging using structuremap. 
             For<IArticleProcessor>().DecorateAllWith<ArticleProcessLoggerDecorator>();
         }
     }
