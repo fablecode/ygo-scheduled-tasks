@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProcessorTests\ArticleBatchProcessorTests.cs" />
+    <Compile Include="ProcessorTests\DataSourceTests\SemanticSearchDataSourceTests.cs" />
     <Compile Include="ProcessorTests\DataSourceTests\ArticleCategoryDataSourceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPageTests\CardHtmlDocumentTests.cs" />

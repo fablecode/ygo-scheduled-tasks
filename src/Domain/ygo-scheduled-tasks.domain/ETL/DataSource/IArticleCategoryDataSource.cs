@@ -4,7 +4,7 @@ using wikia.Models.Article.AlphabeticalList;
 
 namespace ygo_scheduled_tasks.domain.ETL.DataSource
 {
-    public interface ICategoryDataSource
+    public interface IArticleCategoryDataSource
     {
         Task Producer(string category, int pageSize, ITargetBlock<UnexpandedArticle[]> targetBlock);
     }

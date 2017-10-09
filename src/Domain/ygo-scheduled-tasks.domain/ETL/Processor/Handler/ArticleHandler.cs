@@ -5,16 +5,16 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor.Handler
 {
     public class ArticleHandler : IArticleHandler
     {
-        private readonly IEnumerable<IBatchItemProcessor> _batchItemProcessors;
+        private readonly IEnumerable<IArticleItemProcessor> _articleItemProcessors;
 
-        public ArticleHandler(IEnumerable<IBatchItemProcessor> batchItemProcessors)
+        public ArticleHandler(IEnumerable<IArticleItemProcessor> articleItemProcessors)
         {
-            _batchItemProcessors = batchItemProcessors;
+            _articleItemProcessors = articleItemProcessors;
         }
 
-        public IBatchItemProcessor Handler(string category)
+        public IArticleItemProcessor Handler(string category)
         {
-            return _batchItemProcessors.Single(h => h.Handles(category));
+            return _articleItemProcessors.Single(h => h.Handles(category));
         }
     }
 }

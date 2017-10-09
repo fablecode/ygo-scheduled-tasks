@@ -5,6 +5,9 @@ using NUnit.Framework;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 using ygo_scheduled_tasks.domain.ETL;
 using ygo_scheduled_tasks.domain.ETL.Processor;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Model;
 
 namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handlers
 {
@@ -12,14 +15,16 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
     public class CardInformationTaskHandlerTests
     {
         private CardInformationTaskHandler _sut;
-        private ICategoryProcessor _categoryProcessor;
+        private IArticleCategoryProcessor _articleCategoryProcessor;
+        private ISemanticSearchProcessor _semanticSearchProcessor;
 
         [SetUp]
         public void Setup()
         {
-            _categoryProcessor = Substitute.For<ICategoryProcessor>();
+            _articleCategoryProcessor = Substitute.For<IArticleCategoryProcessor>();
+            _semanticSearchProcessor = Substitute.For<ISemanticSearchProcessor>();
 
-            _sut = new CardInformationTaskHandler(_categoryProcessor, new CardInformationTaskValidator());
+            _sut = new CardInformationTaskHandler(_articleCategoryProcessor, _semanticSearchProcessor, new CardInformationTaskValidator());
         }
 
         [Test]
@@ -40,13 +45,28 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
         {
             // Arrange
             var task = new CardInformationTask();
-            _categoryProcessor.Process(Arg.Any<string>(), Arg.Any<int>()).Returns(new ArticleBatchTaskResult());
+            _articleCategoryProcessor.Process(Arg.Any<string>(), Arg.Any<int>()).Returns(new ArticleBatchTaskResult());
 
             // Act
             await _sut.Handle(task);
 
             // Assert
-            await _categoryProcessor.DidNotReceive().Process(Arg.Any<string>(), Arg.Any<int>());
+            await _articleCategoryProcessor.DidNotReceive().Process(Arg.Any<string>(), Arg.Any<int>());
+        }
+
+        [Test]
+        public async Task Given_An_Invalid_CardInformationTask_Should_Not_Execute_SemanticSearch()
+        {
+            // Arrange
+            var task = new CardInformationTask();
+            _articleCategoryProcessor.Process(Arg.Any<string>(), Arg.Any<int>()).Returns(new ArticleBatchTaskResult());
+            _semanticSearchProcessor.ProcessUrl(Arg.Any<string>(), Arg.Any<string>()).Returns(new SemanticSearchBatchTaskResult());
+
+            // Act
+            await _sut.Handle(task);
+
+            // Assert
+            await _semanticSearchProcessor.DidNotReceive().ProcessUrl(Arg.Any<string>(), Arg.Any<string>());
         }
 
     }

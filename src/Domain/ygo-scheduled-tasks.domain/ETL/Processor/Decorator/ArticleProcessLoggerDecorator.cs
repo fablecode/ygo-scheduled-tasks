@@ -7,7 +7,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor.Decorator
     public class ArticleProcessLoggerDecorator : IArticleProcessor
     {
         private readonly IArticleProcessor _articleProcessor;
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         public ArticleProcessLoggerDecorator(IArticleProcessor articleProcessor)
         {

@@ -11,6 +11,11 @@ using ygo_scheduled_tasks.domain.ETL.Processor;
 using ygo_scheduled_tasks.domain.ETL.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.Processor.Handler;
 using ygo_scheduled_tasks.domain.ETL.Processor.Process;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Decorator;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Handler;
+using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process;
 using ygo_scheduled_tasks.domain.WebPage;
 
 namespace ygo_scheduled_tasks.application
@@ -51,15 +56,27 @@ namespace ygo_scheduled_tasks.application
             For<ICardHtmlDocument>().Use<CardHtmlDocument>();
             For<IHtmlWebPage>().Use<HtmlWebPage>();
             For<ICardHtmlTable>().Use<CardHtmlTable>();
-            For<ICategoryProcessor>().Use<ArticleCategoryProcessor>();
-            For<ICategoryDataSource>().Use<ArticleCategoryDataSource>();
+            For<IArticleCategoryProcessor>().Use<ArticleCategoryProcessor>();
+            For<IArticleCategoryDataSource>().Use<ArticleCategoryDataSource>();
             For<IArticleBatchProcessor>().Use<ArticleBatchProcessor>();
 
             For<ICommandMapper>().Use<CommandMapper>();
-            For<IBatchItemProcessor>().Use<CardItemProcessor>();
+            For<IArticleItemProcessor>().Use<CardItemProcessor>();
+
+
+            For<ISemanticCardHandler>().Use<SemanticCardHandler>();
+            For<ISemanticSearch>().Use<SemanticSearch>();
+            For<ISemanticCardProcessor>().Use<SemanticCardProcessor>();
+            For<ISemanticSearchBatchProcessor>().Use<SemanticSearchBatchProcessor>();
+
+            For<ISemanticCardItemProcess>().Use<SemanticSearchNormalMonstersProcessor>();
+            For<ISemanticCardItemProcess>().Use<SemanticSearchFlipMonstersProcessor>();
 
             // decorator pattern for logging using structuremap. 
             For<IArticleProcessor>().DecorateAllWith<ArticleProcessLoggerDecorator>();
+            For<ISemanticCardProcessor>().DecorateAllWith<SemanticCardProcessorLoggerDecorator>();
+
+
         }
     }
 }

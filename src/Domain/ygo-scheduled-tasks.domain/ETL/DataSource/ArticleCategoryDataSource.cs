@@ -7,7 +7,7 @@ using wikia.Models.Article.AlphabeticalList;
 
 namespace ygo_scheduled_tasks.domain.ETL.DataSource
 {
-    public class ArticleCategoryDataSource : ICategoryDataSource
+    public class ArticleCategoryDataSource : IArticleCategoryDataSource
     {
         private readonly IWikiArticle _wikiArticle;
 

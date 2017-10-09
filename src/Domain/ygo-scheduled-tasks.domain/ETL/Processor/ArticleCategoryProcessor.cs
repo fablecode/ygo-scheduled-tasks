@@ -1,20 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.domain.ETL.DataSource;
 
 namespace ygo_scheduled_tasks.domain.ETL.Processor
 {
-    public class ArticleCategoryProcessor : ICategoryProcessor
+    public class ArticleCategoryProcessor : IArticleCategoryProcessor
     {
         private readonly IArticleBatchProcessor _articleBatchProcessor;
-        private readonly ICategoryDataSource _categoryDataSource;
+        private readonly IArticleCategoryDataSource _articleCategoryDataSource;
 
-        public ArticleCategoryProcessor(ICategoryDataSource categoryDataSource,
-            IArticleBatchProcessor articleBatchProcessor)
+        public ArticleCategoryProcessor(IArticleCategoryDataSource articleCategoryDataSource, IArticleBatchProcessor articleBatchProcessor)
         {
-            _categoryDataSource = categoryDataSource;
+            _articleCategoryDataSource = articleCategoryDataSource;
             _articleBatchProcessor = articleBatchProcessor;
         }
 
@@ -22,7 +20,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor
         {
             var response = new ArticleBatchTaskResult {Category = category};
 
-            var processorCount = Environment.ProcessorCount;
+            var processorCount = 2;
 
             // Pipeline members
             var articleBatchBufferBlock = new BufferBlock<UnexpandedArticle[]>();
@@ -30,7 +28,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor
             var articleActionBlock = new ActionBlock<ArticleBatchTaskResult>(delegate(ArticleBatchTaskResult result)
             {
                 response.Processed += result.Processed;
-                response.Failed = result.Failed;
+                response.Failed.AddRange(result.Failed);
             },
             // Specify a maximum degree of parallelism.
             new ExecutionDataflowBlockOptions
@@ -62,7 +60,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor
                 });
 
             // Process "Category" and generate article batch data
-            _categoryDataSource.Producer(category, pageSize, articleBatchBufferBlock);
+            _articleCategoryDataSource.Producer(category, pageSize, articleBatchBufferBlock);
 
             // Mark the head of the pipeline as complete. The continuation tasks  
             // propagate completion through the pipeline as each part of the  

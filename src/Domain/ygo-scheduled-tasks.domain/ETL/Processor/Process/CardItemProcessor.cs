@@ -6,7 +6,7 @@ using ygo_scheduled_tasks.domain.Services;
 
 namespace ygo_scheduled_tasks.domain.ETL.Processor.Process
 {
-    public class CardItemProcessor : IBatchItemProcessor
+    public class CardItemProcessor : IArticleItemProcessor
     {
         private readonly IConfig _config;
         private readonly ICardWebPage _cardWebPage;
@@ -28,7 +28,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor.Process
             var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
 
             if (card != null)
-                response.Processed = true;
+                response.IsSuccessfullyProcessed = true;
 
             return response;
         }

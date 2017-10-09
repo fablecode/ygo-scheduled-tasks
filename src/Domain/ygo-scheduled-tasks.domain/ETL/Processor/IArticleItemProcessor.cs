@@ -3,7 +3,7 @@ using wikia.Models.Article.AlphabeticalList;
 
 namespace ygo_scheduled_tasks.domain.ETL.Processor
 {
-    public interface IBatchItemProcessor
+    public interface IArticleItemProcessor
     {
         Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item);
 

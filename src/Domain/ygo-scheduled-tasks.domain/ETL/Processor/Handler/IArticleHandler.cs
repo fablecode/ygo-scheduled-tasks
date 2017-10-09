@@ -2,6 +2,6 @@
 {
     public interface IArticleHandler
     {
-        IBatchItemProcessor Handler(string category);
+        IArticleItemProcessor Handler(string category);
     }
 }

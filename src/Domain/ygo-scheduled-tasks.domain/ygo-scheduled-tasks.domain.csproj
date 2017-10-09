@@ -30,6 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ETL\SemanticSearch\DataSource\ISemanticSearchDataSource.cs" />
+    <Compile Include="ETL\SemanticSearch\DataSource\SemanticSearchDataSource.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Decorator\SemanticCardProcessorLoggerDecorator.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Handler\ISemanticCardHandler.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Handler\SemanticCardHandler.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\ISemanticCardItemProcess.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\ISemanticCardProcessor.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\ISemanticSearchBatchProcessor.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\ISemanticSearchProcessor.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Process\SemanticSearchFlipMonstersProcessor.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Process\SemanticSearchNormalMonstersProcessor.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\SemanticCardProcessor.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\SemanticSearchBatchProcessor.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchBatchTaskResult.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchCategory.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchException.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchTaskResult.cs" />
+    <Compile Include="ETL\SemanticSearch\Processor\SemanticSearchProcessor.cs" />
     <Compile Include="SemanticSearchUrls.cs" />
     <Compile Include="Services\IAttributeService.cs" />
     <Compile Include="Services\ICardService.cs" />
@@ -47,18 +65,17 @@
     <Compile Include="ETL\ArticleException.cs" />
     <Compile Include="ETL\ArticleTaskResult.cs" />
     <Compile Include="ETL\DataSource\ArticleCategoryDataSource.cs" />
-    <Compile Include="ETL\DataSource\ICategoryDataSource.cs" />
+    <Compile Include="ETL\DataSource\IArticleCategoryDataSource.cs" />
     <Compile Include="ETL\Processor\ArticleBatchProcessor.cs" />
     <Compile Include="ETL\Processor\ArticleProcessor.cs" />
-    <Compile Include="ETL\Processor\CategoryProcessor.cs" />
+    <Compile Include="ETL\Processor\ArticleCategoryProcessor.cs" />
     <Compile Include="ETL\Processor\Decorator\ArticleProcessLoggerDecorator.cs" />
     <Compile Include="ETL\Processor\Handler\ArticleHandler.cs" />
     <Compile Include="ETL\Processor\Handler\IArticleHandler.cs" />
     <Compile Include="ETL\Processor\IArticleBatchProcessor.cs" />
     <Compile Include="ETL\Processor\IArticleProcessor.cs" />
-    <Compile Include="ETL\Processor\IBatchItemProcessor.cs" />
-    <Compile Include="ETL\Processor\ICategoryProcessor.cs" />
-    <Compile Include="ETL\Processor\Model\CategoryTaskItemResult.cs" />
+    <Compile Include="ETL\Processor\IArticleItemProcessor.cs" />
+    <Compile Include="ETL\Processor\IArticleCategoryProcessor.cs" />
     <Compile Include="ETL\Processor\Process\CardItemProcessor.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
     <Compile Include="Extensions\SimpleHttpResponseException.cs" />
@@ -101,5 +118,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

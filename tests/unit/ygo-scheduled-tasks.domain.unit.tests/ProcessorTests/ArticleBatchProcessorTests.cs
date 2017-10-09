@@ -67,8 +67,8 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
                 .Process("some category", Arg.Any<UnexpandedArticle>())
                 .ReturnsForAnyArgs
                 (
-                    x => new ArticleTaskResult { Processed = true },
-                    x => new ArticleTaskResult { Processed = true},
+                    x => new ArticleTaskResult { IsSuccessfullyProcessed = true },
+                    x => new ArticleTaskResult { IsSuccessfullyProcessed = true},
                     x => new ArticleTaskResult()
                 );
 
@@ -91,8 +91,8 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
                 .Process("some category", Arg.Any<UnexpandedArticle>())
                 .ReturnsForAnyArgs
                 (
-                    x => new ArticleTaskResult { Processed = true },
-                    x => new ArticleTaskResult { Processed = true },
+                    x => new ArticleTaskResult { IsSuccessfullyProcessed = true },
+                    x => new ArticleTaskResult { IsSuccessfullyProcessed = true },
                     x => null,
                     x => null
                 );
@@ -114,8 +114,8 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
                 .Process("some category", Arg.Any<UnexpandedArticle>())
                 .ReturnsForAnyArgs
                 (
-                    x => new ArticleTaskResult { Processed = true },
-                    x => new ArticleTaskResult { Processed = true },
+                    x => new ArticleTaskResult { IsSuccessfullyProcessed = true },
+                    x => new ArticleTaskResult { IsSuccessfullyProcessed = true },
                     x => null,
                     x => null
                 );

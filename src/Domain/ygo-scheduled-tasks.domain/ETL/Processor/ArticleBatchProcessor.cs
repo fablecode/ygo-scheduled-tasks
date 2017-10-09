@@ -8,7 +8,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor
     public class ArticleBatchProcessor : IArticleBatchProcessor
     {
         private readonly IArticleProcessor _articleProcessor;
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         public ArticleBatchProcessor(IArticleProcessor articleProcessor)
         {
@@ -31,7 +31,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Processor
                 {
                     var result = await _articleProcessor.Process(category, article);
 
-                    if(result.Processed)
+                    if(result.IsSuccessfullyProcessed)
                         response.Processed += 1;
                 }
                 catch (Exception ex)

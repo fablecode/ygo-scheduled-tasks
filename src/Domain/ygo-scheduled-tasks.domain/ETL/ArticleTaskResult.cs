@@ -4,7 +4,7 @@ namespace ygo_scheduled_tasks.domain.ETL
 {
     public class ArticleTaskResult
     {
-        public bool Processed { get; set; }
+        public bool IsSuccessfullyProcessed { get; set; }
 
         public UnexpandedArticle Article { get; set; }
 

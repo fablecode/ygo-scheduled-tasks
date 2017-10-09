@@ -2,7 +2,7 @@
 
 namespace ygo_scheduled_tasks.domain.ETL.Processor
 {
-    public interface ICategoryProcessor
+    public interface IArticleCategoryProcessor
     {
         Task<ArticleBatchTaskResult> Process(string category, int pageSize);
     }
