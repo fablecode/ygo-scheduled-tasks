@@ -51,6 +51,7 @@
     <Compile Include="Model\Login.cs" />
     <Compile Include="Model\MonsterCard.cs" />
     <Compile Include="Model\OAuthBearerToken.cs" />
+    <Compile Include="Model\SemanticCard.cs" />
     <Compile Include="Model\SpellCard.cs" />
     <Compile Include="Model\SubCategory.cs" />
     <Compile Include="Model\TrapCard.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="WebPage\ICardHtmlTable.cs" />
     <Compile Include="WebPage\ICardWebPage.cs" />
     <Compile Include="WebPage\IHtmlWebPage.cs" />
+    <Compile Include="WebPage\ISemanticSearch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="SemanticSearchUrls.cs" />
     <Compile Include="Services\IAttributeService.cs" />
     <Compile Include="Services\ICardService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
@@ -68,11 +69,15 @@
     <Compile Include="WebPage\CardHtmlTable.cs" />
     <Compile Include="WebPage\CardWebPage.cs" />
     <Compile Include="WebPage\HtmlWebPage.cs" />
+    <Compile Include="WebPage\SemanticSearch.cs" />
     <Compile Include="YgoCardType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.5.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.5.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
@@ -88,15 +93,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Core\ygo-scheduled-tasks.core\ygo-scheduled-tasks.core.csproj">
       <Project>{9378e7af-1830-4ae1-ac8f-91ac4d06aca2}</Project>
       <Name>ygo-scheduled-tasks.core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

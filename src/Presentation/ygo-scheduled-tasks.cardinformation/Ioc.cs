@@ -24,8 +24,6 @@ namespace ygo_scheduled_tasks.cardinformation
             // Should throw an exception if any error occurs if loading dlls, which silently fail.
             TypeRepository.AssertNoTypeScanningFailures();
 
-            var result = container.WhatDidIScan();
-
             return container;
         }
     }
