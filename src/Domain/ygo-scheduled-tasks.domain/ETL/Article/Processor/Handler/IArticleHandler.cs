@@ -1,4 +1,4 @@
-﻿namespace ygo_scheduled_tasks.domain.ETL.Processor.Handler
+﻿namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Handler
 {
     public interface IArticleHandler
     {

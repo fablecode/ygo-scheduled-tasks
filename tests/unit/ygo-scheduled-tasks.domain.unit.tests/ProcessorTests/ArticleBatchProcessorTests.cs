@@ -6,7 +6,8 @@ using NUnit.Framework;
 using Ploeh.AutoFixture;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.domain.ETL;
-using ygo_scheduled_tasks.domain.ETL.Processor;
+using ygo_scheduled_tasks.domain.ETL.Article.Processor;
+using ygo_scheduled_tasks.domain.ETL.Article.Processor.Model;
 
 namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
 {

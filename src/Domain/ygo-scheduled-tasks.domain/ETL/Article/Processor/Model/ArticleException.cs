@@ -1,7 +1,7 @@
 ﻿using System;
 using wikia.Models.Article.AlphabeticalList;
 
-namespace ygo_scheduled_tasks.domain.ETL
+namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Model
 {
     public class ArticleException
     {

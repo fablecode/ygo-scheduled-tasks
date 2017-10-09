@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ygo_scheduled_tasks.domain.ETL.Processor.Handler
+namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Handler
 {
     public class ArticleHandler : IArticleHandler
     {

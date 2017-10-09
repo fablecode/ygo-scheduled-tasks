@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using NLog;
 using wikia.Models.Article.AlphabeticalList;
+using ygo_scheduled_tasks.domain.ETL.Article.Processor.Model;
 
-namespace ygo_scheduled_tasks.domain.ETL.Processor.Decorator
+namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Decorator
 {
     public class ArticleProcessLoggerDecorator : IArticleProcessor
     {

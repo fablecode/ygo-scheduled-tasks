@@ -7,7 +7,7 @@ using Ploeh.AutoFixture;
 using wikia.Api;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.domain.ETL.DataSource;
+using ygo_scheduled_tasks.domain.ETL.Article.DataSource;
 
 namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.DataSourceTests
 {

@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.core.WebPage;
+using ygo_scheduled_tasks.domain.ETL.Article.Processor.Model;
 using ygo_scheduled_tasks.domain.Services;
 
-namespace ygo_scheduled_tasks.domain.ETL.Processor.Process
+namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Process
 {
     public class CardItemProcessor : IArticleItemProcessor
     {

@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.domain.ETL.DataSource;
+using ygo_scheduled_tasks.domain.ETL.Article.DataSource;
+using ygo_scheduled_tasks.domain.ETL.Article.Processor.Model;
 
-namespace ygo_scheduled_tasks.domain.ETL.Processor
+namespace ygo_scheduled_tasks.domain.ETL.Article.Processor
 {
     public class ArticleCategoryProcessor : IArticleCategoryProcessor
     {
