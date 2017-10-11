@@ -8,7 +8,7 @@ namespace ygo_scheduled_tasks.cardinformation
 {
     class Program
     {
-        private static int _intervalInPerWeek = 1;
+        private const string CronExpression = "0 58 23 ? * SUN *"; // Every Sunday, 23:58pm
 
         static void Main(string[] args)
         {
@@ -30,14 +30,13 @@ namespace ygo_scheduled_tasks.cardinformation
 
                     s.UseQuartzStructureMap();
 
+
                     
                     s.ScheduleQuartzJob(q => 
                         q.WithJob(() => 
                             JobBuilder.Create<CardInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                .WithCalendarIntervalSchedule(ss =>
-                                    ss.WithIntervalInWeeks(_intervalInPerWeek)
-                                    .Build())
+                                .WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });
