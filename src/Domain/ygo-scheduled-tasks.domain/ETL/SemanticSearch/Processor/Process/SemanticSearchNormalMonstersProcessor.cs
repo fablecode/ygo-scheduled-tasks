@@ -26,15 +26,18 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process
 
             var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(_config.WikiaDomainUrl), semanticCard.Url));
 
-            const string normal = "Normal";
+            if (yugiohCard != null)
+            {
+                const string normal = "Normal";
 
-            if (yugiohCard != null && !yugiohCard.Types.ToLower().Contains(normal.ToLower()))
-                yugiohCard.Types = $"{yugiohCard.Types} / {normal}";
+                if (!yugiohCard.Types.ToLower().Contains(normal.ToLower()))
+                    yugiohCard.Types = $"{yugiohCard.Types} / {normal}";
 
-            var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
+                var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
 
-            if (card != null)
-                response.IsSuccessfullyProcessed = true;
+                if (card != null)
+                    response.IsSuccessfullyProcessed = true;
+            }
 
             return response;
         }

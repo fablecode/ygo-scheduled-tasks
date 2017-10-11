@@ -26,14 +26,18 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process
 
             var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(_config.WikiaDomainUrl), semanticCard.Url));
 
-            const string flip = "Flip";
-            if (yugiohCard != null && !yugiohCard.Types.ToLower().Contains(flip.ToLower()))
-                yugiohCard.Types = $"{yugiohCard.Types} / {flip}";
+            if (yugiohCard != null)
+            {
+                const string flip = "Flip";
+                if (!yugiohCard.Types.ToLower().Contains(flip.ToLower()))
+                    yugiohCard.Types = $"{yugiohCard.Types} / {flip}";
 
-            var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
 
-            if (card != null)
-                response.IsSuccessfullyProcessed = true;
+                var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
+
+                if (card != null)
+                    response.IsSuccessfullyProcessed = true;
+            }
 
             return response;
         }

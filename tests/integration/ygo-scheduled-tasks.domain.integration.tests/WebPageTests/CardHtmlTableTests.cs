@@ -19,6 +19,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
         [TestCase("http://yugioh.wikia.com/wiki/Monster_Reborn", "Monster Reborn")]
         [TestCase("http://yugioh.wikia.com/wiki/Nobledragon_Magician", "Nobledragon Magician")]
         [TestCase("http://yugioh.wikia.com/wiki/Call_of_the_Haunted", "Call of the Haunted")]
+        [TestCase("http://yugioh.wikia.com/wiki/ZW_-_Unicorn_Spear", "ZW - Unicorn Spear")]
         public void Given_A_Valid_Card_Profile_Url_Should_Extract_Card_Name(string cardProfileUrl, string expected)
         {
             // Arrange

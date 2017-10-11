@@ -19,9 +19,8 @@ namespace ygo_scheduled_tasks.cardinformation
             const int pageSize = 500;
             const string tcgCards = "TCG cards";
             const string ocgCards = "OCG cards";
-            const string monsterCardTypes = "Monster card types";
 
-            var categories = new List<string> { tcgCards, ocgCards, monsterCardTypes};
+            var categories = new List<string> { tcgCards, ocgCards};
 
             _mediator.Send(new CardInformationTask { Categories = categories, PageSize = pageSize }).Wait();
         }

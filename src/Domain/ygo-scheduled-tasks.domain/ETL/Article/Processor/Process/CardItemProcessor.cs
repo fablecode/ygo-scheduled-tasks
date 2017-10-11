@@ -26,10 +26,13 @@ namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Process
 
             var yugiohCard = _cardWebPage.GetYugiohCard(new Uri(new Uri(_config.WikiaDomainUrl), item.Url));
 
-            var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
+            if (yugiohCard != null)
+            {
+                var card = await _yugiohCardService.AddOrUpdate(yugiohCard);
 
-            if (card != null)
-                response.IsSuccessfullyProcessed = true;
+                if (card != null)
+                    response.IsSuccessfullyProcessed = true;
+            }
 
             return response;
         }
