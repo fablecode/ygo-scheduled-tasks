@@ -39,6 +39,7 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor
                 catch (Exception ex)
                 {
                     _logger.Error("{1} | ' {0} '", semanticCard.Name, category);
+                    _logger.Error(ex);
                     response.Failed.Add(new SemanticSearchException { Card = semanticCard, Exception = ex });
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MediatR;
 using Quartz;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
@@ -22,7 +23,9 @@ namespace ygo_scheduled_tasks.cardinformation
 
             var categories = new List<string> { tcgCards, ocgCards};
 
-            _mediator.Send(new CardInformationTask { Categories = categories, PageSize = pageSize }).Wait();
+            var task = _mediator.Send(new CardInformationTask {Categories = categories, PageSize = pageSize});
+
+            Task.WaitAll(task);
         }
     }
 }
