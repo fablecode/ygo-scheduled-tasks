@@ -15,7 +15,7 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.DataSource
             _semanticSearch = semanticSearch;
         }
 
-        public async Task Producer(string url, ITargetBlock<SemanticCard[]> targetBlock)
+        public void Producer(string url, ITargetBlock<SemanticCard[]> targetBlock)
         {
             if (string.IsNullOrWhiteSpace(url))
                 throw new ArgumentException(nameof(url));
@@ -25,7 +25,8 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.DataSource
 
             var cards = _semanticSearch.CardsByUrl(url);
 
-            await Task.FromResult(targetBlock.Post(cards.ToArray()));
+            targetBlock.Post(cards.ToArray());
+            targetBlock.Complete();
         }
     }
 }

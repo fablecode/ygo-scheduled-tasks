@@ -29,8 +29,6 @@ namespace ygo_scheduled_tasks.cardinformation
                     s.WhenStopped(service => service.OnStop());
 
                     s.UseQuartzStructureMap();
-
-
                     
                     s.ScheduleQuartzJob(q => 
                         q.WithJob(() => 

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.domain.ETL.Article.DataSource;
@@ -21,7 +22,7 @@ namespace ygo_scheduled_tasks.domain.ETL.Article.Processor
         {
             var response = new ArticleBatchTaskResult {Category = category};
 
-            var processorCount = 2;
+            var processorCount = Environment.ProcessorCount;
 
             // Pipeline members
             var articleBatchBufferBlock = new BufferBlock<UnexpandedArticle[]>();

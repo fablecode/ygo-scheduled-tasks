@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.DataSource;
@@ -21,7 +22,7 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor
         {
             var response = new SemanticSearchBatchTaskResult { Url = url };
 
-            var processorCount = 2;
+            var processorCount = Environment.ProcessorCount;
 
             // Pipeline members
             var cardBatchBufferBlock = new BufferBlock<SemanticCard[]>();

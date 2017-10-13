@@ -44,6 +44,8 @@ namespace ygo_scheduled_tasks.domain.ETL.Article.DataSource
                     });
                 }
             } while (isNextBatchAvailable);
+
+            targetBlock.Complete();
         }
     }
 }
