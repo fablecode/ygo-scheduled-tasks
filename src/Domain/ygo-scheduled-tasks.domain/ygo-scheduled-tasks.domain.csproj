@@ -48,6 +48,7 @@
     <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchException.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchTaskResult.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\SemanticSearchProcessor.cs" />
+    <Compile Include="Helpers\BanlistHelpers.cs" />
     <Compile Include="SemanticSearchUrls.cs" />
     <Compile Include="Services\IAttributeService.cs" />
     <Compile Include="Services\ICardService.cs" />
@@ -118,8 +119,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -170,7 +170,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BanlistTests\ExtractBanlistDetailsTests.cs" />
+    <Compile Include="BanlistTests\ExtractBanlistArticleDetailsTests.cs" />
     <Compile Include="ProcessorTests\ArticleBatchProcessorTests.cs" />
     <Compile Include="ProcessorTests\DataSourceTests\SemanticSearchDataSourceTests.cs" />
     <Compile Include="ProcessorTests\DataSourceTests\ArticleCategoryDataSourceTests.cs" />
