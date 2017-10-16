@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\BanlistSectionType.cs" />
+    <Compile Include="Enums\BanlistType.cs" />
     <Compile Include="Model\Attribute.cs" />
+    <Compile Include="Model\Banlist.cs" />
+    <Compile Include="Model\BanlistSection.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\DownloadedFile.cs" />
