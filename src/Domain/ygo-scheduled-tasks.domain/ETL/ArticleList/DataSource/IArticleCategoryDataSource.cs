@@ -2,7 +2,7 @@
 using System.Threading.Tasks.Dataflow;
 using wikia.Models.Article.AlphabeticalList;
 
-namespace ygo_scheduled_tasks.domain.ETL.Article.DataSource
+namespace ygo_scheduled_tasks.domain.ETL.ArticleList.DataSource
 {
     public interface IArticleCategoryDataSource
     {

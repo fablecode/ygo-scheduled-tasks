@@ -3,7 +3,7 @@ using MediatR;
 using System.Linq;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.domain;
-using ygo_scheduled_tasks.domain.ETL.Article.Processor;
+using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Model;
 

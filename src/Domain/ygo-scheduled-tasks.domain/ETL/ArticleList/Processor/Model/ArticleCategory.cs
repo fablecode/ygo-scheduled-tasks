@@ -1,4 +1,4 @@
-﻿namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Model
+﻿namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model
 {
     public static class ArticleCategory
     {

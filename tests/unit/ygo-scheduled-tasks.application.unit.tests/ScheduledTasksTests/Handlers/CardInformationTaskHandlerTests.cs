@@ -3,8 +3,8 @@ using NSubstitute;
 using NUnit.Framework;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
-using ygo_scheduled_tasks.domain.ETL.Article.Processor;
-using ygo_scheduled_tasks.domain.ETL.Article.Processor.Model;
+using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
+using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Model;
 

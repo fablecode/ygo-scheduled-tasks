@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
+using System;
+using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.domain.ETL;
-using ygo_scheduled_tasks.domain.ETL.Article.Processor;
-using ygo_scheduled_tasks.domain.ETL.Article.Processor.Model;
+using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
+using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 
 namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
 {
@@ -111,8 +110,10 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
             // Arrange
             var fixture = new Fixture { RepeatCount = 4 };
             var articles = fixture.Create<UnexpandedArticle[]>();
+            var aCategory = "a category";
+            var unexpandedArticle = new UnexpandedArticle();
             _articleProcessor
-                .Process("some category", Arg.Any<UnexpandedArticle>())
+                .Process(aCategory, unexpandedArticle)
                 .ReturnsForAnyArgs
                 (
                     x => new ArticleTaskResult { IsSuccessfullyProcessed = true },
@@ -122,7 +123,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
                 );
 
             // Act
-            await _sut.Process("a category", articles);
+            await _sut.Process(aCategory, articles);
 
             // Assert
             await _articleProcessor.Received(4).Process(Arg.Any<string>(), Arg.Any<UnexpandedArticle>());

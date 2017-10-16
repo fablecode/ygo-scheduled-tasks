@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ygo_scheduled_tasks.domain.ETL.Article.Processor.Model
+namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model
 {
     public class ArticleBatchTaskResult
     {
