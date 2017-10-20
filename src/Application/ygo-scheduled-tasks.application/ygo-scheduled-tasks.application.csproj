@@ -36,13 +36,13 @@
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskHandler.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskResult.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskValidator.cs" />
-    <Compile Include="ScheduledTasks\ScheduleTaskResult.cs" />
-    <Compile Include="ScheduledTasks\ScheduleTaskStatus.cs" />
+    <Compile Include="ScheduledTasks\LatestBanlist\BanlistInformationTask.cs" />
+    <Compile Include="ScheduledTasks\LatestBanlist\BanlistInformationTaskResult.cs" />
+    <Compile Include="ScheduledTasks\LatestBanlist\BanlistInformationTaskHandler.cs" />
+    <Compile Include="ScheduledTasks\LatestBanlist\BanlistInformationTaskValidator.cs" />
     <Compile Include="ApplicationStructureMapInstaller.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ScheduledTasks\LatestBanlist\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\FluentValidation.7.2.0\lib\net45\FluentValidation.dll</HintPath>

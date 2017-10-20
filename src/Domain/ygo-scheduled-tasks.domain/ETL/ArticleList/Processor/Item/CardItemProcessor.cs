@@ -5,7 +5,7 @@ using ygo_scheduled_tasks.core.WebPage;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.Services;
 
-namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Process
+namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 {
     public class CardItemProcessor : IArticleItemProcessor
     {

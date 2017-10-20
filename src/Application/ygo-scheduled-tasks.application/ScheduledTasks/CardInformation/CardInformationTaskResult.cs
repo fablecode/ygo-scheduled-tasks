@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ygo_scheduled_tasks.domain.ETL;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation

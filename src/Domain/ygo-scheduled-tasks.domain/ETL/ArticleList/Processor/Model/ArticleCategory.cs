@@ -10,5 +10,6 @@
         public const string Archetype = "Cards by archetype";
         public const string ArchetypeSupport = "Cards by archetype support";
         public const string MonsterCardTypes = "Monster card types";
+        public const string ForbiddenAndLimited = "Forbidden & Limited Lists";
     }
 }

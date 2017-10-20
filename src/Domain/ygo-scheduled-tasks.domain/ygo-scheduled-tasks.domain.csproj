@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\ISemanticSearchDataSource.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\SemanticSearchDataSource.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\Decorator\SemanticCardProcessorLoggerDecorator.cs" />
@@ -49,8 +50,12 @@
     <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchTaskResult.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\SemanticSearchProcessor.cs" />
     <Compile Include="Helpers\BanlistHelpers.cs" />
+    <Compile Include="Helpers\ContentResultHelpers.cs" />
+    <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="SemanticSearchUrls.cs" />
     <Compile Include="Services\IAttributeService.cs" />
+    <Compile Include="Services\IBanlistService.cs" />
+    <Compile Include="Services\IYugiohBanlistService.cs" />
     <Compile Include="Services\ICardService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\ILinkArrowService.cs" />
@@ -77,7 +82,7 @@
     <Compile Include="ETL\ArticleList\Processor\IArticleProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\IArticleItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\IArticleCategoryProcessor.cs" />
-    <Compile Include="ETL\ArticleList\Processor\Process\CardItemProcessor.cs" />
+    <Compile Include="ETL\ArticleList\Processor\Item\CardItemProcessor.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
     <Compile Include="Extensions\SimpleHttpResponseException.cs" />
     <Compile Include="IConfig.cs" />

@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.application.integration.tests", "tests\integration\ygo-scheduled-tasks.application.integration.tests\ygo-scheduled-tasks.application.integration.tests.csproj", "{9C701483-52FA-43B2-B3DD-64796A5B559C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.latestbanlists", "src\Presentation\ygo-scheduled-tasks.latestbanlists\ygo-scheduled-tasks.latestbanlists.csproj", "{4BA1ECCD-6D7C-43BB-978D-091FB09506A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{9C701483-52FA-43B2-B3DD-64796A5B559C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C701483-52FA-43B2-B3DD-64796A5B559C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C701483-52FA-43B2-B3DD-64796A5B559C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA1ECCD-6D7C-43BB-978D-091FB09506A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA1ECCD-6D7C-43BB-978D-091FB09506A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA1ECCD-6D7C-43BB-978D-091FB09506A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA1ECCD-6D7C-43BB-978D-091FB09506A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{20431B56-480D-462E-A720-17916BC26CE4} = {CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}
 		{5E968FB3-8803-494A-8624-888BD03AD9C3} = {CF97AA6C-DEC8-4A88-95E5-5C37C178EB1F}
 		{9C701483-52FA-43B2-B3DD-64796A5B559C} = {5E968FB3-8803-494A-8624-888BD03AD9C3}
+		{4BA1ECCD-6D7C-43BB-978D-091FB09506A2} = {5C362B23-8D3A-4A34-A664-F029524880D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA0BD5B5-8D45-4E19-9074-25B0B1D762B7}
