@@ -48,6 +48,8 @@
     <Compile Include="Model\Attribute.cs" />
     <Compile Include="Model\Banlist.cs" />
     <Compile Include="Model\BanlistCard.cs" />
+    <Compile Include="Model\Format.cs" />
+    <Compile Include="Model\Limit.cs" />
     <Compile Include="Model\YugiohBanlist.cs" />
     <Compile Include="Model\BanlistArticleSummary.cs" />
     <Compile Include="Model\YugiohBanlistSection.cs" />

@@ -20,7 +20,7 @@ namespace ygo_scheduled_tasks.infrastructure.Services
 
         public Task<Card> CardById(long id)
         {
-            return _restClient.Get<Card>($"{_config.ApiUrl}/{id}");
+            return _restClient.Get<Card>($"{_config.ApiUrl}/api/Cards/{id}");
         }
 
         public Task<Card> CardByName(string name)

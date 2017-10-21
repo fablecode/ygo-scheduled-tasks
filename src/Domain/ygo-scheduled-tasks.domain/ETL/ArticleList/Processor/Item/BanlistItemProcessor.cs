@@ -42,6 +42,8 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
                 var banlist = new YugiohBanlist
                 {
+                    ArticleId = banlistArticleSummary.ArticleId,
+                    Title = item.Title,
                     BanlistType = banlistArticleSummary.BanlistType,
                     StartDate = banlistArticleSummary.StartDate
                 };
@@ -69,7 +71,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                     banlist.Sections.Add(ybls);
                 }
 
-                _banlistService.AddOrUpdate(banlist);
+                await _banlistService.AddOrUpdate(banlist);
             }
 
             return response;

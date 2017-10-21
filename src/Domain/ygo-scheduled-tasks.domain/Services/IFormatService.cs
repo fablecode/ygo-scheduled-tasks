@@ -3,8 +3,8 @@ using ygo_scheduled_tasks.core.Model;
 
 namespace ygo_scheduled_tasks.domain.Services
 {
-    public interface IYugiohBanlistService
+    public interface IFormatService
     {
-        Task<Banlist> AddOrUpdate(YugiohBanlist yugiohBanlist);
+        Task<Format> FormatByAcronym(string acronym);
     }
 }

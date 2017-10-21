@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Command\AddBanlistCommand.cs" />
+    <Compile Include="Command\UpdateBanlistCardsCommand.cs" />
+    <Compile Include="Command\UpdateBanlistCommand.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\ISemanticSearchDataSource.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\SemanticSearchDataSource.cs" />
@@ -54,7 +57,10 @@
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="SemanticSearchUrls.cs" />
     <Compile Include="Services\IAttributeService.cs" />
+    <Compile Include="Services\IBanlistCardsService.cs" />
     <Compile Include="Services\IBanlistService.cs" />
+    <Compile Include="Services\IFormatService.cs" />
+    <Compile Include="Services\ILimitService.cs" />
     <Compile Include="Services\IYugiohBanlistService.cs" />
     <Compile Include="Services\ICardService.cs" />
     <Compile Include="Services\ICategoryService.cs" />

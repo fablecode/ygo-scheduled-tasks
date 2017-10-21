@@ -17,24 +17,11 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Validat
             _sut = new CardInformationTaskValidator();
         }
 
-        [Test]
-        public void Given_A_CardInformationTask_Categories_Should_Not_Be_Null()
+        [TestCaseSource(nameof(_invalidCategories))]
+        public void Given_An_CardInformationTask_Categories_Validation_Should_Fail(List<string> categories)
         {
             // Arrange
-            var inputModel = new CardInformationTask();
-
-            // Act
-            Action act  = () =>  _sut.ShouldHaveValidationErrorFor(ci => ci.Categories, inputModel);
-
-            // Assert
-            act.Invoke();
-        }
-
-        [Test]
-        public void Given_A_CardInformationTask_Categories_Should_Not_Be_Empty()
-        {
-            // Arrange
-            var inputModel = new CardInformationTask{ Categories = new List<string>()};
+            var inputModel = new CardInformationTask{ Categories = categories };
 
             // Act
             Action act = () => _sut.ShouldHaveValidationErrorFor(ci => ci.Categories, inputModel);
@@ -43,5 +30,28 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Validat
             act.Invoke();
         }
 
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void Given_An_Invalid_BanlistInformationTask_PageSize_Validation_Should_Fail(int pageSize)
+        {
+            // Arrange
+            var inputModel = new CardInformationTask { PageSize = pageSize };
+
+            // Act
+            Action act = () => _sut.ShouldHaveValidationErrorFor(ci => ci.PageSize, inputModel);
+
+            // Assert
+            act.Invoke();
+        }
+
+        #region private helpers
+
+        static object[] _invalidCategories =
+        {
+            new object[] { null },
+            new object[] { new List<string>() }
+        };
+
+        #endregion
     }
 }

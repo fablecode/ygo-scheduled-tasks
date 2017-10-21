@@ -6,9 +6,12 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist
     {
         public BanlistInformationTaskValidator()
         {
-            RuleFor(ci => ci.Category)
+            RuleFor(bl => bl.Category)
                 .NotNull()
                 .NotEmpty();
+
+            RuleFor(bl => bl.PageSize)
+                .GreaterThan(0);
         }
     }
 }

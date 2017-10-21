@@ -2,7 +2,6 @@
 using MediatR;
 using System.Linq;
 using System.Threading.Tasks;
-using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist
@@ -10,9 +9,9 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist
     public class BanlistInformationTaskHandler : IAsyncRequestHandler<BanlistInformationTask, BanlistInformationTaskResult>
     {
         private readonly IArticleCategoryProcessor _articleCategoryProcessor;
-        private readonly IValidator<CardInformationTask> _validator;
+        private readonly IValidator<BanlistInformationTask> _validator;
 
-        public BanlistInformationTaskHandler(IArticleCategoryProcessor articleCategoryProcessor, IValidator<CardInformationTask> validator)
+        public BanlistInformationTaskHandler(IArticleCategoryProcessor articleCategoryProcessor, IValidator<BanlistInformationTask> validator)
         {
             _articleCategoryProcessor = articleCategoryProcessor;
             _validator = validator;
