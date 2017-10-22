@@ -24,7 +24,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.DataSource
             if(targetBlock == null)
                 throw new ArgumentException(nameof(targetBlock));
 
-            var nextBatch = await _wikiArticle.AlphabeticalList(new ArticleListRequestParameters { Category = category, Limit = pageSize });
+            var nextBatch = await _wikiArticle.AlphabeticalList(new ArticleListRequestParameters { Category = System.Uri.EscapeDataString(category), Limit = pageSize });
 
             bool isNextBatchAvailable;
 

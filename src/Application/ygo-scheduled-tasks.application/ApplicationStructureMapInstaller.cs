@@ -61,6 +61,7 @@ namespace ygo_scheduled_tasks.application
 
             For<ICommandMapper>().Use<CommandMapper>();
             For<IArticleItemProcessor>().Use<CardItemProcessor>();
+            For<IArticleItemProcessor>().Use<BanlistItemProcessor>();
 
 
             For<ISemanticCardHandler>().Use<SemanticCardHandler>();

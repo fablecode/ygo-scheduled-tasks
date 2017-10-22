@@ -16,9 +16,9 @@ namespace ygo_scheduled_tasks.latestbanlists
         public async void Execute(IJobExecutionContext context)
         {
             const int pageSize = 500;
-            var categories = "Forbidden & Limited Lists";
+            var category = "Forbidden & Limited Lists";
 
-            await _mediator.Send(new BanlistInformationTask { Category = categories, PageSize = pageSize});
+            await _mediator.Send(new BanlistInformationTask { Category = category, PageSize = pageSize});
         }
     }
 }
