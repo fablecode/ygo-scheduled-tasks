@@ -62,7 +62,7 @@ namespace ygo_scheduled_tasks.infrastructure.Services
                 {
                     var card = await _cardService.CardByName(cardName);
 
-                    if (card != null)
+                    if (card != null && !banlistCards.Any(blc => blc.BanlistId == banlistId && blc.CardId == card.Id))
                         banlistCards.Add(new BanlistCard { BanlistId = banlistId, CardId = card.Id, LimitId = selectedLimit.Id });
                 }
             }
