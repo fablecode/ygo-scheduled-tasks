@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Quartz;
 using Topshelf;
 using Topshelf.Quartz.StructureMap;
@@ -8,7 +9,7 @@ namespace ygo_scheduled_tasks.latestbanlists
 {
     class Program
     {
-        private const string CronExpression = "0 58 23 ? * SUN *"; // Every Sunday, 23:58pm
+        private static readonly string CronExpression = ConfigurationManager.AppSettings["CronExpression"]; // Every Day at 4:00am
 
         static void Main(string[] args)
         {
@@ -34,7 +35,7 @@ namespace ygo_scheduled_tasks.latestbanlists
                         q.WithJob(() =>
                                 JobBuilder.Create<BanlistInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                //.WithCronSchedule(CronExpression)
+                                .WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });
