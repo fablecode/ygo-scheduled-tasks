@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using ygo_scheduled_tasks.domain.Client;
 using ygo_scheduled_tasks.domain.Extensions;
 using ygo_scheduled_tasks.infrastructure.HttpHandlers;
@@ -24,7 +25,7 @@ namespace ygo_scheduled_tasks.infrastructure.Client
             var response = await client.GetAsync(apiUrl);
             await response.EnsureSuccessAsync();
 
-            return await response.Content.ReadAsAsync<T>();
+            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
         }
 
         public async Task<Uri> Post<T>(string apiUrl, T data)
