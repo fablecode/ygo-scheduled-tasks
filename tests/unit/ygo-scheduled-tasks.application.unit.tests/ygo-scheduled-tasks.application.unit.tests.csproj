@@ -37,6 +37,7 @@
     <Compile Include="ScheduledTasksTests\Handlers\BanlistInformationTaskHandlerTests.cs" />
     <Compile Include="ScheduledTasksTests\Handlers\CardInformationTaskHandlerTests.cs" />
     <Compile Include="ScheduledTasksTests\ValidationTests\BanlistInformationTaskValidatorTests.cs" />
+    <Compile Include="ScheduledTasksTests\ValidationTests\ArchetypeInformationTaskValidatorTests.cs" />
     <Compile Include="ScheduledTasksTests\ValidationTests\CardInformationTaskValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>

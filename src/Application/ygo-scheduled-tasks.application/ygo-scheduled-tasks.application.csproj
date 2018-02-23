@@ -32,6 +32,10 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduledTasks\ArchetypeInformation\ArchetypeInformationTask.cs" />
+    <Compile Include="ScheduledTasks\ArchetypeInformation\ArchetypeInformationTaskHandler.cs" />
+    <Compile Include="ScheduledTasks\ArchetypeInformation\ArchetypeInformationTaskResult.cs" />
+    <Compile Include="ScheduledTasks\ArchetypeInformation\ArchetypeInformationTaskValidator.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTask.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskHandler.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskResult.cs" />

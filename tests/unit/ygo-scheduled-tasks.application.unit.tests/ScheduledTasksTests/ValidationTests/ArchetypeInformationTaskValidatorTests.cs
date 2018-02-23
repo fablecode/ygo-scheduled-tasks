@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
 using NUnit.Framework;
-using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
+using System;
+using ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation;
 
 namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.ValidationTests
 {
     [TestFixture]
-    public class CardInformationTaskValidatorTests
+    public class ArchetypeInformationTaskValidatorTests
     {
-        private CardInformationTaskValidator _sut;
+        private ArchetypeInformationTaskValidator _sut;
 
         [SetUp]
         public void Setup()
         {
-            _sut = new CardInformationTaskValidator();
+            _sut = new ArchetypeInformationTaskValidator();
         }
 
         [TestCaseSource(nameof(_invalidCategories))]
-        public void Given_Invalid_Categories_Validation_Should_Fail(List<string> categories)
+        public void Given_Invalid_Categories_Validation_Should_Fail(string[] categories)
         {
             // Arrange
-            var inputModel = new CardInformationTask{ Categories = categories };
+            var inputModel = new ArchetypeInformationTask { Categories = categories };
 
             // Act
             Action act = () => _sut.ShouldHaveValidationErrorFor(ci => ci.Categories, inputModel);
@@ -35,7 +34,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Validat
         public void Given_Invalid_PageSize_Validation_Should_Fail(int pageSize)
         {
             // Arrange
-            var inputModel = new CardInformationTask { PageSize = pageSize };
+            var inputModel = new ArchetypeInformationTask { PageSize = pageSize };
 
             // Act
             Action act = () => _sut.ShouldHaveValidationErrorFor(ci => ci.PageSize, inputModel);
@@ -49,7 +48,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Validat
         static object[] _invalidCategories =
         {
             new object[] { null },
-            new object[] { new List<string>() }
+            new object[] { new string[0] }
         };
 
         #endregion
