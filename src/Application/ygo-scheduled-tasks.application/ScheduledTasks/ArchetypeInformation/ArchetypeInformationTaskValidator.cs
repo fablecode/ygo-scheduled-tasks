@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Linq;
+using FluentValidation;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation
 {
@@ -8,7 +9,9 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation
         {
             RuleFor(ci => ci.Categories)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty()
+                .Must(ci => ci.All(c => !string.IsNullOrWhiteSpace(c)))
+                    .WithMessage("All {PropertyName} must be valid.");
 
             RuleFor(ci => ci.PageSize)
                 .GreaterThan(0);

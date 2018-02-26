@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using ygo_scheduled_tasks.core.WebPage;
 
-namespace ygo_scheduled_tasks.domain.WebPage
+namespace ygo_scheduled_tasks.domain.WebPage.Card
 {
     public class CardHtmlDocument : ICardHtmlDocument
     {

@@ -16,6 +16,7 @@ using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Handler;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process;
 using ygo_scheduled_tasks.domain.WebPage;
+using ygo_scheduled_tasks.domain.WebPage.Card;
 
 namespace ygo_scheduled_tasks.application
 {

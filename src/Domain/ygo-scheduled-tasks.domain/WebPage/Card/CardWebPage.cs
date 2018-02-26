@@ -2,7 +2,7 @@
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.core.WebPage;
 
-namespace ygo_scheduled_tasks.domain.WebPage
+namespace ygo_scheduled_tasks.domain.WebPage.Card
 {
     public class CardWebPage : ICardWebPage
     {

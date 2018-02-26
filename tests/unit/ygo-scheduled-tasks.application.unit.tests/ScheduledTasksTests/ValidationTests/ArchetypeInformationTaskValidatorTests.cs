@@ -48,7 +48,8 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Validat
         static object[] _invalidCategories =
         {
             new object[] { null },
-            new object[] { new string[0] }
+            new object[] { new string[0] },
+            new object[] { new[] { "", " "} }
         };
 
         #endregion

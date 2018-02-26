@@ -33,6 +33,8 @@
     <Compile Include="Command\AddBanlistCommand.cs" />
     <Compile Include="Command\UpdateBanlistCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCommand.cs" />
+    <Compile Include="ETL\ArticleList\Processor\Item\ArchetypeItemProcessor.cs" />
+    <Compile Include="ETL\ArticleList\Processor\Item\ArchetypeSupportItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\ISemanticSearchDataSource.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\SemanticSearchDataSource.cs" />
@@ -94,9 +96,9 @@
     <Compile Include="IConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IYugiohCardService.cs" />
-    <Compile Include="WebPage\CardHtmlDocument.cs" />
-    <Compile Include="WebPage\CardHtmlTable.cs" />
-    <Compile Include="WebPage\CardWebPage.cs" />
+    <Compile Include="WebPage\Card\CardHtmlDocument.cs" />
+    <Compile Include="WebPage\Card\CardHtmlTable.cs" />
+    <Compile Include="WebPage\Card\CardWebPage.cs" />
     <Compile Include="WebPage\HtmlWebPage.cs" />
     <Compile Include="WebPage\SemanticSearch.cs" />
     <Compile Include="YgoCardType.cs" />

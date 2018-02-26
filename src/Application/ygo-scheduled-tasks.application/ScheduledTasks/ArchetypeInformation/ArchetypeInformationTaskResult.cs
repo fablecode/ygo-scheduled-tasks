@@ -5,7 +5,7 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation
 {
     public class ArchetypeInformationTaskResult
     {
-        public ArticleBatchTaskResult ArticleTaskResults { get; set; }
+        public IEnumerable<ArticleBatchTaskResult> ArticleTaskResults { get; set; }
 
         public List<string> Errors { get; set; }
 

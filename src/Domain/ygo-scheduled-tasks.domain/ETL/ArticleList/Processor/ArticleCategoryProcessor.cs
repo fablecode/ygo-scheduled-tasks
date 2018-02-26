@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using wikia.Models.Article.AlphabeticalList;
@@ -16,6 +17,18 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor
         {
             _articleCategoryDataSource = articleCategoryDataSource;
             _articleBatchProcessor = articleBatchProcessor;
+        }
+
+        public async Task<IEnumerable<ArticleBatchTaskResult>> Process(IEnumerable<string> categories, int pageSize)
+        {
+            var results = new List<ArticleBatchTaskResult>();
+
+            foreach (var category in categories)
+            {
+                results.Add(await Process(category, pageSize));
+            }
+
+            return results;
         }
 
         public Task<ArticleBatchTaskResult> Process(string category, int pageSize)
