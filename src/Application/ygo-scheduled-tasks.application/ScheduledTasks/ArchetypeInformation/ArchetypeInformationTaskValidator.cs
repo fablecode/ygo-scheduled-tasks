@@ -8,6 +8,7 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation
         public ArchetypeInformationTaskValidator()
         {
             RuleFor(ci => ci.Categories)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
                 .NotEmpty()
                 .Must(ci => ci.All(c => !string.IsNullOrWhiteSpace(c)))
