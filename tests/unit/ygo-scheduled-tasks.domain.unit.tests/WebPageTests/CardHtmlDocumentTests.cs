@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using ygo_scheduled_tasks.domain.WebPage;
-using ygo_scheduled_tasks.domain.WebPage.Card;
+using ygo_scheduled_tasks.domain.WebPage.Cards;
 
 namespace ygo_scheduled_tasks.domain.unit.tests.WebPageTests
 {

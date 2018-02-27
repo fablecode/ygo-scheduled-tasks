@@ -54,10 +54,12 @@
     <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchException.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchTaskResult.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\SemanticSearchProcessor.cs" />
+    <Compile Include="Helpers\ArchetypeHelper.cs" />
     <Compile Include="Helpers\BanlistHelpers.cs" />
     <Compile Include="Helpers\ContentResultHelpers.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="SemanticSearchUrls.cs" />
+    <Compile Include="Services\IArchetypeService.cs" />
     <Compile Include="Services\IAttributeService.cs" />
     <Compile Include="Services\IBanlistCardsService.cs" />
     <Compile Include="Services\IBanlistService.cs" />
@@ -96,10 +98,12 @@
     <Compile Include="IConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IYugiohCardService.cs" />
-    <Compile Include="WebPage\Card\CardHtmlDocument.cs" />
-    <Compile Include="WebPage\Card\CardHtmlTable.cs" />
-    <Compile Include="WebPage\Card\CardWebPage.cs" />
+    <Compile Include="WebPage\Archetypes\ArchetypeWebPage.cs" />
+    <Compile Include="WebPage\Cards\CardHtmlDocument.cs" />
+    <Compile Include="WebPage\Cards\CardHtmlTable.cs" />
+    <Compile Include="WebPage\Cards\CardWebPage.cs" />
     <Compile Include="WebPage\HtmlWebPage.cs" />
+    <Compile Include="WebPage\IArchetypeWebPage.cs" />
     <Compile Include="WebPage\SemanticSearch.cs" />
     <Compile Include="YgoCardType.cs" />
   </ItemGroup>
