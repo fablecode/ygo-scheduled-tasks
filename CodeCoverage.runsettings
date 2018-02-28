@@ -10,6 +10,7 @@
             <ModulePaths>
               <Exclude>
                 <ModulePath>.*Tests.dll</ModulePath>
+                <ModulePath>.*htmlagilitypack.dll</ModulePath>
 				<ModulePath>.*Polly.dll</ModulePath>
 				<ModulePath>.*Moq.dll</ModulePath>
 				<ModulePath>.*FluentAssertions.dll</ModulePath>
