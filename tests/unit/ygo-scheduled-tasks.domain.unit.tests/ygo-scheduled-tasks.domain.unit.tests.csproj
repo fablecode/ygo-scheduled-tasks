@@ -176,6 +176,7 @@
   <ItemGroup>
     <Compile Include="ArchetypeHelperTests.cs" />
     <Compile Include="BanlistTests\ExtractBanlistArticleDetailsTests.cs" />
+    <Compile Include="ContentResultHelpersTests.cs" />
     <Compile Include="ProcessorTests\ArticleBatchProcessorTests.cs" />
     <Compile Include="ProcessorTests\DataSourceTests\SemanticSearchDataSourceTests.cs" />
     <Compile Include="ProcessorTests\DataSourceTests\ArticleCategoryDataSourceTests.cs" />
