@@ -2,6 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks.Dataflow;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.core.WebPage;
@@ -25,7 +26,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.DataSourceTests
         [TestCase(null)]
         [TestCase("")]
         [TestCase(" ")]
-        public void Given_A_Invalid_Category_Should_Throw_ArgumentException(string url)
+        public void Given_A_Invalid_Url_Should_Throw_ArgumentException(string url)
         {
             // Arrange
 
@@ -47,5 +48,21 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.DataSourceTests
             // Assert
             act.ShouldThrow<ArgumentException>();
         }
+
+        [Test]
+        public void Given_A_Valid_Url_And_ITargetBlock_Should_Execute_CardsByUrl()
+        {
+            // Arrange
+            var url = "https://www.google.co.uk/";
+            _semanticSearch.CardsByUrl(Arg.Any<string>()).Returns(new List<SemanticCard>());
+
+            // Act
+           _sut.Producer(url, new BufferBlock<SemanticCard[]>());
+
+            // Assert
+            _semanticSearch.Received(1).CardsByUrl(Arg.Any<string>());
+        }
+
+
     }
 }
