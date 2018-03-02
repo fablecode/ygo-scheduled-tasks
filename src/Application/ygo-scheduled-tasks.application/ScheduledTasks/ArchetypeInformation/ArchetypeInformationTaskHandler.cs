@@ -9,9 +9,9 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation
     public class ArchetypeInformationTaskHandler : IAsyncRequestHandler<ArchetypeInformationTask, ArchetypeInformationTaskResult>
     {
         private readonly IArticleCategoryProcessor _articleCategoryProcessor;
-        private readonly IValidator<ArchetypeInformationTaskResult> _validator;
+        private readonly IValidator<ArchetypeInformationTask> _validator;
 
-        public ArchetypeInformationTaskHandler(IArticleCategoryProcessor articleCategoryProcessor, IValidator<ArchetypeInformationTaskResult> validator)
+        public ArchetypeInformationTaskHandler(IArticleCategoryProcessor articleCategoryProcessor, IValidator<ArchetypeInformationTask> validator)
         {
             _articleCategoryProcessor = articleCategoryProcessor;
             _validator = validator;

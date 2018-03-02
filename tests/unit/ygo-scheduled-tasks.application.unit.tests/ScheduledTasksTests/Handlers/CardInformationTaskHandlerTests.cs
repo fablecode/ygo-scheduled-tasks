@@ -40,7 +40,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
         }
 
         [Test]
-        public async Task Given_An_Invalid_CardInformationTask_Should_Not_Execute_AllCardsTask()
+        public async Task Given_An_Invalid_CardInformationTask_Should_Not_Execute_Process()
         {
             // Arrange
             var task = new CardInformationTask();
