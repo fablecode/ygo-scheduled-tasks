@@ -69,7 +69,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
 
             // Act
-            var result = _sut.Cards(archetypeUrl);
+            var result = _sut.Cards(new Uri(archetypeUrl));
 
             // Assert
             result.Should().Contain(cn => cn.Equals(expected, StringComparison.OrdinalIgnoreCase));

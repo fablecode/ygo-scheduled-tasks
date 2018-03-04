@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HtmlAgilityPack;
 using ygo_scheduled_tasks.core.WebPage;
@@ -16,11 +17,11 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
             _htmlWebPage = htmlWebPage;
         }
 
-        public IEnumerable<string> Cards(string archetypeUrl)
+        public IEnumerable<string> Cards(Uri archetypeUrl)
         {
             var cardList = new List<string>();
 
-            var archetypeWebPage = _htmlWebPage.Load(_config.WikiaDomainUrl + archetypeUrl);
+            var archetypeWebPage = _htmlWebPage.Load(archetypeUrl);
 
             var tableCollection = archetypeWebPage.DocumentNode
                 .SelectNodes("//table")
