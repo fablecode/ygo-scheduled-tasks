@@ -67,6 +67,7 @@
     <Compile Include="Client\RestClient.cs" />
     <Compile Include="HttpHandlers\OAuthBearerTokenHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ArchetypeService.cs" />
     <Compile Include="Services\AttributeService.cs" />
     <Compile Include="Services\BanlistCardsService.cs" />
     <Compile Include="Services\BanlistService.cs" />

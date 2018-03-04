@@ -20,7 +20,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
         {
             var cardList = new List<string>();
 
-            var archetypeWebPage = _htmlWebPage.Load(archetypeUrl);
+            var archetypeWebPage = _htmlWebPage.Load(_config.WikiaDomainUrl + archetypeUrl);
 
             var tableCollection = archetypeWebPage.DocumentNode
                 .SelectNodes("//table")
@@ -69,7 +69,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
 
         public string GetFurtherResultsUrl(HtmlDocument archetypeWebPage)
         {
-            return archetypeWebPage.DocumentNode.SelectSingleNode("//span[@class='smw-table-furtherresults']/a").Attributes["href"].Value;
+            return archetypeWebPage.DocumentNode.SelectSingleNode("//span[@class='smw-table-furtherresults']/a")?.Attributes["href"].Value;
         }
     }
 }

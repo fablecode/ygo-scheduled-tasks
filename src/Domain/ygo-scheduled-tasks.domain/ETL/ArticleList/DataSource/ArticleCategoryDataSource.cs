@@ -30,7 +30,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.DataSource
 
             do
             {
-                targetBlock.Post(nextBatch.Items);
+                await targetBlock.SendAsync(nextBatch.Items);
 
                 isNextBatchAvailable = !string.IsNullOrEmpty(nextBatch.Offset);
 

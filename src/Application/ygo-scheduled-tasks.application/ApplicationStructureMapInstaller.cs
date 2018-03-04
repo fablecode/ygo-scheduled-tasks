@@ -16,6 +16,7 @@ using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Handler;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process;
 using ygo_scheduled_tasks.domain.WebPage;
+using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 using ygo_scheduled_tasks.domain.WebPage.Cards;
 
 namespace ygo_scheduled_tasks.application
@@ -40,6 +41,7 @@ namespace ygo_scheduled_tasks.application
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>)); // Handlers with a response
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<>)); // Async handlers with no response
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>)); // Async Handlers with a response
+                    scan.ConnectImplementationsToTypesClosing(typeof(ICancellableAsyncNotificationHandler<>));
                     scan.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
                 }
@@ -53,6 +55,7 @@ namespace ygo_scheduled_tasks.application
             For<IWikiArticle>().Use(context => new WikiArticle(config.WikiaDomainUrl));
             For<IArticleHandler>().Use<ArticleHandler>();
             For<ICardWebPage>().Use<CardWebPage>();
+            For<IArchetypeWebPage>().Use<ArchetypeWebPage>();
             For<ICardHtmlDocument>().Use<CardHtmlDocument>();
             For<IHtmlWebPage>().Use<HtmlWebPage>();
             For<ICardHtmlTable>().Use<CardHtmlTable>();
@@ -63,6 +66,7 @@ namespace ygo_scheduled_tasks.application
             For<ICommandMapper>().Use<CommandMapper>();
             For<IArticleItemProcessor>().Use<CardItemProcessor>();
             For<IArticleItemProcessor>().Use<BanlistItemProcessor>();
+            For<IArticleItemProcessor>().Use<ArchetypeItemProcessor>();
 
 
             For<ISemanticCardHandler>().Use<SemanticCardHandler>();
