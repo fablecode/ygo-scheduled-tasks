@@ -7,7 +7,7 @@ namespace ygo_scheduled_tasks.infrastructure.Services
 {
     public class ArchetypeService : IArchetypeService
     {
-        public Task<Card> ArchetypeByName(string name)
+        public Task<Archetype> ArchetypeByName(string name)
         {
             throw new NotImplementedException();
         }

@@ -37,7 +37,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
             archetypeToAddOrUpdated.Cards = _archetypeWebPage.Cards(archetypeUrl);
 
-            var existingArchetype = _archetypeService.ArchetypeByName(archetypeToAddOrUpdated.Name);
+            var existingArchetype = await _archetypeService.ArchetypeByName(archetypeToAddOrUpdated.Name);
 
             var archetype = existingArchetype == null
                 ? await _archetypeService.Add(archetypeToAddOrUpdated)

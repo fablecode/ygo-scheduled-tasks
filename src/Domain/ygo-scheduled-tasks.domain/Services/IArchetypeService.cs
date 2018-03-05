@@ -6,7 +6,7 @@ namespace ygo_scheduled_tasks.domain.Services
 {
     public interface IArchetypeService
     {
-        Task<Card> ArchetypeByName(string name);
+        Task<Archetype> ArchetypeByName(string name);
         Task<Archetype> Add(YugiohArchetype archetype);
         Task<Archetype> Update(YugiohArchetype archetype);
     }
