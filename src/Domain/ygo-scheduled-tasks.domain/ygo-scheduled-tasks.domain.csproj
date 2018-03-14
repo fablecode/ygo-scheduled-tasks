@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Command\AddArchetypeCommand.cs" />
     <Compile Include="Command\AddBanlistCommand.cs" />
     <Compile Include="Command\UpdateBanlistCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCommand.cs" />

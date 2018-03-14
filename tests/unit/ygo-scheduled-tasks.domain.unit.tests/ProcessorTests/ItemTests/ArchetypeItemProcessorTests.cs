@@ -1,10 +1,11 @@
-﻿using System;
+﻿using NSubstitute;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NSubstitute;
-using NUnit.Framework;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.core.Model;
+using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.domain.WebPage;
@@ -37,7 +38,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
             _archetypeWebPage.Cards(Arg.Any<Uri>()).Returns(new List<string> { "Blue-Eyes White Dragon" });
-            _archetypeService.Add(Arg.Any<YugiohArchetype>()).Returns(new Archetype());
+            _archetypeService.Add(Arg.Any<AddArchetypeCommand>()).Returns(new Archetype());
 
             // Act
             await _sut.ProcessItem(article);
@@ -55,7 +56,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
             _archetypeWebPage.Cards(Arg.Any<Uri>()).Returns(new List<string> { "Blue-Eyes White Dragon" });
-            _archetypeService.Add(Arg.Any<YugiohArchetype>()).Returns(new Archetype());
+            _archetypeService.Add(Arg.Any<AddArchetypeCommand>()).Returns(new Archetype());
 
             // Act
             await _sut.ProcessItem(article);
@@ -73,13 +74,13 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
             _archetypeWebPage.Cards(Arg.Any<Uri>()).Returns(new List<string> {"Blue-Eyes White Dragon"});
-            _archetypeService.Add(Arg.Any<YugiohArchetype>()).Returns(new Archetype());
+            _archetypeService.Add(Arg.Any<AddArchetypeCommand>()).Returns(new Archetype());
 
             // Act
             await _sut.ProcessItem(article);
 
             // Assert
-            await _archetypeService.Received(1).Add(Arg.Any<YugiohArchetype>());
+            await _archetypeService.Received(1).Add(Arg.Any<AddArchetypeCommand>());
         }
 
         [Test]
@@ -90,13 +91,13 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
             _archetypeWebPage.Cards(Arg.Any<Uri>()).Returns(new List<string> { "Blue-Eyes White Dragon" });
-            _archetypeService.Add(Arg.Any<YugiohArchetype>()).Returns(new Archetype());
+            _archetypeService.Add(Arg.Any<AddArchetypeCommand>()).Returns(new Archetype());
 
             // Act
             await _sut.ProcessItem(article);
 
             // Assert
-            await _archetypeService.DidNotReceive().Update(Arg.Any<YugiohArchetype>());
+            await _archetypeService.DidNotReceive().Update(Arg.Any<UpdateArchetypeCommand>());
         }
 
         [Test]
@@ -107,14 +108,14 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
             _archetypeWebPage.Cards(Arg.Any<Uri>()).Returns(new List<string> { "Blue-Eyes White Dragon" });
-            _archetypeService.Update(Arg.Any<YugiohArchetype>()).Returns(new Archetype());
+            _archetypeService.Update(Arg.Any<UpdateArchetypeCommand>()).Returns(new Archetype());
             _archetypeService.ArchetypeByName(Arg.Any<string>()).Returns(new Archetype());
 
             // Act
             await _sut.ProcessItem(article);
 
             // Assert
-            await _archetypeService.Received(1).Update(Arg.Any<YugiohArchetype>());
+            await _archetypeService.Received(1).Update(Arg.Any<UpdateArchetypeCommand>());
         }
 
         [Test]
@@ -125,14 +126,14 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
             _archetypeWebPage.Cards(Arg.Any<Uri>()).Returns(new List<string> { "Blue-Eyes White Dragon" });
-            _archetypeService.Update(Arg.Any<YugiohArchetype>()).Returns(new Archetype());
+            _archetypeService.Update(Arg.Any<UpdateArchetypeCommand>()).Returns(new Archetype());
             _archetypeService.ArchetypeByName(Arg.Any<string>()).Returns(new Archetype());
 
             // Act
             await _sut.ProcessItem(article);
 
             // Assert
-            await _archetypeService.DidNotReceive().Add(Arg.Any<YugiohArchetype>());
+            await _archetypeService.DidNotReceive().Add(Arg.Any<AddArchetypeCommand>());
         }
 
     }

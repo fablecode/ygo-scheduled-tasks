@@ -1,25 +1,38 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.core.Model;
+using ygo_scheduled_tasks.domain;
+using ygo_scheduled_tasks.domain.Client;
+using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.Services;
 
 namespace ygo_scheduled_tasks.infrastructure.Services
 {
     public class ArchetypeService : IArchetypeService
     {
+        private readonly IConfig _config;
+        private readonly IRestClient _restClient;
+
+        public ArchetypeService(IConfig config, IRestClient restClient)
+        {
+            _config = config;
+            _restClient = restClient;
+        }
         public Task<Archetype> ArchetypeByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Archetype> Add(YugiohArchetype archetype)
+        public async Task<Archetype> Add(AddArchetypeCommand command)
         {
-            throw new NotImplementedException();
+            var createdUri = await _restClient.Post($"{_config.ApiUrl}/api/Archetypes", command);
+
+            return await _restClient.Get<Archetype>(createdUri.AbsoluteUri);
         }
 
-        public Task<Archetype> Update(YugiohArchetype archetype)
+        public Task<Archetype> Update(UpdateArchetypeCommand command)
         {
-            throw new NotImplementedException();
+            return _restClient.Put<UpdateArchetypeCommand, Archetype>($"{_config.ApiUrl}/api/Cards", command);
         }
     }
 }

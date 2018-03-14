@@ -2,10 +2,12 @@
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.core.Model;
+using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.Helpers;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.domain.WebPage;
+using AddArchetypeCommand = ygo_scheduled_tasks.domain.Command.AddArchetypeCommand;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 {
@@ -25,8 +27,9 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         public async Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
             var response = new ArticleTaskResult { Article = item };
+            var archetypeName = ArchetypeHelper.ExtractArchetypeName(item.Title);
 
-            var archetypeToAddOrUpdated = new YugiohArchetype
+            var command = new UpdateArchetypeCommand
             {
                 Name = ArchetypeHelper.ExtractArchetypeName(item.Title),
                 Alias = item.Title,
@@ -35,13 +38,23 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
             var archetypeUrl = new Uri(_config.WikiaDomainUrl + item.Url);
 
-            archetypeToAddOrUpdated.Cards = _archetypeWebPage.Cards(archetypeUrl);
+            command.Cards = _archetypeWebPage.Cards(archetypeUrl);
 
-            var existingArchetype = await _archetypeService.ArchetypeByName(archetypeToAddOrUpdated.Name);
+            var existingArchetype = await _archetypeService.ArchetypeByName(command.Name);
 
             var archetype = existingArchetype == null
-                ? await _archetypeService.Add(archetypeToAddOrUpdated)
-                : await _archetypeService.Update(archetypeToAddOrUpdated);
+                ? await _archetypeService.Add(new AddArchetypeCommand
+                    {
+                        Name = ArchetypeHelper.ExtractArchetypeName(item.Title),
+                        Alias = item.Title,
+                        ArchetypeNumber = item.Id,
+                    })
+                : await _archetypeService.Update(new UpdateArchetypeCommand
+                {
+                    Name = ArchetypeHelper.ExtractArchetypeName(item.Title),
+                    Alias = item.Title,
+                    ArchetypeNumber = item.Id,
+                });
 
             if (archetype != null)
                 response.IsSuccessfullyProcessed = true;
