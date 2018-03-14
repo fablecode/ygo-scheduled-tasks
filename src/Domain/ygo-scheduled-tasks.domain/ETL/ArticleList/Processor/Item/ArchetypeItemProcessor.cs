@@ -31,7 +31,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
             var command = new UpdateArchetypeCommand
             {
-                Name = ArchetypeHelper.ExtractArchetypeName(item.Title),
+                Name = archetypeName,
                 Alias = item.Title,
                 ArchetypeNumber = item.Id,
             };
@@ -40,20 +40,23 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
             command.Cards = _archetypeWebPage.Cards(archetypeUrl);
 
-            var existingArchetype = await _archetypeService.ArchetypeByName(command.Name);
+            var existingArchetype = await _archetypeService.ArchetypeByName(archetypeName);
 
             var archetype = existingArchetype == null
                 ? await _archetypeService.Add(new AddArchetypeCommand
-                    {
-                        Name = ArchetypeHelper.ExtractArchetypeName(item.Title),
-                        Alias = item.Title,
-                        ArchetypeNumber = item.Id,
-                    })
-                : await _archetypeService.Update(new UpdateArchetypeCommand
                 {
-                    Name = ArchetypeHelper.ExtractArchetypeName(item.Title),
+                    Name = archetypeName,
                     Alias = item.Title,
                     ArchetypeNumber = item.Id,
+                    Cards = _archetypeWebPage.Cards(archetypeUrl)
+                })
+                : await _archetypeService.Update(new UpdateArchetypeCommand
+                {
+                    Id = existingArchetype.Id,
+                    Name = archetypeName,
+                    Alias = item.Title,
+                    ArchetypeNumber = item.Id,
+                    Cards = _archetypeWebPage.Cards(archetypeUrl)
                 });
 
             if (archetype != null)

@@ -12,6 +12,7 @@ namespace ygo_scheduled_tasks.domain.Command
 
     public class UpdateArchetypeCommand
     {
+        public long Id { get; set; }
         public string Name { get; set; }
         public string Alias { get; set; }
         public int ArchetypeNumber { get; set; }

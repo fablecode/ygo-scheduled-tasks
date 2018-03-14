@@ -39,8 +39,6 @@ namespace ygo_scheduled_tasks.infrastructure.Services
                 };
 
                 banlist = await _banlistService.Add(addCommand);
-                var banlistCards = await _banlistCardsService.MapToBanlistCards(banlist.Id, yugiohBanlist.Sections);
-                banlist.Cards = await _banlistService.Update(banlist.Id, new UpdateBanlistCardsCommand { BanlistCards = banlistCards});
             }
             else
             {
@@ -53,9 +51,10 @@ namespace ygo_scheduled_tasks.infrastructure.Services
                 };
 
                 banlist = await _banlistService.Update(updateCommand);
-                var banlistCards = await _banlistCardsService.MapToBanlistCards(banlist.Id, yugiohBanlist.Sections);
-                banlist.Cards = await _banlistService.Update(banlist.Id, new UpdateBanlistCardsCommand { BanlistCards = banlistCards });
             }
+
+            var banlistCards = await _banlistCardsService.MapToBanlistCards(banlist.Id, yugiohBanlist.Sections);
+            banlist.Cards = await _banlistService.Update(banlist.Id, new UpdateBanlistCardsCommand { BanlistCards = banlistCards });
 
             return banlist;
         }
