@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.Helpers;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.domain.WebPage;
-using AddArchetypeCommand = ygo_scheduled_tasks.domain.Command.AddArchetypeCommand;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 {

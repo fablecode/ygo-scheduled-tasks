@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain;
 using ygo_scheduled_tasks.domain.Client;
@@ -18,9 +17,10 @@ namespace ygo_scheduled_tasks.infrastructure.Services
             _config = config;
             _restClient = restClient;
         }
+
         public Task<Archetype> ArchetypeByName(string name)
         {
-            throw new NotImplementedException();
+            return _restClient.Get<Archetype>($"{_config.ApiUrl}/api/Archetypes/{name}");
         }
 
         public async Task<Archetype> Add(AddArchetypeCommand command)
