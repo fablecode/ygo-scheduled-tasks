@@ -27,16 +27,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
             var response = new ArticleTaskResult { Article = item };
             var archetypeName = ArchetypeHelper.ExtractArchetypeName(item.Title);
 
-            var command = new UpdateArchetypeCommand
-            {
-                Name = archetypeName,
-                Alias = item.Title,
-                ArchetypeNumber = item.Id,
-            };
-
             var archetypeUrl = new Uri(_config.WikiaDomainUrl + item.Url);
-
-            command.Cards = _archetypeWebPage.Cards(archetypeUrl);
 
             var existingArchetype = await _archetypeService.ArchetypeByName(archetypeName);
 
