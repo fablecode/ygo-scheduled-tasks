@@ -18,6 +18,11 @@ namespace ygo_scheduled_tasks.infrastructure.Services
             _restClient = restClient;
         }
 
+        public Task<Archetype> ArchetypeById(long id)
+        {
+            return _restClient.Get<Archetype>($"{_config.ApiUrl}/api/Archetypes/{id}");
+        }
+
         public Task<Archetype> ArchetypeByName(string name)
         {
             return _restClient.Get<Archetype>($"{_config.ApiUrl}/api/Archetypes/{name}");

@@ -24,5 +24,18 @@ namespace ygo_scheduled_tasks.domain.unit.tests
             // Assert
             result.ShouldBeEquivalentTo(expected);
         }
+
+        [TestCase("https://vignette.wikia.nocookie.net/yugioh/images/6/65/EvolzarLaggia-TF06-JP-VG.png/revision/latest/window-crop/width/200/x-offset/0/y-offset/0/window-width/545/window-height/544?cb=20110928032728", "https://vignette.wikia.nocookie.net/yugioh/images/6/65/EvolzarLaggia-TF06-JP-VG.png")]
+        [TestCase("", "")]
+        public void Given_An_Archetype_Thumbnail_Url_Should_Extract_Url_Without_Image_Sizes(string url, string expect)
+        {
+            // Arrange
+
+            // Act
+            var result = ArchetypeHelper.ExtractThumbnailUrl(url);
+
+            // Assert
+            result.ShouldBeEquivalentTo(expect);
+        }
     }
 }

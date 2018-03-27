@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ygo_scheduled_tasks.domain.Helpers
 {
@@ -14,6 +15,11 @@ namespace ygo_scheduled_tasks.domain.Helpers
             }
 
             return null;
+        }
+
+        public static string ExtractThumbnailUrl(string thumbnailUrl)
+        {
+            return new Regex(@"(?<Protocol>\w+):(.+?).(jpg|png|gif)").Match(thumbnailUrl).Value;
         }
     }
 }

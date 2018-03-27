@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
+using wikia.Api;
+using wikia.Models.Article.Details;
 using ygo_scheduled_tasks.core.WebPage;
+using ygo_scheduled_tasks.domain.Helpers;
 
 namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
 {
@@ -10,11 +14,13 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
     {
         private readonly IConfig _config;
         private readonly IHtmlWebPage _htmlWebPage;
+        private readonly IWikiArticle _wikiArticle;
 
-        public ArchetypeWebPage(IConfig config, IHtmlWebPage htmlWebPage)
+        public ArchetypeWebPage(IConfig config, IHtmlWebPage htmlWebPage, IWikiArticle wikiArticle)
         {
             _config = config;
             _htmlWebPage = htmlWebPage;
+            _wikiArticle = wikiArticle;
         }
 
         public IEnumerable<string> Cards(Uri archetypeUrl)
@@ -71,6 +77,35 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
         public string GetFurtherResultsUrl(HtmlDocument archetypeWebPage)
         {
             return archetypeWebPage.DocumentNode.SelectSingleNode("//span[@class='smw-table-furtherresults']/a")?.Attributes["href"].Value;
+        }
+
+        public async Task<string> ArchetypeThumbnail(int archetypeNumber, string url)
+        {
+            var profileDetailsList = await _wikiArticle.Details(archetypeNumber);
+            var profileDetails = profileDetailsList.Items.FirstOrDefault();
+
+            if (!string.IsNullOrWhiteSpace(profileDetails.Value?.Thumbnail))
+            {
+                var thumbnailUrl = ArchetypeHelper.ExtractThumbnailUrl(profileDetails.Value.Thumbnail);
+
+                if (string.IsNullOrWhiteSpace(thumbnailUrl))
+                {
+                    var archetypeWebPage = _htmlWebPage.Load(url);
+
+                    var srcElement = archetypeWebPage.DocumentNode.SelectSingleNode("//img[@class='pi-image-thumbnail']");
+
+                    var srcAttribute = srcElement?.Attributes["src"].Value;
+
+                    if (srcAttribute != null)
+                        thumbnailUrl = ArchetypeHelper.ExtractThumbnailUrl(srcAttribute);
+
+                    return thumbnailUrl;
+                }
+
+                return thumbnailUrl;
+            }
+
+            return null;
         }
     }
 }

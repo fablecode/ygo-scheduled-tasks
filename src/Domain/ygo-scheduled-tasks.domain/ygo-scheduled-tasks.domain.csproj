@@ -32,10 +32,12 @@
   <ItemGroup>
     <Compile Include="Command\AddArchetypeCommand.cs" />
     <Compile Include="Command\AddBanlistCommand.cs" />
+    <Compile Include="Command\UpdateArchetypeCommand.cs" />
     <Compile Include="Command\UpdateBanlistCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCommand.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\ArchetypeItemProcessor.cs" />
-    <Compile Include="ETL\ArticleList\Processor\Item\ArchetypeSupportItemProcessor.cs" />
+    <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeItemProcessor.cs" />
+    <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeSupportItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\ISemanticSearchDataSource.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\SemanticSearchDataSource.cs" />

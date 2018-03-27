@@ -5,7 +5,7 @@ using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 {
-    public class ArchetypeSupportItemProcessor : IArticleItemProcessor
+    public class CardsByArchetypeSupportItemProcessor : IArticleItemProcessor
     {
         public Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
@@ -15,7 +15,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
         public bool Handles(string category)
         {
-            return category == ArticleCategory.ArchetypeSupport;
+            return category == ArticleCategory.CardsByArchetypeSupport;
         }
     }
 }

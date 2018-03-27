@@ -15,7 +15,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
     [TestFixture]
     public class ArchetypeItemProcessorTests
     {
-        private ArchetypeItemProcessor _sut;
+        private CardsByArchetypeItemProcessor _sut;
         private IConfig _config;
         private IArchetypeService _archetypeService;
         private IArchetypeWebPage _archetypeWebPage;
@@ -27,7 +27,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
             _archetypeService = Substitute.For<IArchetypeService>();
             _config = Substitute.For<IConfig>();
 
-            _sut = new ArchetypeItemProcessor(_archetypeWebPage, _archetypeService, _config);
+            _sut = new CardsByArchetypeItemProcessor(_archetypeWebPage, _archetypeService, _config);
         }
 
         [Test]

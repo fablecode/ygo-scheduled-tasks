@@ -9,13 +9,13 @@ using ygo_scheduled_tasks.domain.WebPage;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 {
-    public class ArchetypeItemProcessor : IArticleItemProcessor
+    public class CardsByArchetypeItemProcessor : IArticleItemProcessor
     {
         private readonly IArchetypeWebPage _archetypeWebPage;
         private readonly IArchetypeService _archetypeService;
         private readonly IConfig _config;
 
-        public ArchetypeItemProcessor(IArchetypeWebPage archetypeWebPage, IArchetypeService archetypeService, IConfig config)
+        public CardsByArchetypeItemProcessor(IArchetypeWebPage archetypeWebPage, IArchetypeService archetypeService, IConfig config)
         {
             _archetypeWebPage = archetypeWebPage;
             _archetypeService = archetypeService;
@@ -25,28 +25,27 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         public async Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
             var response = new ArticleTaskResult { Article = item };
+            var archetypeName = ArchetypeHelper.ExtractArchetypeName(item.Title);
 
             var archetypeUrl = new Uri(_config.WikiaDomainUrl + item.Url);
 
-            var existingArchetype = await _archetypeService.ArchetypeById(item.Id);
+            var existingArchetype = await _archetypeService.ArchetypeByName(archetypeName);
+
             var archetype = existingArchetype == null
                 ? await _archetypeService.Add(new AddArchetypeCommand
                 {
+                    Name = archetypeName,
+                    Url = item.Title,
                     ArchetypeNumber = item.Id,
-                    Name = item.Title,
-                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(_config.WikiaDomainUrl + item.Url),
-                    Url = archetypeUrl.AbsoluteUri,
                     Cards = _archetypeWebPage.Cards(archetypeUrl)
                 })
                 : await _archetypeService.Update(new UpdateArchetypeCommand
                 {
                     Id = existingArchetype.Id,
-                    Name = item.Title,
-                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(_config.WikiaDomainUrl + item.Url),
-                    Url = archetypeUrl.AbsoluteUri,
+                    Name = archetypeName,
+                    Url = item.Title,
                     Cards = _archetypeWebPage.Cards(archetypeUrl)
                 });
-
 
             if (archetype != null)
                 response.IsSuccessfullyProcessed = true;
@@ -56,7 +55,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
         public bool Handles(string category)
         {
-            return category == ArticleCategory.Archetype;
+            return category == ArticleCategory.CardsByArchetype;
         }
     }
 }

@@ -176,6 +176,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPageTests\ArchetypeWebPageTests.cs" />
+    <Compile Include="WebPageTests\CardsByArchetypeWebPageTests.cs" />
     <Compile Include="WebPageTests\CardHtmlDocumentTests.cs" />
     <Compile Include="WebPageTests\CardHtmlTableTests.cs" />
   </ItemGroup>
