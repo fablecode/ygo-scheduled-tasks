@@ -84,28 +84,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
             var profileDetailsList = await _wikiArticle.Details(archetypeNumber);
             var profileDetails = profileDetailsList.Items.FirstOrDefault();
 
-            if (!string.IsNullOrWhiteSpace(profileDetails.Value?.Thumbnail))
-            {
-                var thumbnailUrl = ArchetypeHelper.ExtractThumbnailUrl(profileDetails.Value.Thumbnail);
-
-                if (string.IsNullOrWhiteSpace(thumbnailUrl))
-                {
-                    var archetypeWebPage = _htmlWebPage.Load(url);
-
-                    var srcElement = archetypeWebPage.DocumentNode.SelectSingleNode("//img[@class='pi-image-thumbnail']");
-
-                    var srcAttribute = srcElement?.Attributes["src"].Value;
-
-                    if (srcAttribute != null)
-                        thumbnailUrl = ArchetypeHelper.ExtractThumbnailUrl(srcAttribute);
-
-                    return thumbnailUrl;
-                }
-
-                return thumbnailUrl;
-            }
-
-            return null;
+            return ArchetypeHelper.ExtractThumbnailUrl(profileDetails.Value.Thumbnail); ;
         }
     }
 }
