@@ -26,7 +26,8 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         {
             var response = new ArticleTaskResult { Article = item };
 
-            var archetypeUrl = new Uri(_config.WikiaDomainUrl + item.Url);
+            var articleUrl = _config.WikiaDomainUrl + item.Url;
+            var archetypeUrl = new Uri(articleUrl);
 
             var existingArchetype = await _archetypeService.ArchetypeById(item.Id);
             var archetype = existingArchetype == null
@@ -34,7 +35,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                 {
                     ArchetypeNumber = item.Id,
                     Name = item.Title,
-                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(_config.WikiaDomainUrl + item.Url),
+                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(articleUrl),
                     Url = archetypeUrl.AbsoluteUri,
                     Cards = _archetypeWebPage.Cards(archetypeUrl)
                 })
@@ -42,7 +43,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                 {
                     Id = existingArchetype.Id,
                     Name = item.Title,
-                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(_config.WikiaDomainUrl + item.Url),
+                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(articleUrl),
                     Url = archetypeUrl.AbsoluteUri,
                     Cards = _archetypeWebPage.Cards(archetypeUrl)
                 });
