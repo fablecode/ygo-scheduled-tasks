@@ -79,12 +79,30 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
             return archetypeWebPage.DocumentNode.SelectSingleNode("//span[@class='smw-table-furtherresults']/a")?.Attributes["href"].Value;
         }
 
-        public async Task<string> ArchetypeThumbnail(int archetypeNumber, string url)
+        public async Task<string> ArchetypeThumbnail(int articleId, string url)
         {
-            var profileDetailsList = await _wikiArticle.Details(archetypeNumber);
-            var profileDetails = profileDetailsList.Items.FirstOrDefault();
+            var profileDetailsList = await _wikiArticle.Details(articleId);
+            var profileDetails = profileDetailsList.Items.First();
 
-            return ArchetypeHelper.ExtractThumbnailUrl(profileDetails.Value.Thumbnail); ;
+            var thumbNail = profileDetails.Value.Thumbnail;
+
+            if (string.IsNullOrWhiteSpace(thumbNail))
+            {
+                var archetypeWebPage = _htmlWebPage.Load(_config.WikiaDomainUrl + url);
+
+                var srcElement = archetypeWebPage.DocumentNode.SelectSingleNode("//img[@class='pi-image-thumbnail']");
+
+                var srcAttribute = srcElement?.Attributes?["src"].Value;
+
+                if(srcAttribute != null)
+                    thumbNail = ArchetypeHelper.ExtractThumbnailUrl(srcAttribute);
+            }
+            else
+            {
+                thumbNail = ArchetypeHelper.ExtractThumbnailUrl(thumbNail);
+            }
+
+            return thumbNail;
         }
     }
 }

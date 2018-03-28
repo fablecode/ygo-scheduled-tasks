@@ -35,6 +35,8 @@ namespace ygo_scheduled_tasks.application
                 {
                     scan.TheCallingAssembly();
                     scan.AddAllTypesOf(typeof(AbstractValidator<>));
+                    scan.AssemblyContainingType<IArticleItemProcessor>();
+                    scan.AddAllTypesOf<IArticleItemProcessor>();
                     scan.ConnectImplementationsToTypesClosing(typeof(IValidator<>));
 
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>)); // Handlers with no response
@@ -64,12 +66,6 @@ namespace ygo_scheduled_tasks.application
             For<IArticleBatchProcessor>().Use<ArticleBatchProcessor>();
 
             For<ICommandMapper>().Use<CommandMapper>();
-            For<IArticleItemProcessor>().Use<CardItemProcessor>();
-            For<IArticleItemProcessor>().Use<BanlistItemProcessor>();
-            For<IArticleItemProcessor>().Use<ArchetypeItemProcessor>();
-            For<IArticleItemProcessor>().Use<CardsByArchetypeItemProcessor>();
-
-
             For<ISemanticCardHandler>().Use<SemanticCardHandler>();
             For<ISemanticSearch>().Use<SemanticSearch>();
             For<ISemanticCardProcessor>().Use<SemanticCardProcessor>();

@@ -26,31 +26,37 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         {
             var response = new ArticleTaskResult { Article = item };
 
-            var articleUrl = _config.WikiaDomainUrl + item.Url;
-            var archetypeUrl = new Uri(articleUrl);
+            if (!item.Title.Equals("Archetype", StringComparison.OrdinalIgnoreCase))
+            {
+                var articleUrl = _config.WikiaDomainUrl + item.Url;
+                var archetypeUrl = new Uri(articleUrl);
 
-            var existingArchetype = await _archetypeService.ArchetypeById(item.Id);
-            var archetype = existingArchetype == null
-                ? await _archetypeService.Add(new AddArchetypeCommand
-                {
-                    ArchetypeNumber = item.Id,
-                    Name = item.Title,
-                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(articleUrl),
-                    Url = archetypeUrl.AbsoluteUri,
-                    Cards = _archetypeWebPage.Cards(archetypeUrl)
-                })
-                : await _archetypeService.Update(new UpdateArchetypeCommand
-                {
-                    Id = existingArchetype.Id,
-                    Name = item.Title,
-                    Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(articleUrl),
-                    Url = archetypeUrl.AbsoluteUri,
-                    Cards = _archetypeWebPage.Cards(archetypeUrl)
-                });
+                var thumbNailUrl = await _archetypeWebPage.ArchetypeThumbnail(item.Id, item.Url);
+
+                var existingArchetype = await _archetypeService.ArchetypeById(item.Id);
+
+                var archetype = existingArchetype == null
+                    ? await _archetypeService.Add(new AddArchetypeCommand
+                    {
+                        ArchetypeNumber = item.Id,
+                        Name = item.Title,
+                        Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(thumbNailUrl),
+                        Url = archetypeUrl.AbsoluteUri,
+                        Cards = _archetypeWebPage.Cards(archetypeUrl)
+                    })
+                    : await _archetypeService.Update(new UpdateArchetypeCommand
+                    {
+                        Id = existingArchetype.Id,
+                        Name = item.Title,
+                        Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(thumbNailUrl),
+                        Url = archetypeUrl.AbsoluteUri,
+                        Cards = _archetypeWebPage.Cards(archetypeUrl)
+                    });
 
 
-            if (archetype != null)
-                response.IsSuccessfullyProcessed = true;
+                if (archetype != null)
+                    response.IsSuccessfullyProcessed = true;
+            }
 
             return response;
         }
