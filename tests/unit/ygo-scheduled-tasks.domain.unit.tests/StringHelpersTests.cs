@@ -20,7 +20,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests
             var result = StringHelpers.RemoveBetween(cardName, beginChar, endChar);
 
             // Assert
-            result.ShouldBeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
     }
 }

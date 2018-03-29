@@ -17,7 +17,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests
             var result = ContentResultHelpers.GetSectionContentList(section);
 
             // Assert
-            result.ShouldBeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
 
         [TestCaseSource(nameof(_getContentListCases))]
@@ -29,7 +29,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests
             var result = ContentResultHelpers.GetSectionContentList(section);
 
             // Assert
-            result.ShouldBeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
 
 

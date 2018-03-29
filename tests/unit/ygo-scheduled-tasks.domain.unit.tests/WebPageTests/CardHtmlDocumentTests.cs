@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using FluentAssertions;
+using HtmlAgilityPack;
+using NSubstitute;
 using NUnit.Framework;
+using ygo_scheduled_tasks.core.WebPage;
 using ygo_scheduled_tasks.domain.WebPage;
 using ygo_scheduled_tasks.domain.WebPage.Cards;
 
@@ -9,12 +13,14 @@ namespace ygo_scheduled_tasks.domain.unit.tests.WebPageTests
     [TestFixture]
     public class CardHtmlDocumentTests
     {
-        private CardHtmlDocument _sut;
+        private ICardHtmlDocument _sut;
+        private IHtmlWebPage _htmlWebPage;
 
         [SetUp]
         public void Setup()
         {
-            _sut = new CardHtmlDocument(new HtmlWebPage());
+            _htmlWebPage = Substitute.For<IHtmlWebPage>();
+            _sut = new CardHtmlDocument(_htmlWebPage);
         }
 
         [TestCase(null)]
@@ -28,7 +34,37 @@ namespace ygo_scheduled_tasks.domain.unit.tests.WebPageTests
             Action act = () => _sut.Load(cardProfileUrl);
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
+
+        [Test]
+        public void Given_A_Valid_Card_String_Url_Should_Invoke_HtmlWebPage_Load()
+        {
+            // Arrange
+            const string url = "http://www.google.co.uk";
+            _htmlWebPage.Load(Arg.Any<string>()).Returns(new HtmlDocument());
+
+            // Act
+            _sut.Load(url);
+
+            // Assert
+            _htmlWebPage.Received(1).Load(Arg.Any<string>());
+        }
+
+        [Test]
+        public void Given_A_Valid_Card_Uri_Should_Invoke_HtmlWebPage_Load()
+        {
+            // Arrange
+            var url = new Uri("http://www.google.co.uk");
+        
+            _htmlWebPage.Load(Arg.Any<Uri>()).ReturnsForAnyArgs(new HtmlDocument());
+
+            // Act
+            _sut.Load(url);
+
+            // Assert
+            _htmlWebPage.Received(1).Load(Arg.Any<Uri>());
+        }
+
     }
 }

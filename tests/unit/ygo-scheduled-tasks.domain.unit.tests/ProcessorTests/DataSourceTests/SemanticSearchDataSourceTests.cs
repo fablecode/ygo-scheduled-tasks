@@ -34,7 +34,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.DataSourceTests
             Action act = () => _sut.Producer(url,  new BufferBlock<SemanticCard[]>());
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.DataSourceTests
             Action act = () => _sut.Producer("url", null);
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Test]

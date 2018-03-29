@@ -29,7 +29,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             var result = await _sut.ArchetypeThumbnail(archetypeNumber, url);
 
             // Assert
-            result.ShouldBeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
     }
 }

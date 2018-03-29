@@ -35,7 +35,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.DataSourceTests
             Action act = () => _sut.Producer(category, 500, new BufferBlock<UnexpandedArticle[]>()).Wait();
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.DataSourceTests
             Action act = () => _sut.Producer("category", 500, null).Wait();
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Test]

@@ -36,7 +36,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
 
             // Assert
             act
-                .ShouldThrow<ArgumentException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage(expected);
         }
 
@@ -51,7 +51,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests
 
             // Assert
             act
-                .ShouldThrow<ArgumentException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage(expected);
         }
 

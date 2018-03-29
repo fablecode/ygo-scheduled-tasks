@@ -28,7 +28,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             Action act = () => _sut.Load(cardProfileUrl);
 
             // Assert
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [TestCase("http://yugioh.wikia.com/wiki/Borreload_Dragon")]
