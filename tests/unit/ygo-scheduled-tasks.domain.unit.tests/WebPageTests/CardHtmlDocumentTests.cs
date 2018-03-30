@@ -55,7 +55,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.WebPageTests
             // Arrange
             var url = new Uri("http://www.google.co.uk");
         
-            _htmlWebPage.Load(Arg.Any<Uri>()).ReturnsForAnyArgs(new HtmlDocument());
+            _htmlWebPage.Load(Arg.Any<Uri>()).Returns(new HtmlDocument());
 
             // Act
             _sut.Load(url);

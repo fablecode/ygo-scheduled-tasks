@@ -22,7 +22,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
             if (string.IsNullOrWhiteSpace(url))
                 throw new ArgumentException(nameof(url));
 
-            Load(new Uri(url));
+            _cardPage = _htmlWebPage.Load(url);
         }
 
         public void Load(Uri url)
