@@ -2,7 +2,6 @@
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
-using wikia.Api;
 using ygo_scheduled_tasks.domain.WebPage;
 using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 
@@ -18,8 +17,9 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
         public void Setup()
         {
             _config = Substitute.For<IConfig>();
+            var archetypeThumbnail = Substitute.For<IArchetypeThumbnail>();
 
-            _sut = new ArchetypeWebPage(_config, new HtmlWebPage(), new WikiArticle("http://yugioh.wikia.com"));
+            _sut = new ArchetypeWebPage(_config, new HtmlWebPage(), archetypeThumbnail);
         }
 
         [TestCase("http://yugioh.wikia.com/wiki/List_of_%22Blackwing%22_cards", "/wiki/Special:Ask/-5B-5BCard-20type::Monster-20Card-5D-5D-20-5B-5BArchseries::Blackwing-5D-5D/-3FJapanese-20name/-3FPrimary-20type/-3FSecondary-20type/-3FAttribute%3D-5B-5BAttribute-5D-5D/-3FType%3D-5B-5BType-5D-5D/-3FStars-20string%3D-5B-5BLevel-5D-5D-2F-20-5B-5BRank-5D-5D/-3FATK-20string%3D-5B-5BATK-5D-5D/-3FDEF-20string%3D-5B-5BDEF-5D-5D/mainlabel%3D/limit%3D50/offset%3D50/format%3Dtable/headers%3D-20plain/searchlabel%3D-20...-20further-20results-20(62-20more)/class%3D-20sortable-20wikitable-20smwtable-20card-2Dlist")]

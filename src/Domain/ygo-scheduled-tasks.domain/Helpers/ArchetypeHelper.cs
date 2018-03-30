@@ -19,7 +19,7 @@ namespace ygo_scheduled_tasks.domain.Helpers
 
         public static string ExtractThumbnailUrl(string thumbnailUrl)
         {
-            return new Regex(@"(?<Protocol>\w+):(.+?).(jpg|jpeg|tif|tiff|png|gif|bmp|wmf)").Match(thumbnailUrl).Value;
+            return thumbnailUrl == null ? null : new Regex(@"(?<Protocol>\w+):(.+?).(jpg|jpeg|tif|tiff|png|gif|bmp|wmf)").Match(thumbnailUrl).Value;
         }
     }
 }

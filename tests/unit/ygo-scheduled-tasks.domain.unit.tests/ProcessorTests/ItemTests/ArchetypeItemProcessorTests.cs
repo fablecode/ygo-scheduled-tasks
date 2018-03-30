@@ -10,6 +10,7 @@ using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.domain.WebPage;
+using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 
 namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 {

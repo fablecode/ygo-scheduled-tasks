@@ -36,6 +36,25 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             result.Should().BeEquivalentTo(expected);
         }
 
+        [Test]
+        public void Given_An_Invalid_Card_Profile_Url_Should_Return_Null()
+        {
+            // Arrange
+            var cardProfileUrl = "http://www.google.co.uk";
+
+            var htmlDocument = new CardHtmlDocument(new HtmlWebPage());
+            htmlDocument.Load(cardProfileUrl);
+
+            _sut.Load(htmlDocument.ProfileElement());
+
+            // Act
+            var result = _sut.GetValue(CardHtmlTable.Name);
+
+            // Assert
+            result.Should().BeNull();
+        }
+
+
         [TestCase("http://yugioh.wikia.com/wiki/Monster_Reborn", "83764718")]
         [TestCase("http://yugioh.wikia.com/wiki/Nobledragon_Magician", "88935103")]
         [TestCase("http://yugioh.wikia.com/wiki/Call_of_the_Haunted", "97077563")]
@@ -112,6 +131,26 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             // Assert
             result.Should().BeEquivalentTo(expected);
         }
+
+        [Test]
+        public void Given_A_Invalid_Monster_Card_Profile_Url_Should_Extract_Card_Attribute()
+        {
+            // Arrange
+            var cardProfileUrl = "http://www.google.co.uk";
+            var expected = string.Empty;
+
+            var htmlDocument = new CardHtmlDocument(new HtmlWebPage());
+            htmlDocument.Load(cardProfileUrl);
+
+            _sut.Load(htmlDocument.ProfileElement());
+
+            // Act
+            var result = _sut.GetCardAttribute();
+
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
+
 
         [TestCase("http://yugioh.wikia.com/wiki/Summoner_Monk", 4)]
         [TestCase("http://yugioh.wikia.com/wiki/Nobledragon_Magician", 3)]

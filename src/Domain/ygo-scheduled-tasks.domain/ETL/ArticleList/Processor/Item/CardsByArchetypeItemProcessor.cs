@@ -6,6 +6,7 @@ using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.Helpers;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.domain.WebPage;
+using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 {

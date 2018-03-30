@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace ygo_scheduled_tasks.domain.WebPage
+namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
 {
     public interface IArchetypeWebPage
     {

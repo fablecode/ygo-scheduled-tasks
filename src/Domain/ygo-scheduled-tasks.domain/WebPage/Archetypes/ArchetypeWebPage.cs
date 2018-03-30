@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using wikia.Api;
 using ygo_scheduled_tasks.core.WebPage;
-using ygo_scheduled_tasks.domain.Helpers;
 
 namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
 {
@@ -13,13 +11,13 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
     {
         private readonly IConfig _config;
         private readonly IHtmlWebPage _htmlWebPage;
-        private readonly IWikiArticle _wikiArticle;
+        private readonly IArchetypeThumbnail _archetypeThumbnail;
 
-        public ArchetypeWebPage(IConfig config, IHtmlWebPage htmlWebPage, IWikiArticle wikiArticle)
+        public ArchetypeWebPage(IConfig config, IHtmlWebPage htmlWebPage, IArchetypeThumbnail archetypeThumbnail)
         {
             _config = config;
             _htmlWebPage = htmlWebPage;
-            _wikiArticle = wikiArticle;
+            _archetypeThumbnail = archetypeThumbnail;
         }
 
         public IEnumerable<string> Cards(Uri archetypeUrl)
@@ -80,26 +78,11 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
 
         public async Task<string> ArchetypeThumbnail(int articleId, string url)
         {
-            var profileDetailsList = await _wikiArticle.Details(articleId);
-            var profileDetails = profileDetailsList.Items.First();
+            var thumbNail = await _archetypeThumbnail.FromArticleId(articleId);
 
-            var thumbNail = profileDetails.Value.Thumbnail;
-
-            if (string.IsNullOrWhiteSpace(thumbNail))
-            {
-                var archetypeWebPage = _htmlWebPage.Load(_config.WikiaDomainUrl + url);
-
-                var srcElement = archetypeWebPage.DocumentNode.SelectSingleNode("//img[@class='pi-image-thumbnail']");
-
-                var srcAttribute = srcElement?.Attributes?["src"].Value;
-
-                if(srcAttribute != null)
-                    thumbNail = ArchetypeHelper.ExtractThumbnailUrl(srcAttribute);
-            }
-            else
-            {
-                thumbNail = ArchetypeHelper.ExtractThumbnailUrl(thumbNail);
-            }
+            thumbNail = string.IsNullOrWhiteSpace(thumbNail) 
+                ? _archetypeThumbnail.FromWebPage(url)
+                : thumbNail;
 
             return thumbNail;
         }

@@ -101,12 +101,14 @@
     <Compile Include="IConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IYugiohCardService.cs" />
+    <Compile Include="WebPage\Archetypes\ArchetypeThumbnail.cs" />
     <Compile Include="WebPage\Archetypes\ArchetypeWebPage.cs" />
+    <Compile Include="WebPage\Archetypes\IArchetypeThumbnail.cs" />
     <Compile Include="WebPage\Cards\CardHtmlDocument.cs" />
     <Compile Include="WebPage\Cards\CardHtmlTable.cs" />
     <Compile Include="WebPage\Cards\CardWebPage.cs" />
     <Compile Include="WebPage\HtmlWebPage.cs" />
-    <Compile Include="WebPage\IArchetypeWebPage.cs" />
+    <Compile Include="WebPage\Archetypes\IArchetypeWebPage.cs" />
     <Compile Include="WebPage\SemanticSearch.cs" />
     <Compile Include="YgoCardType.cs" />
   </ItemGroup>
