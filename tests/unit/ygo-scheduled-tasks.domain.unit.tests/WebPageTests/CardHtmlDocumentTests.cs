@@ -1,11 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using HtmlAgilityPack;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 using ygo_scheduled_tasks.core.WebPage;
-using ygo_scheduled_tasks.domain.WebPage;
 using ygo_scheduled_tasks.domain.WebPage.Cards;
 
 namespace ygo_scheduled_tasks.domain.unit.tests.WebPageTests

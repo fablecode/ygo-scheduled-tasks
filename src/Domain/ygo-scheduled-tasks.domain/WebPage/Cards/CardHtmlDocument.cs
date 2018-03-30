@@ -27,7 +27,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
 
         public void Load(Uri url)
         {
-            _cardPage = _htmlWebPage.Load(url.AbsoluteUri);
+            _cardPage = _htmlWebPage.Load(url);
         }
 
         public HtmlNode ProfileElement()
