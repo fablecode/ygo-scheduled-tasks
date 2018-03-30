@@ -23,7 +23,6 @@
 				<Exclude>
 				  <Function>.*get_.*</Function>
 				  <Function>.*set_.*</Function>
-				  <Function>.*ctor.*</Function>
 				</Exclude>
 			</Functions>
 			

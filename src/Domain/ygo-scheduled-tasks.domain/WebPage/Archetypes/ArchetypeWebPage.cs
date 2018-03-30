@@ -1,10 +1,9 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
 using wikia.Api;
-using wikia.Models.Article.Details;
 using ygo_scheduled_tasks.core.WebPage;
 using ygo_scheduled_tasks.domain.Helpers;
 
