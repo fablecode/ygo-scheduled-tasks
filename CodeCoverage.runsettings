@@ -10,6 +10,8 @@
             <ModulePaths>
               <Exclude>
                 <ModulePath>.*Tests.dll</ModulePath>
+                <ModulePath>.*autofixture.dll</ModulePath>
+                <ModulePath>.*nunit.framework.dll</ModulePath>
                 <ModulePath>.*Decorator.cs</ModulePath>
                 <ModulePath>.*htmlagilitypack.dll</ModulePath>
 				<ModulePath>.*Polly.dll</ModulePath>
