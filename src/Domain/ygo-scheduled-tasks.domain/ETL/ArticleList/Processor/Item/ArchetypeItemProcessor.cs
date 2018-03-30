@@ -5,7 +5,6 @@ using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.Helpers;
 using ygo_scheduled_tasks.domain.Services;
-using ygo_scheduled_tasks.domain.WebPage;
 using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
@@ -41,7 +40,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                     {
                         ArchetypeNumber = item.Id,
                         Name = item.Title,
-                        Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(thumbNailUrl),
+                        Thumbnail = ImageHelper.ExtractImageUrl(thumbNailUrl),
                         Url = archetypeUrl.AbsoluteUri,
                         Cards = _archetypeWebPage.Cards(archetypeUrl)
                     })
@@ -49,7 +48,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                     {
                         Id = existingArchetype.Id,
                         Name = item.Title,
-                        Thumbnail = ArchetypeHelper.ExtractThumbnailUrl(thumbNailUrl),
+                        Thumbnail = ImageHelper.ExtractImageUrl(thumbNailUrl),
                         Url = archetypeUrl.AbsoluteUri,
                         Cards = _archetypeWebPage.Cards(archetypeUrl)
                     });

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using wikia.Models.Article.Simple;
 using ygo_scheduled_tasks.domain.Helpers;
 
-namespace ygo_scheduled_tasks.domain.unit.tests
+namespace ygo_scheduled_tasks.domain.unit.tests.HelperTests
 {
     [TestFixture]
     public class ContentResultHelpersTests

@@ -24,7 +24,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
             var profileDetailsList = await _wikiArticle.Details(articleId);
             var profileDetails = profileDetailsList.Items.First();
 
-            return ArchetypeHelper.ExtractThumbnailUrl(profileDetails.Value.Thumbnail);
+            return ImageHelper.ExtractImageUrl(profileDetails.Value.Thumbnail);
         }
 
         public string FromWebPage(string url)
@@ -35,7 +35,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Archetypes
 
             var srcAttribute = srcElement?.Attributes?["src"].Value;
 
-            return srcAttribute != null ? ArchetypeHelper.ExtractThumbnailUrl(srcAttribute) : null;
+            return srcAttribute != null ? ImageHelper.ExtractImageUrl(srcAttribute) : null;
         }
     }
 }

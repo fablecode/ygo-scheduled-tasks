@@ -60,6 +60,7 @@
     <Compile Include="Helpers\ArchetypeHelper.cs" />
     <Compile Include="Helpers\BanlistHelpers.cs" />
     <Compile Include="Helpers\ContentResultHelpers.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="SemanticSearchUrls.cs" />
     <Compile Include="Services\IArchetypeService.cs" />

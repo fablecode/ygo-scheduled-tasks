@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using ygo_scheduled_tasks.core.WebPage;
+using ygo_scheduled_tasks.domain.Helpers;
 
 namespace ygo_scheduled_tasks.domain.WebPage.Cards
 {
@@ -65,7 +66,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
             var imageUrl = _cardPage.DocumentNode.SelectSingleNode("//td[@class='cardtable-cardimage']/a/img").Attributes["src"].Value;
 
             if (imageUrl.Contains("revision"))
-                imageUrl = imageUrl.Substring(0, imageUrl.IndexOf("/revision", StringComparison.Ordinal));
+                imageUrl = ImageHelper.ExtractImageUrl(imageUrl);
 
             return imageUrl;
         }
