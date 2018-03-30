@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks.Dataflow;
+﻿using AutoFixture;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
-using Ploeh.AutoFixture;
+using System;
+using System.Threading.Tasks.Dataflow;
 using wikia.Api;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;

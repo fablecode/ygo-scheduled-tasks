@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.domain;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
@@ -9,7 +10,7 @@ using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Model;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
 {
-    public class CardInformationTaskHandler : IAsyncRequestHandler<CardInformationTask, CardInformationTaskResult>
+    public class CardInformationTaskHandler : IRequestHandler<CardInformationTask, CardInformationTaskResult>
     {
         private readonly IArticleCategoryProcessor _articleCategoryProcessor;
         private readonly ISemanticSearchProcessor _semanticSearchProcessor;
@@ -22,17 +23,17 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.CardInformation
             _validator = validator;
         }
 
-        public async Task<CardInformationTaskResult> Handle(CardInformationTask message)
+        public async Task<CardInformationTaskResult> Handle(CardInformationTask request, CancellationToken cancellationToken)
         {
             var response = new CardInformationTaskResult();
 
-            var validationResults = _validator.Validate(message);
+            var validationResults = _validator.Validate(request);
 
             if (validationResults.IsValid)
             {
-                foreach (var category in message.Categories)
+                foreach (var category in request.Categories)
                 {
-                    var categoryResult = await _articleCategoryProcessor.Process(category, message.PageSize);
+                    var categoryResult = await _articleCategoryProcessor.Process(category, request.PageSize);
 
                     response.ArticleTaskResults.Add(categoryResult);
                 }

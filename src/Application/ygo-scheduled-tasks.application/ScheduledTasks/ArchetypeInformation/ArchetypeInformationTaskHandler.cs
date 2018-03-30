@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
@@ -6,7 +7,7 @@ using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation
 {
-    public class ArchetypeInformationTaskHandler : IAsyncRequestHandler<ArchetypeInformationTask, ArchetypeInformationTaskResult>
+    public class ArchetypeInformationTaskHandler : IRequestHandler<ArchetypeInformationTask, ArchetypeInformationTaskResult>
     {
         private readonly IArticleCategoryProcessor _articleCategoryProcessor;
         private readonly IValidator<ArchetypeInformationTask> _validator;
@@ -16,15 +17,15 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.ArchetypeInformation
             _articleCategoryProcessor = articleCategoryProcessor;
             _validator = validator;
         }
-        public async Task<ArchetypeInformationTaskResult> Handle(ArchetypeInformationTask message)
+        public async Task<ArchetypeInformationTaskResult> Handle(ArchetypeInformationTask request, CancellationToken cancellationToken)
         {
             var response = new ArchetypeInformationTaskResult();
 
-            var validationResults = _validator.Validate(message);
+            var validationResults = _validator.Validate(request);
 
             if (validationResults.IsValid)
             {
-                var results = await _articleCategoryProcessor.Process(message.Categories, message.PageSize);
+                var results = await _articleCategoryProcessor.Process(request.Categories, request.PageSize);
 
                 response.ArticleTaskResults = results;
             }

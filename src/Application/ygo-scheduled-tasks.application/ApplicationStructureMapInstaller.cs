@@ -41,11 +41,9 @@ namespace ygo_scheduled_tasks.application
 
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>)); // Handlers with no response
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>)); // Handlers with a response
-                    scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<>)); // Async handlers with no response
-                    scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>)); // Async Handlers with a response
-                    scan.ConnectImplementationsToTypesClosing(typeof(ICancellableAsyncNotificationHandler<>));
+                    scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>)); // Async handlers with no response
+                    scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>)); // Async Handlers with a response
                     scan.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
                 }
             );
 

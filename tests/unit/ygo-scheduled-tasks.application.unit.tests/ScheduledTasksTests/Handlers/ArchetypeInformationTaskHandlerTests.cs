@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Threading;
+using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
             var task = new ArchetypeInformationTask();
 
             // Act
-            var result = await _sut.Handle(task);
+            var result = await _sut.Handle(task, CancellationToken.None);
 
             // Assert
             result.Errors.Should().NotBeEmpty();
@@ -43,7 +44,7 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
             _articleCategoryProcessor.Process(Arg.Any<string>(), Arg.Any<int>()).Returns(new ArticleBatchTaskResult());
 
             // Act
-            await _sut.Handle(task);
+            await _sut.Handle(task, CancellationToken.None);
 
             // Assert
             await _articleCategoryProcessor.DidNotReceive().Process(Arg.Any<string>(), Arg.Any<int>());

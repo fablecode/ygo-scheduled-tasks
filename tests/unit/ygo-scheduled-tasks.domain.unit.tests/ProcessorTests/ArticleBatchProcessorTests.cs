@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
-using Ploeh.AutoFixture;
 using System;
 using System.Threading.Tasks;
+using AutoFixture;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;

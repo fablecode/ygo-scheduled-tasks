@@ -1,9 +1,9 @@
 ﻿using NSubstitute;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
+using NUnit.Framework;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain.Command;
