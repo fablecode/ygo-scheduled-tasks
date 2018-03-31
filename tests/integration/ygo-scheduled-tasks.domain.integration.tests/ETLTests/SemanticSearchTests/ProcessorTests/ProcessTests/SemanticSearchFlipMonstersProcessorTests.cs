@@ -8,7 +8,7 @@ using ygo_scheduled_tasks.core.WebPage;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process;
 using ygo_scheduled_tasks.domain.Services;
 
-namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.SemanticSearchTests.ProcessorTests
+namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.SemanticSearchTests.ProcessorTests.ProcessTests
 {
     [TestFixture]
     public class SemanticSearchFlipMonstersProcessorTests

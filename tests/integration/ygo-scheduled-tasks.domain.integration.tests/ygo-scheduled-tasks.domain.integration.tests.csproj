@@ -172,8 +172,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ETLTests\SemanticSearchTests\ProcessorTests\SemanticSearchFlipMonstersProcessorTests.cs" />
-    <Compile Include="ETLTests\SemanticSearchTests\ProcessorTests\SemanticSearchNormalMonstersProcessorTests.cs" />
+    <Compile Include="ETLTests\SemanticSearchTests\ProcessorTests\ProcessTests\SemanticSearchFlipMonstersProcessorTests.cs" />
+    <Compile Include="ETLTests\SemanticSearchTests\ProcessorTests\ProcessTests\SemanticSearchNormalMonstersProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPageTests\ArchetypeThumbnailTests.cs" />
     <Compile Include="WebPageTests\CardsByArchetypeWebPageTests.cs" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NSubstitute;
@@ -9,7 +8,7 @@ using ygo_scheduled_tasks.core.WebPage;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process;
 using ygo_scheduled_tasks.domain.Services;
 
-namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.SemanticSearchTests.ProcessorTests
+namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.SemanticSearchTests.ProcessorTests.ProcessTests
 {
     public class SemanticSearchNormalMonstersProcessorTests
     {
