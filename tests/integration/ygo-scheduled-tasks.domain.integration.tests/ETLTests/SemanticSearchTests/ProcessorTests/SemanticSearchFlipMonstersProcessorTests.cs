@@ -79,7 +79,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.SemanticSearchTe
             var result = await _sut.ProcessItem(new SemanticCard { Name = "4-Starred Ladybug of Doom", Url = "/wiki/4-Starred_Ladybug_of_Doom" });
 
             // Assert
-            result.YugiohCard.Types.Split(new[] {" / "}, StringSplitOptions.None).Should().OnlyHaveUniqueItems();
+            result.YugiohCard.Types.Split(new[] { " / " }, StringSplitOptions.None).Should().Contain("Flip");
         }
 
     }

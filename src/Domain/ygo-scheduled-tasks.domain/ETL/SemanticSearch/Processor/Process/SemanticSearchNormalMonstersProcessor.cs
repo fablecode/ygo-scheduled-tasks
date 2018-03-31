@@ -28,6 +28,8 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process
 
             if (yugiohCard != null)
             {
+                response.YugiohCard = yugiohCard;
+
                 const string normal = "Normal";
 
                 if (!yugiohCard.Types.ToLower().Contains(normal.ToLower()))
