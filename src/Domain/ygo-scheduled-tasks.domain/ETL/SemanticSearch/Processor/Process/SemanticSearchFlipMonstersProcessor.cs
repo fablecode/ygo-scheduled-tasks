@@ -28,6 +28,8 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process
 
             if (yugiohCard != null)
             {
+                response.YugiohCard = yugiohCard;
+
                 const string flip = "Flip";
                 if (!yugiohCard.Types.ToLower().Contains(flip.ToLower()))
                     yugiohCard.Types = $"{yugiohCard.Types} / {flip}";

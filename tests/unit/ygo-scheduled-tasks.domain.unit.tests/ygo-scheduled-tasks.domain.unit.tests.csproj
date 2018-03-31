@@ -175,7 +175,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelperTests\ArchetypeHelperTests.cs" />
     <Compile Include="BanlistTests\ExtractBanlistArticleDetailsTests.cs" />
     <Compile Include="HelperTests\ContentResultHelpersTests.cs" />
     <Compile Include="HelperTests\ImageHelperTests.cs" />

@@ -259,21 +259,16 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             result.Should().BeEquivalentTo(expected);
         }
 
-        [TestCase("http://yugioh.wikia.com/wiki/Summoner_Monk", "https://vignette.wikia.nocookie.net/yugioh/images/c/c7/SummonerMonk-SDCL-EN-C-1E.png/revision/latest/scale-to-width-down/300?cb=20171107114314")]
-        [TestCase("http://yugioh.wikia.com/wiki/Nobledragon_Magician", "https://vignette.wikia.nocookie.net/yugioh/images/9/97/NobledragonMagician-LEDD-EN-C-1E.png/revision/latest/scale-to-width-down/300?cb=20171005220221")]
-        public void Given_A_Valid_Monster_Card_Profile_Url_Should_Extract_Card_Profile_Image_Url(string cardProfileUrl, string expected)
+        [Test]
+        public void Given_CardHtmlTable_Collection_And_CardLookup_Is_Not_Initialized_Should_Return_Empty_String()
         {
             // Arrange
-            var htmlDocument = new CardHtmlDocument(new HtmlWebPage());
-            htmlDocument.Load(cardProfileUrl);
-
-            _sut.Load(htmlDocument.ProfileElement());
 
             // Act
-            //var result = _sut.(CardHtmlTable.Types);
+            var result = _sut.GetValue();
 
             // Assert
-            //result.Should().BeEquivalentTo(expected);
+            result.Should().BeEmpty();
         }
 
     }

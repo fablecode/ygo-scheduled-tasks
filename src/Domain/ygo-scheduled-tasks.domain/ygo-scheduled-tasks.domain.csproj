@@ -57,7 +57,6 @@
     <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchException.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\Model\SemanticSearchTaskResult.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\SemanticSearchProcessor.cs" />
-    <Compile Include="Helpers\ArchetypeHelper.cs" />
     <Compile Include="Helpers\BanlistHelpers.cs" />
     <Compile Include="Helpers\ContentResultHelpers.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />

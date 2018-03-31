@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
-using ygo_scheduled_tasks.domain.Helpers;
 using ygo_scheduled_tasks.domain.Services;
-using ygo_scheduled_tasks.domain.WebPage;
 using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
@@ -26,7 +24,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         public async Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
             var response = new ArticleTaskResult { Article = item };
-            var archetypeName = ArchetypeHelper.ExtractArchetypeName(item.Title);
+            var archetypeName = item.Title;
 
             var archetypeUrl = new Uri(_config.WikiaDomainUrl + item.Url);
 

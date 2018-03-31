@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using ygo_scheduled_tasks.domain.WebPage;
@@ -52,5 +53,22 @@ namespace ygo_scheduled_tasks.domain.unit.tests.WebPageTests.ArchetypeWebTests
             // Assert
             _archetypeThumbnail.Received(1).FromWebPage(Arg.Any<string>());
         }
+
+        [Test]
+        public async Task Given_An_ArticleId_If_No_Thumbnail_Is_Found_Should_Return_Null()
+        {
+            // Arrange
+            const int articleId = 3242;
+
+            _archetypeThumbnail.FromArticleId(articleId).Returns((string)null);
+            _archetypeThumbnail.FromWebPage(Arg.Any<string>()).Returns((string) null);
+
+            // Act
+            var result = await _sut.ArchetypeThumbnail(articleId, Arg.Any<string>());
+
+            // Assert
+            result.Should().BeNull();
+        }
+
     }
 }

@@ -8,6 +8,8 @@ namespace ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Model
 
         public SemanticCard Card { get; set; }
 
+        public YugiohCard YugiohCard { get; set; }
+
         public SemanticSearchException Failed { get; set; }
     }
 }
