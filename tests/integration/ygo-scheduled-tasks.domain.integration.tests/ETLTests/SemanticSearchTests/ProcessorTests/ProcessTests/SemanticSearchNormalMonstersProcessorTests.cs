@@ -54,6 +54,22 @@ namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.SemanticSearchTe
         }
 
         [Test]
+        public async Task Given_A_Valid_Normal_Monster_Url_IsSuccessfullyProcessed_Should_Be_True()
+        {
+            // Arrange
+            _config.WikiaDomainUrl.Returns("http://www.yugioh.wikia.com");
+            _cardWebPage.GetYugiohCard(Arg.Any<Uri>()).Returns(new YugiohCard { Types = "Dragon" });
+            _yugiohCardService.AddOrUpdate(Arg.Any<YugiohCard>()).Returns(new Card());
+
+            // Act
+            var result = await _sut.ProcessItem(new SemanticCard { Name = "Blue-Eyes White Dragon", Url = "/wiki/Blue-Eyes_White_Dragon" });
+
+            // Assert
+            result.IsSuccessfullyProcessed.Should().BeTrue();
+        }
+
+
+        [Test]
         public async Task Given_A_Valid_Normal_Monster_Url_If_Types_Does_Not_Contain_Normal_Should_Append_Normal()
         {
             // Arrange

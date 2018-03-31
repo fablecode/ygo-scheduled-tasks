@@ -55,6 +55,22 @@ namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.SemanticSearchTe
         }
 
         [Test]
+        public async Task Given_A_Valid_Flip_Monster_Url_IsSuccessfullyProcessed_Should_Be_True()
+        {
+            // Arrange
+            _config.WikiaDomainUrl.Returns("http://www.yugioh.wikia.com");
+            _cardWebPage.GetYugiohCard(Arg.Any<Uri>()).Returns(new YugiohCard { Types = "Insect / Effect" });
+            _yugiohCardService.AddOrUpdate(Arg.Any<YugiohCard>()).Returns(new Card());
+
+            // Act
+            var result = await _sut.ProcessItem(new SemanticCard { Name = "4-Starred Ladybug of Doom", Url = "/wiki/4-Starred_Ladybug_of_Doom" });
+
+            // Assert
+            result.IsSuccessfullyProcessed.Should().BeTrue();
+        }
+
+
+        [Test]
         public async Task Given_A_Valid_Flip_Monster_Url_If_Types_Does_Not_Contain_Flip_Should_Append_Flip()
         {
             // Arrange
