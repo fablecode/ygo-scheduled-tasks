@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="Command\AddArchetypeCommand.cs" />
     <Compile Include="Command\AddBanlistCommand.cs" />
+    <Compile Include="Command\UpdateArchetypeCardsCommand.cs" />
     <Compile Include="Command\UpdateArchetypeCommand.cs" />
     <Compile Include="Command\UpdateBanlistCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCommand.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="SemanticSearchUrls.cs" />
+    <Compile Include="Services\IArchetypeCardsService.cs" />
     <Compile Include="Services\IArchetypeService.cs" />
     <Compile Include="Services\IAttributeService.cs" />
     <Compile Include="Services\IBanlistCardsService.cs" />

@@ -1,15 +1,14 @@
-﻿using NSubstitute;
+﻿using FluentAssertions;
+using NSubstitute;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FluentAssertions;
-using NUnit.Framework;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item;
 using ygo_scheduled_tasks.domain.Services;
-using ygo_scheduled_tasks.domain.WebPage;
 using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 
 namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
@@ -31,6 +30,19 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
 
             _sut = new ArchetypeItemProcessor(_archetypeWebPage, _archetypeService, _config);
         }
+
+        [Test]
+        public void Should_Only_Handle_Forbidden_And_Limited_Category()
+        {
+            // Arrange
+
+            // Act
+            var result = _sut.Handles("Archetypes");
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
 
         [Test]
         public async Task Given_An_Archetype_Article_Should_Execute_ArchetypeWebPage_Cards()

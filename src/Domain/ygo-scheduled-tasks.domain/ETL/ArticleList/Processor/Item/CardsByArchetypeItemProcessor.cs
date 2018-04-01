@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
-using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.domain.WebPage.Archetypes;
@@ -12,12 +11,20 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
     {
         private readonly IArchetypeWebPage _archetypeWebPage;
         private readonly IArchetypeService _archetypeService;
+        private readonly IArchetypeCardsService _archetypeCardsService;
         private readonly IConfig _config;
 
-        public CardsByArchetypeItemProcessor(IArchetypeWebPage archetypeWebPage, IArchetypeService archetypeService, IConfig config)
+        public CardsByArchetypeItemProcessor
+        (
+            IArchetypeWebPage archetypeWebPage, 
+            IArchetypeService archetypeService, 
+            IArchetypeCardsService archetypeCardsService, 
+            IConfig config
+        )
         {
             _archetypeWebPage = archetypeWebPage;
             _archetypeService = archetypeService;
+            _archetypeCardsService = archetypeCardsService;
             _config = config;
         }
 
@@ -30,24 +37,13 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
             var existingArchetype = await _archetypeService.ArchetypeByName(archetypeName);
 
-            var archetype = existingArchetype == null
-                ? await _archetypeService.Add(new AddArchetypeCommand
-                {
-                    Name = archetypeName,
-                    Url = item.Title,
-                    ArchetypeNumber = item.Id,
-                    Cards = _archetypeWebPage.Cards(archetypeUrl)
-                })
-                : await _archetypeService.Update(new UpdateArchetypeCommand
-                {
-                    Id = existingArchetype.Id,
-                    Name = archetypeName,
-                    Url = item.Title,
-                    Cards = _archetypeWebPage.Cards(archetypeUrl)
-                });
+            if (existingArchetype != null)
+            {
+                var archetype = await _archetypeCardsService.Update(existingArchetype.Id, _archetypeWebPage.Cards(archetypeUrl));
 
-            if (archetype != null)
-                response.IsSuccessfullyProcessed = true;
+                if (archetype != null)
+                    response.IsSuccessfullyProcessed = true;
+            }
 
             return response;
         }
