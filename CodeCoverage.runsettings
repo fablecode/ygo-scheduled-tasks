@@ -25,6 +25,7 @@
 				<Exclude>
 				  <Function>.*get_.*</Function>
 				  <Function>.*set_.*</Function>
+				  <Function>.*Logger*</Function>
 				</Exclude>
 			</Functions>
 			
