@@ -73,6 +73,8 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
                 await _banlistService.AddOrUpdate(banlist);
 
+                response.Data = banlist;
+
                 response.IsSuccessfullyProcessed = true;
             }
 
