@@ -1,12 +1,12 @@
-﻿using HtmlAgilityPack;
+﻿using System.Collections.Generic;
+using HtmlAgilityPack;
 
 namespace ygo_scheduled_tasks.core.WebPage
 {
     public interface ICardHtmlTable
     {
-        void Load(HtmlNode htmlTable);
-        int? GetIntValue(string key);
-        string GetValue(params string[] keys);
-        string GetCardAttribute();
+        string GetValue(string key, HtmlNode htmlTable);
+        Dictionary<string, string> ProfileData(HtmlNode htmlTable);
+        string GetValue(string[] keys, HtmlNode htmlTable);
     }
 }

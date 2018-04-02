@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Quartz;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.ScheduledTasks.CardInformation;
 
 namespace ygo_scheduled_tasks.cardinformation
@@ -15,7 +14,7 @@ namespace ygo_scheduled_tasks.cardinformation
             _mediator = mediator;
         }
 
-        Task IJob.Execute(IJobExecutionContext context)
+        public async void Execute(IJobExecutionContext context)
         {
             const int pageSize = 500;
             const string tcgCards = "TCG cards";
@@ -23,7 +22,7 @@ namespace ygo_scheduled_tasks.cardinformation
 
             var categories = new List<string> { tcgCards, ocgCards };
 
-            return _mediator.Send(new CardInformationTask { Categories = categories, PageSize = pageSize });
+            await _mediator.Send(new CardInformationTask { Categories = categories, PageSize = pageSize });
         }
     }
 }

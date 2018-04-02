@@ -180,7 +180,6 @@
     <Compile Include="WebPageTests\ArchetypeThumbnailTests.cs" />
     <Compile Include="WebPageTests\CardsByArchetypeWebPageTests.cs" />
     <Compile Include="WebPageTests\CardHtmlDocumentTests.cs" />
-    <Compile Include="WebPageTests\CardHtmlTableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Core\ygo-scheduled-tasks.core\ygo-scheduled-tasks.core.csproj">

@@ -28,6 +28,7 @@ namespace ygo_scheduled_tasks.infrastructure
             For<ILinkArrowService>().Use<LinkArrowService>();
             For<IYugiohCardService>().Use<YugiohCardService>();
             For<IArchetypeService>().Use<ArchetypeService>();
+            For<IArchetypeCardsService>().Use<ArchetypeCardsService>();
 
             For<IRestClient>().Use<RestClient>();
         }

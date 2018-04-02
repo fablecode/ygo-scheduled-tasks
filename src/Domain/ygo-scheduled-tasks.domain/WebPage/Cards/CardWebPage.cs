@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.core.WebPage;
 
@@ -7,12 +8,12 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
     public class CardWebPage : ICardWebPage
     {
         private readonly ICardHtmlDocument _cardHtmlDocument;
-        private readonly ICardHtmlTable _cardHtmlTable;
+        private readonly IHtmlWebPage _htmlWebPage;
 
-        public CardWebPage(ICardHtmlDocument cardHtmlDocument, ICardHtmlTable cardHtmlTable)
+        public CardWebPage(ICardHtmlDocument cardHtmlDocument, IHtmlWebPage htmlWebPage)
         {
             _cardHtmlDocument = cardHtmlDocument;
-            _cardHtmlTable = cardHtmlTable;
+            _htmlWebPage = htmlWebPage;
         }
 
         public YugiohCard GetYugiohCard(string url)
@@ -22,41 +23,31 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
 
         public YugiohCard GetYugiohCard(Uri url)
         {
-            Load(url);
-            return GetYugiohCard();
+            var htmlDocument = _htmlWebPage.Load(url);
+            return GetYugiohCard(htmlDocument);
         }
 
-        #region private helpers
-
-        private void Load(Uri url)
+        public YugiohCard GetYugiohCard(HtmlDocument htmlDocument)
         {
-            _cardHtmlDocument.Load(url);
-            _cardHtmlTable.Load(_cardHtmlDocument.ProfileElement());
+            var yugiohCard = new YugiohCard();
+
+            yugiohCard.ImageUrl = _cardHtmlDocument.ImageUrl(htmlDocument);
+            yugiohCard.Name = _cardHtmlDocument.Name(htmlDocument);
+            yugiohCard.Description = _cardHtmlDocument.Description(htmlDocument);
+            yugiohCard.CardNumber = _cardHtmlDocument.CardNumber(htmlDocument);
+            yugiohCard.CardType = _cardHtmlDocument.CardType(htmlDocument);
+            yugiohCard.Property = _cardHtmlDocument.Property(htmlDocument);
+            yugiohCard.Attribute = _cardHtmlDocument.Attribute(htmlDocument);
+            yugiohCard.Level = _cardHtmlDocument.Level(htmlDocument);
+            yugiohCard.Rank = _cardHtmlDocument.Rank(htmlDocument);
+            yugiohCard.AtkDef = _cardHtmlDocument.AtkDef(htmlDocument);
+            yugiohCard.AtkLink = _cardHtmlDocument.AtkLink(htmlDocument);
+            yugiohCard.Types = _cardHtmlDocument.Types(htmlDocument);
+            yugiohCard.Materials = _cardHtmlDocument.Materials(htmlDocument);
+            yugiohCard.CardEffectTypes = _cardHtmlDocument.CardEffectTypes(htmlDocument);
+            yugiohCard.PendulumScale = _cardHtmlDocument.PendulumScale(htmlDocument);
+
+            return yugiohCard;
         }
-
-        private YugiohCard GetYugiohCard()
-        {
-            var response = new YugiohCard();
-
-            response.ImageUrl = _cardHtmlDocument.ProfileImageUrl();
-            response.Name = _cardHtmlTable.GetValue(CardHtmlTable.Name);
-            response.Description = _cardHtmlDocument.ProfileCardDescription();
-            response.CardNumber = _cardHtmlTable.GetValue(CardHtmlTable.Number);
-            response.CardType = _cardHtmlTable.GetValue(CardHtmlTable.CardType);
-            response.Property = _cardHtmlTable.GetValue(CardHtmlTable.Property);
-            response.Attribute = _cardHtmlTable.GetCardAttribute();
-            response.Level = _cardHtmlTable.GetIntValue(CardHtmlTable.Level);
-            response.Rank = _cardHtmlTable.GetIntValue(CardHtmlTable.Rank);
-            response.AtkDef = _cardHtmlTable.GetValue(CardHtmlTable.AtkAndDef);
-            response.AtkLink = _cardHtmlTable.GetValue(CardHtmlTable.AtkAndLink);
-            response.Types = _cardHtmlTable.GetValue(CardHtmlTable.Types);
-            response.Materials = _cardHtmlTable.GetValue(CardHtmlTable.Materials);
-            response.CardEffectTypes = _cardHtmlTable.GetValue(CardHtmlTable.CardEffectTypes);
-            response.PendulumScale = _cardHtmlTable.GetIntValue(CardHtmlTable.PendulumScale);
-
-            return response;
-        } 
-
-        #endregion
     }
 }

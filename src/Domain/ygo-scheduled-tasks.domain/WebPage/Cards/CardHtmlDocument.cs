@@ -1,6 +1,6 @@
 ﻿using HtmlAgilityPack;
-using System;
 using System.Text.RegularExpressions;
+using System.Threading;
 using ygo_scheduled_tasks.core.WebPage;
 using ygo_scheduled_tasks.domain.Helpers;
 
@@ -8,46 +8,31 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
 {
     public class CardHtmlDocument : ICardHtmlDocument
     {
-        private readonly IHtmlWebPage _htmlWebPage;
-        private HtmlDocument _cardPage;
+        private readonly ICardHtmlTable _cardHtmlTable;
 
-        public CardHtmlDocument(IHtmlWebPage htmlWebPage)
+        public CardHtmlDocument(ICardHtmlTable cardHtmlTable)
         {
-            _htmlWebPage = htmlWebPage;
+            _cardHtmlTable = cardHtmlTable;
         }
 
-        public void Load(string url)
+        public string ImageUrl(HtmlDocument htmlDocument)
         {
-            if (string.IsNullOrWhiteSpace(url))
-                throw new ArgumentException(nameof(url));
+            var imageUrl = htmlDocument.DocumentNode.SelectSingleNode("//td[@class='cardtable-cardimage']/a/img").Attributes["src"].Value;
 
-            _cardPage = _htmlWebPage.Load(url);
+            return ImageHelper.ExtractImageUrl(imageUrl);
         }
 
-        public void Load(Uri url)
+        public string Name(HtmlDocument htmlDocument)
         {
-            _cardPage = _htmlWebPage.Load(url);
+            var htmlTableNode = ExtractHtmlCardTableNode(htmlDocument);
+
+            return _cardHtmlTable.GetValue(CardHtmlTable.Name, htmlTableNode);
         }
 
-        public HtmlNode ProfileElement()
-        {
-            return _cardPage.DocumentNode.SelectSingleNode("//div[@id='WikiaArticle']//table[contains(@class, 'cardtable')]");
-        }
-
-        public string ProfileImageUrl()
-        {
-            var imageUrl = _cardPage.DocumentNode.SelectSingleNode("//td[@class='cardtable-cardimage']/a/img").Attributes["src"].Value;
-
-            if (imageUrl.Contains("revision"))
-                imageUrl = ImageHelper.ExtractImageUrl(imageUrl);
-
-            return imageUrl;
-        }
-
-        public string ProfileCardDescription()
+        public string Description(HtmlDocument htmlDocument)
         {
             var pattern = @"(?!</?br>)<.*?>";
-            var descNode = _cardPage.DocumentNode.SelectSingleNode("//b[text()[contains(., 'Card descriptions')]]/../table[1]/tr[1]/td/table/tr[3]/td")?.InnerHtml;
+            var descNode = htmlDocument.DocumentNode.SelectSingleNode("//b[text()[contains(., 'Card descriptions')]]/../table[1]/tr[1]/td/table/tr[3]/td")?.InnerHtml;
 
             if (descNode != null)
             {
@@ -58,5 +43,103 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
 
             return string.Empty;
         }
+
+        public string CardNumber(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.Number, htmlDocument);
+        }
+
+        public string CardType(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.CardType, htmlDocument);
+        }
+
+        public string Property(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.Property, htmlDocument);
+        }
+
+        public string Attribute(HtmlDocument htmlDocument)
+        {
+            var attribute = ExtractHtmlCardTableValue(CardHtmlTable.Attribute, htmlDocument);
+
+            if (string.IsNullOrWhiteSpace(attribute))
+                return string.Empty;
+
+            var cultureInfo = Thread.CurrentThread.CurrentCulture;
+            var textInfo = cultureInfo.TextInfo;
+
+            return textInfo.ToTitleCase(attribute.Trim().ToLower());
+
+        }
+
+        public int? Level(HtmlDocument htmlDocument)
+        {
+            var level = ExtractHtmlCardTableValue(CardHtmlTable.Level, htmlDocument);
+            return string.IsNullOrWhiteSpace(level) ? null : (int?)int.Parse(level);
+        }
+
+        public int? Rank(HtmlDocument htmlDocument)
+        {
+            var rank = ExtractHtmlCardTableValue(CardHtmlTable.Rank, htmlDocument);
+            return string.IsNullOrWhiteSpace(rank) ? null : (int?)int.Parse(rank);
+        }
+
+        public string AtkDef(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.AtkAndDef, htmlDocument);
+        }
+
+        public string AtkLink(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.AtkAndLink, htmlDocument);
+        }
+
+        public string LinkArrows(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.LinkArrows, htmlDocument);
+        }
+
+        public string Types(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.Types, htmlDocument);
+        }
+
+        public string Materials(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.Materials, htmlDocument);
+        }
+
+        public string CardEffectTypes(HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(CardHtmlTable.CardEffectTypes, htmlDocument);
+        }
+
+        public long? PendulumScale(HtmlDocument htmlDocument)
+        {
+            var scale = ExtractHtmlCardTableValue(CardHtmlTable.PendulumScale, htmlDocument);
+
+            return string.IsNullOrWhiteSpace(scale) ? null : (long?)long.Parse(scale);
+        }
+
+        #region private helpers
+
+        private static HtmlNode ExtractHtmlCardTableNode(HtmlDocument htmlDocument)
+        {
+            return htmlDocument.DocumentNode.SelectSingleNode("//div[@id='WikiaArticle']//table[contains(@class, 'cardtable')]");
+        }
+
+        private string ExtractHtmlCardTableValue(string key, HtmlDocument htmlDocument)
+        {
+            return ExtractHtmlCardTableValue(new[] {key}, htmlDocument);
+        }
+
+        private string ExtractHtmlCardTableValue(string[] key, HtmlDocument htmlDocument)
+        {
+            var htmlTableNode = ExtractHtmlCardTableNode(htmlDocument);
+            return _cardHtmlTable.GetValue(key, htmlTableNode);
+        }
+
+        #endregion
     }
 }
