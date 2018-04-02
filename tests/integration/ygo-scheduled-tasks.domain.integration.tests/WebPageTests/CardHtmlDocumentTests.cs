@@ -75,5 +75,21 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             // Assert
             result.Should().NotBeNullOrEmpty();
         }
+
+        [TestCase("http://yugioh.wikia.com/wiki/Assault_Blackwing_-_Kunifusa_the_White_Rainbow")]
+        [TestCase("http://yugioh.wikia.com/wiki/Abyss_Actor%27s_Injury")]
+        [TestCase("http://yugioh.wikia.com/wiki/Acrobatic_Circus")]
+        public void Given_A_Valid_Card_Profile_Url_With_No_Description_Should_Return_Empty_String(string cardProfileUrl)
+        {
+            // Arrange
+            _sut.Load(cardProfileUrl);
+
+            // Act
+            var result = _sut.ProfileCardDescription();
+
+            // Assert
+            result.Should().BeEmpty();
+        }
+
     }
 }
