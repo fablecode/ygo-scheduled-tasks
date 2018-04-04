@@ -35,7 +35,7 @@ namespace ygo_scheduled_tasks.archetypes
                         q.WithJob(() =>
                                 JobBuilder.Create<ArchetypeInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                .WithCronSchedule(CronExpression)
+                                //.WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });
