@@ -40,16 +40,14 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                         ArchetypeNumber = item.Id,
                         Name = item.Title,
                         ImageUrl = ImageHelper.ExtractImageUrl(thumbNailUrl),
-                        ProfileUrl = archetypeUrl.AbsoluteUri,
-                        Cards = _archetypeWebPage.Cards(archetypeUrl)
+                        ProfileUrl = archetypeUrl.AbsoluteUri
                     })
                     : await _archetypeService.Update(new UpdateArchetypeCommand
                     {
                         Id = existingArchetype.Id,
                         Name = item.Title,
                         ImageUrl = ImageHelper.ExtractImageUrl(thumbNailUrl),
-                        ProfileUrl = archetypeUrl.AbsoluteUri,
-                        Cards = _archetypeWebPage.Cards(archetypeUrl)
+                        ProfileUrl = archetypeUrl.AbsoluteUri
                     });
 
 
