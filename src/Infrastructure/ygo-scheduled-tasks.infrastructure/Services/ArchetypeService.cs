@@ -37,7 +37,7 @@ namespace ygo_scheduled_tasks.infrastructure.Services
 
         public Task<Archetype> Update(UpdateArchetypeCommand command)
         {
-            return _restClient.Put<UpdateArchetypeCommand, Archetype>($"{_config.ApiUrl}/api/Cards", command);
+            return _restClient.Put<UpdateArchetypeCommand, Archetype>($"{_config.ApiUrl}/api/Archetypes", command);
         }
     }
 }

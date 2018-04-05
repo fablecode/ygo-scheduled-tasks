@@ -28,8 +28,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
             if (!item.Title.Equals("Archetype", StringComparison.OrdinalIgnoreCase))
             {
-                var articleUrl = _config.WikiaDomainUrl + item.Url;
-                var archetypeUrl = new Uri(articleUrl);
+                var archetypeUrl = new Uri(new Uri(_config.WikiaDomainUrl), item.Url);
 
                 var thumbNailUrl = await _archetypeWebPage.ArchetypeThumbnail(item.Id, item.Url);
 
@@ -48,8 +47,8 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                     {
                         Id = existingArchetype.Id,
                         Name = item.Title,
-                        Thumbnail = ImageHelper.ExtractImageUrl(thumbNailUrl),
-                        Url = archetypeUrl.AbsoluteUri,
+                        ImageUrl = ImageHelper.ExtractImageUrl(thumbNailUrl),
+                        ProfileUrl = archetypeUrl.AbsoluteUri,
                         Cards = _archetypeWebPage.Cards(archetypeUrl)
                     });
 
