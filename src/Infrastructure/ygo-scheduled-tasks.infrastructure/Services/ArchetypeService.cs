@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain;
 using ygo_scheduled_tasks.domain.Client;
