@@ -16,7 +16,7 @@ namespace ygo_scheduled_tasks.archetypes
         public async void Execute(IJobExecutionContext context)
         {
             const int pageSize = 500;
-            var categories = new[] { "Archetypes", "Cards by archetype", "Cards by archetype support" };
+            var categories = new[] { /*"Archetypes",*/ "Cards by archetype", "Cards by archetype support" };
 
             await _mediator.Send(new ArchetypeInformationTask { Categories = categories, PageSize = pageSize });
         }

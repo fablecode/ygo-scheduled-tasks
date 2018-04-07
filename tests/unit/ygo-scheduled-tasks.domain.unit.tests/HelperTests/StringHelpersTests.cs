@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using ygo_scheduled_tasks.domain.Helpers;
 
@@ -22,5 +23,30 @@ namespace ygo_scheduled_tasks.domain.unit.tests.HelperTests
             // Assert
             result.Should().BeEquivalentTo(expected);
         }
+
+        [TestCase("List of \"Fire King\" cards", "Fire King")]
+        [TestCase("List of \"Gravekeeper's\" cards", "Gravekeeper's")]
+        [TestCase("List of \"/Assault Mode\" cards", "/Assault Mode")]
+        public void Given_An_Archetype_ListTitle_Should_Return_Archetype_Name(string archetypeListTitle, string expected)
+        {
+            // Arrange
+            // Act
+            var result = StringHelpers.ArchetypeNameFromListTitle(archetypeListTitle);
+
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
+
+        [Test]
+        public void Given_An_Invalid_Archetype_ListTitle_Should_Throw_ArgumentNullException()
+        {
+            // Arrange
+            // Act
+            Action act = () => StringHelpers.ArchetypeNameFromListTitle(null);
+
+            // Assert
+            act.Should().Throw<ArgumentNullException>();
+        }
+
     }
 }

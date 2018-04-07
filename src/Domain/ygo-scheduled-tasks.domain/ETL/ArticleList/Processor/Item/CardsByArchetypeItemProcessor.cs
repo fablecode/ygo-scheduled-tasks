@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
+using ygo_scheduled_tasks.domain.Helpers;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.domain.WebPage.Archetypes;
 
@@ -31,9 +33,9 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         public async Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
             var response = new ArticleTaskResult { Article = item };
-            var archetypeName = item.Title;
+            var archetypeName = StringHelpers.ArchetypeNameFromListTitle(item.Title);
 
-            var archetypeUrl = new Uri(_config.WikiaDomainUrl + item.Url);
+            var archetypeUrl = new Uri(new Uri(_config.WikiaDomainUrl), item.Url);
 
             var existingArchetype = await _archetypeService.ArchetypeByName(archetypeName);
 
