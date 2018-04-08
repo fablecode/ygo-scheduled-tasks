@@ -34,7 +34,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         public async Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
         {
             var response = new ArticleTaskResult { Article = item };
-            var archetypeName = StringHelpers.ArchetypeNameFromListTitle(item.Title).Replace("%2F", "/");
+            var archetypeName = StringHelpers.ArchetypeNameFromListTitle(item.Title);
 
             var archetypeUrl = new Uri(new Uri(_config.WikiaDomainUrl), item.Url);
 

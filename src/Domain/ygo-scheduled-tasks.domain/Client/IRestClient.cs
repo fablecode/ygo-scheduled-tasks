@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -10,5 +11,6 @@ namespace ygo_scheduled_tasks.domain.Client
         Task<Uri> Post<T>(string apiUrl, T data);
         Task<TResponse> Put<TRequest, TResponse>(string apiUrl, TRequest data);
         Task<HttpStatusCode> Delete(string apiUrl);
+        Task<T> Get<T>(string apiUrl, IDictionary<string, string> parameters);
     }
 }

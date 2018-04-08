@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web;
 using ygo_scheduled_tasks.domain.Client;
 using ygo_scheduled_tasks.domain.Extensions;
 using ygo_scheduled_tasks.infrastructure.HttpHandlers;
@@ -27,6 +29,26 @@ namespace ygo_scheduled_tasks.infrastructure.Client
 
             return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
         }
+
+        public async Task<T> Get<T>(string apiUrl, IDictionary<string, string> parameters)
+        {
+            var uriBuilder = new UriBuilder(apiUrl);
+            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+            foreach (var parameter in parameters)
+            {
+                query[parameter.Key] = parameter.Value;
+            }
+
+            uriBuilder.Query = query.ToString();
+            var url = uriBuilder.ToString();
+
+            var response = await client.GetAsync(url);
+            await response.EnsureSuccessAsync();
+
+            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+        }
+
 
 
         public async Task<Uri> Post<T>(string apiUrl, T data)
