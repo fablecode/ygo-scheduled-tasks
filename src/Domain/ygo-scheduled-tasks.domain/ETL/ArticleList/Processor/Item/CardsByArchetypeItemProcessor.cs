@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using wikia.Models.Article.AlphabeticalList;
+using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.Helpers;
 using ygo_scheduled_tasks.domain.Services;
@@ -42,7 +44,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
             if (existingArchetype != null)
             {
-                var archetype = await _archetypeCardsService.Update(existingArchetype.Id, _archetypeWebPage.Cards(archetypeUrl));
+                var archetype = await _archetypeCardsService.Update(new UpdateArchetypeCardsCommand { ArchetypeId = existingArchetype.Id, Cards = _archetypeWebPage.Cards(archetypeUrl)});
 
                 if (archetype != null)
                     response.IsSuccessfullyProcessed = true;

@@ -88,7 +88,7 @@
     <Compile Include="Services\BanlistCardsService.cs" />
     <Compile Include="Services\BanlistService.cs" />
     <Compile Include="Services\FormatService.cs" />
-    <Compile Include="Services\IArchetypeCardsService.cs" />
+    <Compile Include="Services\ArchetypeCardsService.cs" />
     <Compile Include="Services\LimitService.cs" />
     <Compile Include="Services\YugiohBanlistService.cs" />
     <Compile Include="Services\CardService.cs" />
