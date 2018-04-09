@@ -19,11 +19,6 @@ namespace ygo_scheduled_tasks.infrastructure.Services
             _restClient = restClient;
         }
 
-        public Task<IEnumerable<ArchetypeCard>> Update(long archetypeId, IEnumerable<string> cards)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task<IEnumerable<ArchetypeCard>> Update(UpdateArchetypeCardsCommand updateCommand)
         {
             return _restClient.Put<UpdateArchetypeCardsCommand, IEnumerable<ArchetypeCard>>($"{_config.ApiUrl}/api/ArchetypeCards", updateCommand);

@@ -7,8 +7,6 @@ namespace ygo_scheduled_tasks.domain.Services
 {
     public interface IArchetypeCardsService
     {
-        Task<IEnumerable<ArchetypeCard>> Update(long archetypeId, IEnumerable<string> cards);
-
         Task<IEnumerable<ArchetypeCard>> Update(UpdateArchetypeCardsCommand updateComman);
     }
 }

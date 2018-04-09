@@ -10,7 +10,6 @@ using ygo_scheduled_tasks.domain.ETL.ArticleList.DataSource;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Handler;
-using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Handler;
