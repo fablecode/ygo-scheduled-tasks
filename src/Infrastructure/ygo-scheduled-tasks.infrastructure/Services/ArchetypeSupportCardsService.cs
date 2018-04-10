@@ -8,20 +8,20 @@ using ygo_scheduled_tasks.domain.Services;
 
 namespace ygo_scheduled_tasks.infrastructure.Services
 {
-    public class ArchetypeCardsService : IArchetypeCardsService
+    public class ArchetypeSupportCardsService : IArchetypeSupportCardsService
     {
         private readonly IConfig _config;
         private readonly IRestClient _restClient;
 
-        public ArchetypeCardsService(IConfig config, IRestClient restClient)
+        public ArchetypeSupportCardsService(IConfig config, IRestClient restClient)
         {
             _config = config;
             _restClient = restClient;
         }
 
-        public Task<IEnumerable<ArchetypeCard>> Update(UpdateArchetypeCardsCommand updateCommand)
+        public Task<IEnumerable<ArchetypeCard>> Update(UpdateArchetypeSupportCardsCommand updateCommand)
         {
-            return _restClient.Put<UpdateArchetypeCardsCommand, IEnumerable<ArchetypeCard>>($"{_config.ApiUrl}/api/ArchetypeCards", updateCommand);
+            return _restClient.Put<UpdateArchetypeSupportCardsCommand, IEnumerable<ArchetypeCard>>($"{_config.ApiUrl}/api/ArchetypeSupportCards", updateCommand);
         }
     }
 }

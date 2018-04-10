@@ -34,12 +34,13 @@
     <Compile Include="Command\AddBanlistCommand.cs" />
     <Compile Include="Command\UpdateArchetypeCardsCommand.cs" />
     <Compile Include="Command\UpdateArchetypeCommand.cs" />
+    <Compile Include="Command\UpdateArchetypeSupportCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCommand.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\ArchetypeItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeItemProcessor.cs" />
-    <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeSupportItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
+    <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeSupportItemProcessor.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\ISemanticSearchDataSource.cs" />
     <Compile Include="ETL\SemanticSearch\DataSource\SemanticSearchDataSource.cs" />
     <Compile Include="ETL\SemanticSearch\Processor\Decorator\SemanticCardProcessorLoggerDecorator.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="SemanticSearchUrls.cs" />
     <Compile Include="Services\IArchetypeCardsService.cs" />
     <Compile Include="Services\IArchetypeService.cs" />
+    <Compile Include="Services\IArchetypeSupportCardsService.cs" />
     <Compile Include="Services\IAttributeService.cs" />
     <Compile Include="Services\IBanlistCardsService.cs" />
     <Compile Include="Services\IBanlistService.cs" />
