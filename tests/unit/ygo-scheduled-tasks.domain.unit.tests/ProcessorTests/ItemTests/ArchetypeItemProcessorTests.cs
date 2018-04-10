@@ -43,25 +43,6 @@ namespace ygo_scheduled_tasks.domain.unit.tests.ProcessorTests.ItemTests
             result.Should().BeTrue();
         }
 
-
-        [Test]
-        public async Task Given_An_Archetype_Article_Should_Execute_ArchetypeWebPage_Cards()
-        {
-            // Arrange
-            var article = new UnexpandedArticle { Title = "Blue-Eyes", Url = "/wiki/Blue-Eyes" };
-
-            _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
-            _archetypeWebPage.Cards(Arg.Any<Uri>()).Returns(new List<string> { "Blue-Eyes White Dragon" });
-            _archetypeService.Add(Arg.Any<AddArchetypeCommand>()).Returns(new Archetype());
-
-            // Act
-            await _sut.ProcessItem(article);
-
-            // Assert
-            _archetypeWebPage.Received(1).Cards(Arg.Any<Uri>());
-        }
-
-
         [Test]
         public async Task Given_An_Archetype_Article_Should_Execute_ArchetypeByName()
         {
