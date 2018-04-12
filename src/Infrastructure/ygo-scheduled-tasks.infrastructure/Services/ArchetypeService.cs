@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.core.Model;
 using ygo_scheduled_tasks.domain;
@@ -26,7 +27,7 @@ namespace ygo_scheduled_tasks.infrastructure.Services
 
         public Task<Archetype> ArchetypeByName(string name)
         {
-            return _restClient.Get<Archetype>($"{_config.ApiUrl}/api/Archetypes", new Dictionary<string, string>{{"name", name}});
+            return _restClient.Get<Archetype>($"{_config.ApiUrl}/api/Archetypes/names", new Dictionary<string, string>{ {"name", name}});
         }
 
         public async Task<Archetype> Add(AddArchetypeCommand command)
