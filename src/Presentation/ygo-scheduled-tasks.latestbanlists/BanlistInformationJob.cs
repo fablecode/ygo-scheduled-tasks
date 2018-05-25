@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Quartz;
 using ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist;
 
@@ -14,12 +13,12 @@ namespace ygo_scheduled_tasks.latestbanlists
             _mediator = mediator;
         }
 
-        Task IJob.Execute(IJobExecutionContext context)
+        public async void Execute(IJobExecutionContext context)
         {
             const int pageSize = 500;
-            var category = "Forbidden & Limited Lists";
+            const string category = "Forbidden & Limited Lists";
 
-            return _mediator.Send(new BanlistInformationTask { Category = category, PageSize = pageSize });
+            await _mediator.Send(new BanlistInformationTask { Category = category, PageSize = pageSize });
         }
     }
 }
