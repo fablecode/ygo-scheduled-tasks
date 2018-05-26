@@ -35,7 +35,7 @@ namespace ygo_scheduled_tasks.latestbanlists
                         q.WithJob(() =>
                                 JobBuilder.Create<BanlistInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                .WithCronSchedule(CronExpression)
+                                //.WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });

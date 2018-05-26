@@ -27,6 +27,7 @@ namespace ygo_scheduled_tasks.domain.unit.tests.BanlistTests
         [TestCase("OCG in effect since September 1, 2007.", "September 1, 2007")]
         [TestCase("TCG in effect since January 1, 2016.", "January 1, 2016")]
         [TestCase("TCG in effect since April 1, 2010", "April 1, 2010")]
+        [TestCase("These are the April 2018 Forbidden and Limited Lists for the OCG in effect since April 1, 2018", "April 1, 2018")]
         public void Given_A_Banlist_TitleText_Should_Extract_Banlist_StartDate(string titleText, DateTime expected)
         {
             // Arrange
