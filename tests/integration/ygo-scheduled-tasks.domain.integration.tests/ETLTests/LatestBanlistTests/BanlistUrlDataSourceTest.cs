@@ -20,7 +20,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.ETLTests.LatestBanlistTes
             var config = Substitute.For<IConfig>();
             _sut = new BanlistUrlDataSource(new BanlistWebPage(new HtmlWebPage(), config, new BanlistHtmlDocument(new HtmlWebPage())), new HtmlWebPage());
 
-            config.ApiUrl.Returns("http://yugioh.wikia.com");
+            config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
         }
 
         [TestCase(BanlistType.Tcg, "http://yugioh.wikia.com/wiki/July_1999_Lists")]
