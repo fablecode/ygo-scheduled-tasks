@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
+using ygo_scheduled_tasks.domain.ETL.Banlist.Processor;
 
 namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handlers
 {
@@ -19,8 +20,9 @@ namespace ygo_scheduled_tasks.application.unit.tests.ScheduledTasksTests.Handler
         public void Setup()
         {
             _articleCategoryProcessor = Substitute.For<IArticleCategoryProcessor>();
+            var banlistProcessor = Substitute.For<IBanlistProcessor>();
 
-            _sut = new BanlistInformationTaskHandler(_articleCategoryProcessor, new BanlistInformationTaskValidator());
+            _sut = new BanlistInformationTaskHandler(_articleCategoryProcessor, new BanlistInformationTaskValidator(), banlistProcessor);
         }
 
         [Test]

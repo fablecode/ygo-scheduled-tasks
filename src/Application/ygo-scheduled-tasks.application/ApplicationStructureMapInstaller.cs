@@ -10,12 +10,15 @@ using ygo_scheduled_tasks.domain.ETL.ArticleList.DataSource;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Handler;
+using ygo_scheduled_tasks.domain.ETL.Banlist.DataSource;
+using ygo_scheduled_tasks.domain.ETL.Banlist.Processor;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Decorator;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Handler;
 using ygo_scheduled_tasks.domain.ETL.SemanticSearch.Processor.Process;
 using ygo_scheduled_tasks.domain.WebPage;
 using ygo_scheduled_tasks.domain.WebPage.Archetypes;
+using ygo_scheduled_tasks.domain.WebPage.Banlists;
 using ygo_scheduled_tasks.domain.WebPage.Cards;
 
 namespace ygo_scheduled_tasks.application
@@ -75,6 +78,10 @@ namespace ygo_scheduled_tasks.application
             For<IArticleProcessor>().DecorateAllWith<ArticleProcessLoggerDecorator>();
             For<ISemanticCardProcessor>().DecorateAllWith<SemanticCardProcessorLoggerDecorator>();
 
+            For<IBanlistHtmlDocument>().Use<BanlistHtmlDocument>();
+            For<IBanlistWebPage>().Use<BanlistWebPage>();
+            For<IBanlistUrlDataSource>().Use<BanlistUrlDataSource>();
+            For<IBanlistProcessor>().Use<BanlistProcessor>();
 
         }
     }

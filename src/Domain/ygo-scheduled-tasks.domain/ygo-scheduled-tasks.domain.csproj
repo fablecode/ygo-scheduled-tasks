@@ -41,6 +41,8 @@
     <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeSupportItemProcessor.cs" />
+    <Compile Include="ETL\Banlist\Processor\BanlistProcessor.cs" />
+    <Compile Include="ETL\Banlist\Processor\IBanlistProcessor.cs" />
     <Compile Include="WebPage\Banlists\BanlistHtmlDocument.cs" />
     <Compile Include="ETL\Banlist\DataSource\BanlistUrlDataSource.cs" />
     <Compile Include="WebPage\Banlists\BanlistWebPage.cs" />

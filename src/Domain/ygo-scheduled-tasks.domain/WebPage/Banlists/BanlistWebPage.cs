@@ -50,7 +50,7 @@ namespace ygo_scheduled_tasks.domain.WebPage.Banlists
                             var aTag = banlistLink.SelectSingleNode("a");
 
                             if (aTag != null)
-                                yearBanlists.Add(new Uri(_config.ApiUrl + aTag.Attributes["href"].Value));
+                                yearBanlists.Add(new Uri(_config.WikiaDomainUrl + aTag.Attributes["href"].Value));
                         }
 
                         if(yearBanlists.Any())
