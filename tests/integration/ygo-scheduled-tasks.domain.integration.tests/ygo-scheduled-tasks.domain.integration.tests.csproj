@@ -173,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ETLTests\ArtistListTests\ProcessorTests\DecoratorTests\ArticleProcessLoggerDecoratorTests.cs" />
+    <Compile Include="ETLTests\LatestBanlistTests\BanlistHtmlDocumentTest.cs" />
+    <Compile Include="ETLTests\LatestBanlistTests\BanlistUrlDataSourceTest.cs" />
+    <Compile Include="ETLTests\LatestBanlistTests\BanlistWebPageTests.cs" />
     <Compile Include="ETLTests\SemanticSearchTests\ProcessorTests\DecoratorTest\SemanticCardProcessorLoggerDecoratorTests.cs" />
     <Compile Include="ETLTests\SemanticSearchTests\ProcessorTests\ProcessTests\SemanticSearchFlipMonstersProcessorTests.cs" />
     <Compile Include="ETLTests\SemanticSearchTests\ProcessorTests\ProcessTests\SemanticSearchNormalMonstersProcessorTests.cs" />

@@ -43,7 +43,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                 var banlist = new YugiohBanlist
                 {
                     ArticleId = banlistArticleSummary.ArticleId,
-                    Title = item.Title,
+                    Title = articleDetails.Value.Title,
                     BanlistType = banlistArticleSummary.BanlistType,
                     StartDate = banlistArticleSummary.StartDate
                 };
