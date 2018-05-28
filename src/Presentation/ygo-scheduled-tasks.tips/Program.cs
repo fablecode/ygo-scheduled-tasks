@@ -4,7 +4,6 @@ using Quartz;
 using Topshelf;
 using Topshelf.Quartz.StructureMap;
 using Topshelf.StructureMap;
-using ygo_scheduled_tasks.cardinformation;
 
 namespace ygo_scheduled_tasks.tips
 {
@@ -36,7 +35,7 @@ namespace ygo_scheduled_tasks.tips
                         q.WithJob(() => 
                             JobBuilder.Create<CardTipsJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                .WithCronSchedule(CronExpression)
+                                //.WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });

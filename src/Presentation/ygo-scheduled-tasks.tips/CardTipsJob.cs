@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Quartz;
+using ygo_scheduled_tasks.application.ScheduledTasks.CardTips;
 
 namespace ygo_scheduled_tasks.tips
 {
@@ -19,11 +20,5 @@ namespace ygo_scheduled_tasks.tips
 
             await _mediator.Send(new CardTipsTask { Category = category, PageSize = pageSize });
         }
-    }
-
-    public class CardTipsTask : IRequest
-    {
-        public string Category { get; set; }
-        public int PageSize { get; set; }
     }
 }

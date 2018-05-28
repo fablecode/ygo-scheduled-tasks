@@ -1,7 +1,7 @@
 ﻿using StructureMap;
 using StructureMap.Graph.Scanning;
 
-namespace ygo_scheduled_tasks.cardinformation
+namespace ygo_scheduled_tasks.tips
 {
     public static class Ioc
     {
