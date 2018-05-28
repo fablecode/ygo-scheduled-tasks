@@ -1,8 +1,10 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using NLog;
 using ygo_scheduled_tasks.core.Enums;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
 using ygo_scheduled_tasks.domain.ETL.Banlist.Processor;
@@ -14,6 +16,8 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist
         private readonly IArticleCategoryProcessor _articleCategoryProcessor;
         private readonly IValidator<BanlistInformationTask> _validator;
         private readonly IBanlistProcessor _banlistProcessor;
+        private readonly ILogger _logger;
+
 
         public BanlistInformationTaskHandler
         (
@@ -25,6 +29,7 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist
             _articleCategoryProcessor = articleCategoryProcessor;
             _validator = validator;
             _banlistProcessor = banlistProcessor;
+            _logger = LogManager.GetCurrentClassLogger();
         }
 
         public async Task<BanlistInformationTaskResult> Handle(BanlistInformationTask request, CancellationToken cancellationToken)
@@ -35,12 +40,27 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.LatestBanlist
 
             if (validationResults.IsValid)
             {
-                var categoryResult = await _articleCategoryProcessor.Process(request.Category, request.PageSize);
 
-                await _banlistProcessor.Process(BanlistType.Tcg);
-                await _banlistProcessor.Process(BanlistType.Ocg);
+                try
+                {
+                    _logger.Info("Banlist by category.....");
+                    var categoryResult = await _articleCategoryProcessor.Process(request.Category, request.PageSize);
 
-                response.ArticleTaskResults = categoryResult;
+                    _logger.Info("Tcg Banlist by articleId.....");
+                    var tcgdResult = await _banlistProcessor.Process(BanlistType.Tcg);
+
+                    _logger.Info("Ocg Banlist by articleId.....");
+                    var ocgResult = await _banlistProcessor.Process(BanlistType.Ocg);
+
+                    response.ArticleTaskResults = categoryResult;
+                    _logger.Info("Banlists tasks complete.....");
+
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                    throw;
+                }
             }
             else
             {
