@@ -37,6 +37,7 @@
     <Compile Include="Command\UpdateArchetypeSupportCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCardsCommand.cs" />
     <Compile Include="Command\UpdateBanlistCommand.cs" />
+    <Compile Include="Command\UpdateTipsCommand.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\ArchetypeItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
@@ -45,7 +46,7 @@
     <Compile Include="ETL\Banlist\Processor\BanlistProcessor.cs" />
     <Compile Include="ETL\Banlist\Processor\IBanlistProcessor.cs" />
     <Compile Include="ETL\Tips\Model\CardTipSection.cs" />
-    <Compile Include="ETL\Tips\Model\ICardTipService.cs" />
+    <Compile Include="Services\ICardTipService.cs" />
     <Compile Include="WebPage\Banlists\BanlistHtmlDocument.cs" />
     <Compile Include="ETL\Banlist\DataSource\BanlistUrlDataSource.cs" />
     <Compile Include="WebPage\Banlists\BanlistWebPage.cs" />

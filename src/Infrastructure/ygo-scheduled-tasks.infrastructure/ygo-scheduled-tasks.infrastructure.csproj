@@ -88,6 +88,7 @@
     <Compile Include="Services\AttributeService.cs" />
     <Compile Include="Services\BanlistCardsService.cs" />
     <Compile Include="Services\BanlistService.cs" />
+    <Compile Include="Services\CardTipService.cs" />
     <Compile Include="Services\FormatService.cs" />
     <Compile Include="Services\ArchetypeCardsService.cs" />
     <Compile Include="Services\LimitService.cs" />
