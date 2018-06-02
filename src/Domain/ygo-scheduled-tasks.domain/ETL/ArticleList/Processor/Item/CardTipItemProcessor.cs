@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using wikia.Api;
 using wikia.Models.Article.AlphabeticalList;
@@ -6,6 +8,7 @@ using wikia.Models.Article.Simple;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.ETL.Tips.Model;
 using ygo_scheduled_tasks.domain.Services;
+using ygo_scheduled_tasks.domain.WebPage.Cards.Tips;
 
 namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 {
@@ -14,12 +17,20 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
         private readonly IWikiArticle _wikiArticle;
         private readonly ICardService _cardService;
         private readonly ICardTipService _cardTipService;
+        private readonly ITipRelatedWebPage _tipRelatedWebPage;
 
-        public CardTipItemProcessor(IWikiArticle wikiArticle, ICardService cardService, ICardTipService cardTipService)
+        public CardTipItemProcessor
+        (
+            IWikiArticle wikiArticle, 
+            ICardService cardService, 
+            ICardTipService cardTipService,
+            ITipRelatedWebPage tipRelatedWebPage
+        )
         {
             _wikiArticle = wikiArticle;
             _cardService = cardService;
             _cardTipService = cardTipService;
+            _tipRelatedWebPage = tipRelatedWebPage;
         }
 
         public async Task<ArticleTaskResult> ProcessItem(UnexpandedArticle item)
@@ -41,6 +52,15 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                         Name = cardTipSection.Title,
                         Tips = GetSectionContentList(cardTipSection)
                     };
+
+
+                    if (cardTipSection.Title.Equals("List", StringComparison.OrdinalIgnoreCase) ||
+                        cardTipSection.Title.Equals("Lists", StringComparison.OrdinalIgnoreCase))
+                    {
+                        tipSection.Name = tipSection.Tips.First();
+                        tipSection.Tips.Clear();
+                        _tipRelatedWebPage.GetTipRelatedCards(tipSection, item);
+                    }
 
                     tipSections.Add(tipSection);
                 }

@@ -123,6 +123,12 @@
     <Compile Include="WebPage\Cards\CardHtmlDocument.cs" />
     <Compile Include="WebPage\Cards\CardHtmlTable.cs" />
     <Compile Include="WebPage\Cards\CardWebPage.cs" />
+    <Compile Include="WebPage\Cards\Tips\ITipRelatedCardList.cs" />
+    <Compile Include="WebPage\Cards\Tips\ITipRelatedHtmlDocument.cs" />
+    <Compile Include="WebPage\Cards\Tips\ITipRelatedWebPage.cs" />
+    <Compile Include="WebPage\Cards\Tips\TipRelatedCardList.cs" />
+    <Compile Include="WebPage\Cards\Tips\TipRelatedHtmlDocument.cs" />
+    <Compile Include="WebPage\Cards\Tips\TipRelatedWebPage.cs" />
     <Compile Include="WebPage\HtmlWebPage.cs" />
     <Compile Include="WebPage\Archetypes\IArchetypeWebPage.cs" />
     <Compile Include="WebPage\SemanticSearch.cs" />

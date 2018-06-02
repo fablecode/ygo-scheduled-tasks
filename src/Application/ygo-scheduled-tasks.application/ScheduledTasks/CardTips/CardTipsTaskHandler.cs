@@ -12,18 +12,15 @@ namespace ygo_scheduled_tasks.application.ScheduledTasks.CardTips
     {
         private readonly IArticleCategoryProcessor _articleCategoryProcessor;
         private readonly IValidator<CardTipsTask> _validator;
-        private readonly IBanlistProcessor _banlistProcessor;
 
         public CardTipsTaskHandler
         (
             IArticleCategoryProcessor articleCategoryProcessor, 
-            IValidator<CardTipsTask> validator,
-            IBanlistProcessor banlistProcessor
+            IValidator<CardTipsTask> validator
         )
         {
             _articleCategoryProcessor = articleCategoryProcessor;
             _validator = validator;
-            _banlistProcessor = banlistProcessor;
         }
 
         public async Task<CardTipsTaskResult> Handle(CardTipsTask request, CancellationToken cancellationToken)

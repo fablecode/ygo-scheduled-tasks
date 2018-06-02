@@ -32,11 +32,12 @@ namespace ygo_scheduled_tasks.domain.WebPage
                 {
                     var semanticCard = new SemanticCard
                     {
-                        Name = row.SelectSingleNode("td[position() = 1]").InnerText.Trim(),
-                        Url = row.SelectSingleNode("td[position() = 1]/a").Attributes["href"].Value,
+                        Name = row.SelectSingleNode("td[position() = 1]")?.InnerText.Trim(),
+                        Url = row.SelectSingleNode("td[position() = 1]/a")?.Attributes["href"]?.Value,
                     };
 
-                    semanticCardList.Add(semanticCard);
+                    if(!string.IsNullOrWhiteSpace(semanticCard.Name))
+                        semanticCardList.Add(semanticCard);
                 }
 
                 nextLink = doc.DocumentNode.SelectSingleNode("//a[contains(text(), 'Next')]");
