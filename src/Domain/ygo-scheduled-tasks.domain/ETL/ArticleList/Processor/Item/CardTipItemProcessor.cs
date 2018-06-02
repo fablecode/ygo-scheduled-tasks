@@ -38,14 +38,14 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                 {
                     var tipSection = new CardTipSection
                     {
-                        Title = cardTipSection.Title,
-                        Content = GetSectionContentList(cardTipSection)
+                        Name = cardTipSection.Title,
+                        Tips = GetSectionContentList(cardTipSection)
                     };
 
                     tipSections.Add(tipSection);
                 }
 
-                _cardTipService.Update(card.Id, tipSections);
+                await _cardTipService.Update(card.Id, tipSections);
             }
 
             return response;
