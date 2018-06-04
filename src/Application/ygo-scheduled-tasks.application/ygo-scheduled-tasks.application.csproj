@@ -40,6 +40,10 @@
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskHandler.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskResult.cs" />
     <Compile Include="ScheduledTasks\CardInformation\CardInformationTaskValidator.cs" />
+    <Compile Include="ScheduledTasks\CardRulings\CardRulingsTask.cs" />
+    <Compile Include="ScheduledTasks\CardRulings\CardRulingsTaskHandler.cs" />
+    <Compile Include="ScheduledTasks\CardRulings\CardRulingsTaskResult.cs" />
+    <Compile Include="ScheduledTasks\CardRulings\CardRulingsTaskValidator.cs" />
     <Compile Include="ScheduledTasks\CardTips\CardTipsTaskHandler.cs" />
     <Compile Include="ScheduledTasks\CardTips\CardTipsTaskResult.cs" />
     <Compile Include="ScheduledTasks\CardTips\CardTipsTaskValidator.cs" />

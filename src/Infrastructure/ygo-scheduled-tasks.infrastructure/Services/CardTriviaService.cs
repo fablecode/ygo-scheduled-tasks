@@ -5,10 +5,11 @@ using ygo_scheduled_tasks.domain;
 using ygo_scheduled_tasks.domain.Client;
 using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.Tips.Model;
+using ygo_scheduled_tasks.domain.Services;
 
 namespace ygo_scheduled_tasks.infrastructure.Services
 {
-    public class CardTriviaService
+    public class CardTriviaService : ICardTriviaService
     {
         private readonly IConfig _config;
         private readonly IRestClient _restClient;

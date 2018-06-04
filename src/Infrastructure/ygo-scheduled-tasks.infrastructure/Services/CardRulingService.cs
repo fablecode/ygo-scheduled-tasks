@@ -8,7 +8,7 @@ using ygo_scheduled_tasks.domain.ETL.Tips.Model;
 
 namespace ygo_scheduled_tasks.infrastructure.Services
 {
-    public class CardRulingService
+    public class CardRulingService : ICardRulingService
     {
         private readonly IConfig _config;
         private readonly IRestClient _restClient;

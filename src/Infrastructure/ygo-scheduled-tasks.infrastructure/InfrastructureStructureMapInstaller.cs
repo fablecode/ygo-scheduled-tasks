@@ -1,4 +1,5 @@
 ﻿using StructureMap;
+using ygo_scheduled_tasks.domain;
 using ygo_scheduled_tasks.domain.Client;
 using ygo_scheduled_tasks.domain.Services;
 using ygo_scheduled_tasks.infrastructure.Client;
@@ -30,6 +31,9 @@ namespace ygo_scheduled_tasks.infrastructure
             For<IArchetypeService>().Use<ArchetypeService>();
             For<IArchetypeCardsService>().Use<ArchetypeCardsService>();
             For<IArchetypeSupportCardsService>().Use<ArchetypeSupportCardsService>();
+            For<ICardTipService>().Use<CardTipService>();
+            For<ICardRulingService>().Use<CardRulingService>();
+            For<ICardTriviaService>().Use<CardTriviaService>();
 
             For<IRestClient>().Use<RestClient>();
         }

@@ -50,7 +50,9 @@
     <Compile Include="ETL\Tips\Model\CardRulingSection.cs" />
     <Compile Include="ETL\Tips\Model\CardTipSection.cs" />
     <Compile Include="ETL\Tips\Model\CardTriviaSection.cs" />
+    <Compile Include="Services\ICardRulingService.cs" />
     <Compile Include="Services\ICardTipService.cs" />
+    <Compile Include="Services\ICardTriviaService.cs" />
     <Compile Include="WebPage\Banlists\BanlistHtmlDocument.cs" />
     <Compile Include="ETL\Banlist\DataSource\BanlistUrlDataSource.cs" />
     <Compile Include="WebPage\Banlists\BanlistWebPage.cs" />
