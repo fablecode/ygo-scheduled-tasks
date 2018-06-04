@@ -38,6 +38,7 @@
     <Compile Include="ScheduledTasksTests\Handlers\BanlistInformationTaskHandlerTests.cs" />
     <Compile Include="ScheduledTasksTests\Handlers\ArchetypeInformationTaskHandlerTests.cs" />
     <Compile Include="ScheduledTasksTests\Handlers\CardInformationTaskHandlerTests.cs" />
+    <Compile Include="ScheduledTasksTests\ValidationTests\CardTriviaTaskValidatorTests.cs" />
     <Compile Include="ScheduledTasksTests\ValidationTests\CardRulingsTaskValidatorTests.cs" />
     <Compile Include="ScheduledTasksTests\ValidationTests\CardTipsTaskValidatorTests.cs" />
     <Compile Include="ScheduledTasksTests\ValidationTests\BanlistInformationTaskValidatorTests.cs" />
