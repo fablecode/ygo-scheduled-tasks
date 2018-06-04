@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.tips", "src\Presentation\ygo-scheduled-tasks.tips\ygo-scheduled-tasks.tips.csproj", "{3774B2A5-EDEF-4DCE-887A-24F13D692C9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ygo-scheduled-tasks.rulings", "src\Presentation\ygo-scheduled-tasks.rulings\ygo-scheduled-tasks.rulings.csproj", "{781FEA55-6D11-431F-A0D2-8E6F662D5211}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{3774B2A5-EDEF-4DCE-887A-24F13D692C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3774B2A5-EDEF-4DCE-887A-24F13D692C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3774B2A5-EDEF-4DCE-887A-24F13D692C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{781FEA55-6D11-431F-A0D2-8E6F662D5211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{781FEA55-6D11-431F-A0D2-8E6F662D5211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{781FEA55-6D11-431F-A0D2-8E6F662D5211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{781FEA55-6D11-431F-A0D2-8E6F662D5211}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +129,7 @@ Global
 		{3BA8C481-9C52-40C2-B7A6-5A29D23E2659} = {5C362B23-8D3A-4A34-A664-F029524880D6}
 		{036E3C69-0384-45D1-8391-E2E934542206} = {20431B56-480D-462E-A720-17916BC26CE4}
 		{3774B2A5-EDEF-4DCE-887A-24F13D692C9B} = {5C362B23-8D3A-4A34-A664-F029524880D6}
+		{781FEA55-6D11-431F-A0D2-8E6F662D5211} = {5C362B23-8D3A-4A34-A664-F029524880D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA0BD5B5-8D45-4E19-9074-25B0B1D762B7}
