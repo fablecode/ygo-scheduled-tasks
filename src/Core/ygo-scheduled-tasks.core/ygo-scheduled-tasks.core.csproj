@@ -52,8 +52,12 @@
     <Compile Include="Model\BanlistCard.cs" />
     <Compile Include="Model\Format.cs" />
     <Compile Include="Model\Limit.cs" />
+    <Compile Include="Model\Ruling.cs" />
+    <Compile Include="Model\RulingSection.cs" />
     <Compile Include="Model\Tip.cs" />
     <Compile Include="Model\TipSection.cs" />
+    <Compile Include="Model\Trivia.cs" />
+    <Compile Include="Model\TriviaSection.cs" />
     <Compile Include="Model\YugiohBanlist.cs" />
     <Compile Include="Model\BanlistArticleSummary.cs" />
     <Compile Include="Model\YugiohBanlistSection.cs" />

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor;
-using ygo_scheduled_tasks.domain.ETL.Banlist.Processor;
 
 namespace ygo_scheduled_tasks.application.ScheduledTasks.CardTips
 {

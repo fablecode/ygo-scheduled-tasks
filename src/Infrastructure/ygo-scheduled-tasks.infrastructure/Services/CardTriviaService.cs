@@ -5,30 +5,29 @@ using ygo_scheduled_tasks.domain;
 using ygo_scheduled_tasks.domain.Client;
 using ygo_scheduled_tasks.domain.Command;
 using ygo_scheduled_tasks.domain.ETL.Tips.Model;
-using ygo_scheduled_tasks.domain.Services;
 
 namespace ygo_scheduled_tasks.infrastructure.Services
 {
-    public class CardTipService : ICardTipService
+    public class CardTriviaService
     {
         private readonly IConfig _config;
         private readonly IRestClient _restClient;
 
-        public CardTipService(IConfig config, IRestClient restClient)
+        public CardTriviaService(IConfig config, IRestClient restClient)
         {
             _config = config;
             _restClient = restClient;
         }
 
-        public Task<List<TipSection>> Update(long cardId, List<CardTipSection> tipSections)
+        public Task<List<TriviaSection>> Update(long cardId, List<CardTriviaSection> rulingSections)
         {
-            var command = new UpdateTipsCommand
+            var command = new UpdateTriviaCommand
             {
                 CardId = cardId,
-                Tips = tipSections
+                Trivia = rulingSections
             };
 
-            return _restClient.Put<UpdateTipsCommand, List<TipSection>>($"{_config.ApiUrl}/api/cards/{cardId}/tips", command);
+            return _restClient.Put<UpdateTriviaCommand, List<TriviaSection>>($"{_config.ApiUrl}/api/cards/{cardId}/trivia", command);
         }
     }
 }
