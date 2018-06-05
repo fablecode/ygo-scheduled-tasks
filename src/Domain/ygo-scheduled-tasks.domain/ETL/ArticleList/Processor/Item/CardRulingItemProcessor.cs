@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using wikia.Api;
 using wikia.Models.Article.AlphabeticalList;
@@ -41,6 +42,9 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
 
                 foreach (var cardRulingSection in articleCardRulings.Sections)
                 {
+                    if(cardRulingSection.Title.Equals("References", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
                     var rulingSection = new CardRulingSection
                     {
                         Name = cardRulingSection.Title,
