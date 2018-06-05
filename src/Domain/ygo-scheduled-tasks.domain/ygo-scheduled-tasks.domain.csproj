@@ -41,6 +41,7 @@
     <Compile Include="Command\UpdateTipsCommand.cs" />
     <Compile Include="Command\UpdateTriviaCommand.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\ArchetypeItemProcessor.cs" />
+    <Compile Include="ETL\ArticleList\Processor\Item\CardTriviaItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\BanlistItemProcessor.cs" />
     <Compile Include="ETL\ArticleList\Processor\Item\CardsByArchetypeSupportItemProcessor.cs" />
