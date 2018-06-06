@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using wikia.Api;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.Simple;
+using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Helpers;
 using ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Model;
 using ygo_scheduled_tasks.domain.ETL.Tips.Model;
 using ygo_scheduled_tasks.domain.Services;
@@ -48,7 +49,7 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
                     var rulingSection = new CardRulingSection
                     {
                         Name = cardRulingSection.Title,
-                        Rulings = GetSectionContentList(cardRulingSection)
+                        Rulings = SectionHelper.GetSectionContentList(cardRulingSection)
                     };
 
                     rulingSections.Add(rulingSection);
@@ -58,35 +59,6 @@ namespace ygo_scheduled_tasks.domain.ETL.ArticleList.Processor.Item
             }
 
             return response;
-        }
-
-        private List<string> GetSectionContentList(Section cardTipSection)
-        {
-            var content = new List<string>();
-
-            foreach (var c in cardTipSection.Content)
-            {
-                GetContentList(c.Elements, content);
-            }
-
-            return content;
-        }
-
-        public void GetContentList(IEnumerable<ListElement> elementList, List<string> contentlist)
-        {
-            if (elementList != null)
-            {
-                foreach (var e in elementList)
-                {
-                    if (e != null)
-                    {
-                        if (!string.IsNullOrEmpty(e.Text))
-                            contentlist.Add(e.Text);
-
-                        GetContentList(e.Elements, contentlist);
-                    }
-                }
-            }
         }
 
         public bool Handles(string category)

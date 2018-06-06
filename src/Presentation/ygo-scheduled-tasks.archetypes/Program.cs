@@ -9,7 +9,7 @@ namespace ygo_scheduled_tasks.archetypes
 {
     class Program
     {
-        private static readonly string CronExpression = ConfigurationManager.AppSettings["CronExpression"]; // Every Tuesday at 12:00am
+        private static readonly string CronExpression = ConfigurationManager.AppSettings["CronExpression"];
 
         static void Main(string[] args)
         {
