@@ -35,7 +35,7 @@ namespace ygo_scheduled_tasks.rulings
                         q.WithJob(() => 
                             JobBuilder.Create<CardRulingsJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                //.WithCronSchedule(CronExpression)
+                                .WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });

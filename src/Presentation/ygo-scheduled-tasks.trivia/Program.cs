@@ -35,7 +35,7 @@ namespace ygo_scheduled_tasks.trivia
                         q.WithJob(() => 
                             JobBuilder.Create<CardTriviaJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                //.WithCronSchedule(CronExpression)
+                                .WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });
