@@ -35,7 +35,7 @@ namespace ygo_scheduled_tasks.tips
                         q.WithJob(() => 
                             JobBuilder.Create<CardTipsJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-                                .WithCronSchedule(CronExpression)
+                                //.WithCronSchedule(CronExpression)
                                 .StartNow()
                                 .Build()));
                 });
