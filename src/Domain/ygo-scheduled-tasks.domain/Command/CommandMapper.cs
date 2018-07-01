@@ -247,12 +247,12 @@ namespace ygo_scheduled_tasks.domain.Command
 
         private static string Atk(YugiohCard yugiohCard)
         {
-            return yugiohCard.AtkDef.Split('/').First();
+            return yugiohCard.AtkDef?.Split('/').First();
         }
 
         private static string DefOrLink(YugiohCard yugiohCard)
         {
-            return yugiohCard.AtkDef.Split('/').Last();
+            return yugiohCard.AtkDef?.Split('/').Last();
         }
 
         #endregion

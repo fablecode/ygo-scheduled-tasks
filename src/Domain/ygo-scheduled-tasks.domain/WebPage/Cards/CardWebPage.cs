@@ -49,5 +49,6 @@ namespace ygo_scheduled_tasks.domain.WebPage.Cards
 
             return yugiohCard;
         }
+
     }
 }
