@@ -35,11 +35,7 @@ namespace ygo_scheduled_tasks.cardinformation
                         q.WithJob(() => 
                             JobBuilder.Create<CardInformationJob>().Build())
                             .AddTrigger(() => TriggerBuilder.Create()
-
-                            //#if RELEASE
-                            //    .WithCronSchedule(CronExpression)
-                            //#endif
-
+                            .WithCronSchedule(CronExpression)
                             .StartNow()
                             .Build()));
                 });
