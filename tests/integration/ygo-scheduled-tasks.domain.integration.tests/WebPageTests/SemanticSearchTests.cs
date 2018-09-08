@@ -21,7 +21,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             _config.WikiaDomainUrl.Returns("http://yugioh.wikia.com");
         }
 
-        [TestCase("http://yugioh.wikia.com/wiki/Card_Tips:Tour_Guide_From_the_Underworld")]
+        [TestCase("https://yugioh.wikia.com/wiki/Card_Tips:Sangan")]
         public void Given_A_SemanticSearch_Url_Should_Extract_Cards_From_Url(string url)
         {
             // Arrange

@@ -18,7 +18,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
 
 
         [TestCase("http://yugioh.wikia.com/wiki/Borreload_Dragon", "https://vignette.wikia.nocookie.net/yugioh/images/f/ff/BorreloadDragon-CIBR-EN-ScR-1E.png")]
-        [TestCase("http://yugioh.wikia.com/wiki/Twin_Triangle_Dragon", "https://vignette.wikia.nocookie.net/yugioh/images/d/de/TwinTriangleDragon-SP18-EN-C-1E.png")]
+        [TestCase("http://yugioh.wikia.com/wiki/Twin_Triangle_Dragon", "https://vignette.wikia.nocookie.net/yugioh/images/5/57/TwinTriangleDragon-OP08-EN-SR-UE.png")]
         [TestCase("http://yugioh.wikia.com/wiki/Blue-Eyes_Ultimate_Dragon", "https://vignette.wikia.nocookie.net/yugioh/images/a/ad/BlueEyesUltimateDragon-LCKC-EN-ScR-1E.png")]
         public void Given_A_Card_HtmlDocument_Should_Return_Profile_Image_Url(string cardProfileUrl, string expected)
         {
