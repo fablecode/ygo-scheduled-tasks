@@ -36,7 +36,7 @@ namespace ygo_scheduled_tasks.domain.integration.tests.WebPageTests
             result.Name.Should().BeEquivalentTo("table");
         }
 
-        [TestCase("http://yugioh.wikia.com/wiki/Card_Tips:Sangan", "http://yugioh.wikia.com/wiki/Special:Ask/-5B-5BClass-201::Official-5D-5D-20-5B-5BConcept:Main-20Deck-20monsters-5D-5D-20-5B-5BATK::%E2%89%A41500-5D-5D/-3FJapanese-20name/-3FPrimary-20type/-3FType/-3FAttribute/-3FLevel/-3FATK-20string%3DATK/-3FDEF-20string%3DDEF/mainlabel%3D/limit%3D10/offset%3D10/format%3Dtable")]
+        [TestCase("http://yugioh.wikia.com/wiki/Card_Tips:Sangan", "http://yugioh.wikia.com/wiki/Special:Ask/-5B-5BClass-201::Official-5D-5D-20-5B-5BConcept:Main-20Deck-20monsters-5D-5D-20-5B-5BATK::%E2%89%A41500-5D-5D/-3FJapanese-20name/-3FPrimary-20type/-3FSecondary-20type/-3FAttribute/-3FType/-3FLevel/-3FPendulum-20Scale%3DPS/-3FATK-20string%3DATK/-3FDEF-20string%3DDEF/mainlabel%3D/limit%3D10/offset%3D10/format%3Dtable")]
         public void Given_A_Tip_Url_Should_Return_FurtherResults_Url(string url, string expected)
         {
             // Arrange
